@@ -1,0 +1,49 @@
+
+
+img {
+  width: 15rem;
+}
+
+.movie-poster {
+  margin-right: 7rem;
+}
+
+.movie-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.movie-description {
+  font-size: 20px;
+  line-height: 2rem;
+}
+
+.col {
+  margin-top: 2rem;
+}
+
+.nav {
+  background-color: #ffb72a;
+  padding: 1rem 0 1rem 5rem;
+  display: flex;
+}
+
+.nav-link {
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: 2.5rem;
+  font-weight: bold;
+}
+
+.main-logo {
+  width: 11.75rem;
+  margin-left: 5rem;
+  margin-right: 10%;
+}
+
+.main-container {
+  margin-top: 5rem;
+}
+
+/*# sourceMappingURL=index.27d8da6b.css.map */

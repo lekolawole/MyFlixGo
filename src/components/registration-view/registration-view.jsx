@@ -30,8 +30,8 @@ export function RegistrationView(props) {
 
   return(
     <Container>
-      <Row>
-        <Col>
+      <Row className="justify-content-md-center">
+        <Col md={6}>
           <CardGroup>
             <Card>
               <Card.Body>
@@ -41,6 +41,7 @@ export function RegistrationView(props) {
                   <Form.Label>
                   Username:
                   <Form.Control 
+                    style={{ "width":"24rem", "display":"flex"}}
                     type="text" 
                     value={username} 
                     placeholder= 'Enter a username' 
@@ -52,6 +53,7 @@ export function RegistrationView(props) {
                   <Form.Label>
                     Password:
                     <Form.Control
+                      style={{ "width":"24rem", "display":"flex"}}
                       type="password" 
                       value={password} 
                       minLength="8"
@@ -63,6 +65,7 @@ export function RegistrationView(props) {
                 <Form.Group>
                   <Form.Label>Email: 
                     <Form.Control 
+                      style={{ "width":"24rem", "display":"flex"}}
                       type="email" 
                       value={email} 
                       placeholder='Enter your email address' 
