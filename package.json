@@ -16,5 +16,17 @@
   "bugs": {
     "url": "https://github.com/lekolawole/myflix-client-v.2/issues"
   },
-  "homepage": "https://github.com/lekolawole/myflix-client-v.2#readme"
+  "homepage": "https://github.com/lekolawole/myflix-client-v.2#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "parcel": "^2.0.1",
+    "react": "^18.1.0",
+    "react-bootstrap": "^2.3.1",
+    "react-dom": "^18.1.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.5.0",
+    "buffer": "^6.0.3",
+    "process": "^0.11.10"
+  }
 }
