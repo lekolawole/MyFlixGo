@@ -31789,7 +31789,7 @@ MovieView.propTypes = {
     movie: _propTypesDefault.default.shape({
         Title: _propTypesDefault.default.string.isRequired,
         Description: _propTypesDefault.default.string.isRequired,
-        ImagePath: _propTypesDefault.default.string.isRequired,
+        ImagePath: _propTypesDefault.default.string,
         Director: _propTypesDefault.default.string.isRequired,
         Rating: _propTypesDefault.default.string.isRequired
     }).isRequired
