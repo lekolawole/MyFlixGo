@@ -1,0 +1,22 @@
+img {
+  width: 25rem;
+}
+
+.movie-view {
+  display: flex;
+}
+
+.movie-poster {
+  margin-right: 5rem;
+}
+
+.main-view-movie {
+  display: hidden;
+}
+
+.my-flix {
+  color: #4682b4;
+  border: 5px #4682b4;
+}
+
+/*# sourceMappingURL=index.5f1df611.css.map */
