@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Form, Button, Card, Container, Row, Col, CardGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -9,24 +9,65 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
 
+  //Declare hooks for validation
+  const [ usernameErr, setUsernameErr ] = useState('');
+  const [ passwordErr, setPasswordErr ] = useState('');
+  const [ emailErr, setEmailErr ] = useState('');
+  const [ birthdayErr, setBirthdayErr ] = useState('');
+
+  //Function that returns where validation requirements (isReq) are T/F
+  const validate = () => {
+    let isReq = true;
+    if(!username){
+      setUsernameErr('Username is Required');
+      isReq = false;
+    }else if(username.length < 2){
+      setUsernameErr('Username must be 2 characters long');
+      isReq = false;
+    }
+    if(!password){
+      setPasswordErr('Password is Reaquired');
+      isReq = false;
+    }else if(password.length < 8){
+      setPasswordErr('Password must be 8 characters long');
+      isReq = false;
+    }
+    if(!email){
+      setEmailErr('Email is Required');
+      isReq = false;
+    }else if(email.indexOf('@') === -1) {
+      setEmailErr('Must be a valid email address');
+      isReq = false;
+    }
+
+    return isReq;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // axios.post('https://my-flix-22.herokuapp.com/users', {
-    //   Username: username,
-    //   Password: password,
-    //   Email: email,
-    //   Birthday: birthday
-    // })
-    // .then(response => {
-    //   console.log(response.data);
-    // })
-    // .catch(e => {
-    //   console.log('Error during registration.');
-    //   alert('Registration not complete')
-    // });
+    const isReq = validate();
+
+    if(isReq){
+        axios.post('https://my-flix-22.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      })
+      .then(response => {
+        console.log(response.data);
+        alert('Registration successful, please login!');
+      })
+      .catch(e => {
+        console.log('Error during registration.');
+        alert('Registration not complete')
+      });
+    }
+    
     console.log(username, password, email, birthday);
     props.onRegister(false)
-  }
+  };
+
 
   return(
     <Container>
@@ -46,6 +87,7 @@ export function RegistrationView(props) {
                     value={username} 
                     placeholder= 'Enter a username' 
                     onChange={e => setUsername(e.target.value)} />
+                    {usernameErr && <p>{usernameErr}</p>}
                   </Form.Label>
                 </Form.Group>
 
@@ -59,6 +101,7 @@ export function RegistrationView(props) {
                       minLength="8"
                       placeholder= 'Your password must be 8 or more characters' 
                       onChange={e => setPassword(e.target.value)} />
+                      {passwordErr && <p>{passwordErr}</p>}
                   </Form.Label>
                 </Form.Group>
 
@@ -70,6 +113,7 @@ export function RegistrationView(props) {
                       value={email} 
                       placeholder='Enter your email address' 
                       onChange={e => setEmail(e.target.value)} />
+                      {emailErr && <p>{emailErr}</p>}
                   </Form.Label>
                 </Form.Group>
 
@@ -81,11 +125,18 @@ export function RegistrationView(props) {
                     value={birthday} 
                     placeholder='mm/dd/yyyy' 
                     onChange={e => setBirthday(e.target.value)} />
+                    {birthdayErr && <p>{birthdayErr}</p>}
                   </Form.Label>
                 </Form.Group>
 
                 <Button type="submit" onClick={handleSubmit}>Register</Button>
               </Form>
+              <div>
+                <a href='/'>
+                  <p style={{"marginTop":"1rem"}}>I already have an account</p>
+                </a>
+              </div>
+              
               </Card.Body>
             </Card>
           </CardGroup>
