@@ -2,11 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Row, Col, Button, Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { GenreView } from '../genre-view/genre-view';
 import { bool } from 'prop-types';
 import './main-view.scss';
 //import { NavbarView } from '../navbar-view/navbar-view';
@@ -119,6 +121,8 @@ export class MainView extends React.Component {
 
     return (
       <Container className="main-container container-fluid">
+        <Router>
+          
         <Nav className="main-view-nav">
           <Nav.Item>
             <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'></img>
@@ -136,20 +140,36 @@ export class MainView extends React.Component {
           </NavDropdown>
         </Nav>
       
-        <Row>
-        {selectedMovie
-          ? (
-              <Col md={10} className="main-view justify-content-md-center">
-                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+        <div className="main-view">
+          <Row className="main-view justify-content-md-center">
+            <Route exact path="/" render={() => {
+              return movies.map(m => (
+                <Col md={3} key={m._id} style={{ "display": "flex", "marginBottom":"1.5rem"}}>
+                  <MovieCard movie={m} />
+                </Col>
+              ))
+            }} />
+            <Route path="/movies/:title" render={({ match, history }) => {
+              return <Col md={10}>
+                <MovieView movie={movies.find(m => m._id === match.params.title)} onBackClick={() => history.goBack()}/>
+            </Col>
+          }} />
+            <Route path="/directors/:name" render={({ match, history }) => {
+              if (movies.length === 0) return <div className="main-view" />;
+              return <Col md={8}>
+                <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
               </Col>
-            )
-            : movies.map(movie => (
-              <Col md={3} style={{ "display": "flex", "marginBottom":"1.5rem"}}>
-                <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/> 
+            }} />
+            <Route exact path="/genres/name" render={({match, history}) => {
+              if (movies.length === 0) return <div className="main-view" />;
+              return <Col md={8}>
+                <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()}/>
               </Col>
-            ))
-            }           
+            }}/>
           </Row>
+        </div>
+        </Router>
+        
         </Container>
       );
       
@@ -163,3 +183,19 @@ MainView.propTypes = {
     Description: PropTypes.string.isRequired
   }).isRequired
 }
+
+
+
+{/*{selectedMovie
+          ? (
+              <Col md={10} className="main-view justify-content-md-center">
+                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              </Col>
+            )
+            : movies.map(movie => (
+              <Col md={3} style={{ "display": "flex", "marginBottom":"1.5rem"}}>
+                <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/> 
+              </Col>
+            ))
+            }     
+          */}  
