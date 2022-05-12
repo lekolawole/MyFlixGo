@@ -34,11 +34,12 @@ export class MainView extends React.Component {
   //     });
   // }
 
+  //Retrieves user info (if already logged in)
   componentDidMount() {
-  let accessToken = localStorage.getItem('token');
+  let accessToken = localStorage.getItem('token'); //accesses user token
   if (accessToken !== null) {
     this.setState({
-      user: localStorage.getItem('user')
+      user: localStorage.getItem('user')//sets user credentials for state
     });
     this.getMovies(accessToken);
   }
@@ -59,6 +60,14 @@ export class MainView extends React.Component {
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     this.getMovies(authData.token);
+  }
+
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
+    });
   }
 
   onRegister(isRegistered) {
