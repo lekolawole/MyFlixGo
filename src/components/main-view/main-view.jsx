@@ -22,17 +22,27 @@ export class MainView extends React.Component {
     };
   }
 
-  componentDidMount() { //loads app from server
-    axios.get('https://my-flix-22.herokuapp.com/movies')
-      .then(response => {
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+  // componentDidMount() { //loads app from server
+  //   axios.get('https://my-flix-22.herokuapp.com/movies')
+  //     .then(response => {
+  //       this.setState({
+  //         movies: response.data
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.log(error);
+  //     });
+  // }
+
+  componentDidMount() {
+  let accessToken = localStorage.getItem('token');
+  if (accessToken !== null) {
+    this.setState({
+      user: localStorage.getItem('user')
+    });
+    this.getMovies(accessToken);
   }
+}
 
   setSelectedMovie(movie) {
     this.setState({
@@ -40,7 +50,7 @@ export class MainView extends React.Component {
     });
   }
 
-  onLoggedIn(authData) {
+  onLoggedIn(authData) { //authenticates user credentials
     console.log(authData);
     this.setState({
       user: authData.user.Username
@@ -56,6 +66,22 @@ export class MainView extends React.Component {
       isRegistered
     });
   }
+
+  getMovies(token) {
+  axios.get('https://my-flix-22.herokuapp.com/movies', {
+    headers: { Authorization: `Bearer ${token}`}
+  })
+  .then(response => {
+    // Assign the result to the state
+    this.setState({
+      movies: response.data
+    });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+  
 
   render() {
     const { movies, selectedMovie, isRegistered, user } = this.state;
