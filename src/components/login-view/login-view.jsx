@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import './login-view.scss';
 import { Col, Row, Container } from 'react-bootstrap';
 import axios from 'axios';
 
@@ -56,7 +55,7 @@ export function LoginView(props) {
   }
 
   return (
-    <Container>
+    <Container className="main-container" style={{"marginTop":"10rem"}}>
       <Row className="justify-content-md-center">
         <Col md={6}>
           <Form>

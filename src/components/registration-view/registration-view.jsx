@@ -70,7 +70,7 @@ export function RegistrationView(props) {
 
 
   return(
-    <Container>
+    <Container style={{"marginTop":"5rem"}}>
       <Row className="justify-content-md-center">
         <Col md={6}>
           <CardGroup>

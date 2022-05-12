@@ -1,14 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col, Button, Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { bool } from 'prop-types';
+import './main-view.scss';
+//import { NavbarView } from '../navbar-view/navbar-view';
 
 export class MainView extends React.Component {
 
@@ -95,6 +96,7 @@ export class MainView extends React.Component {
   render() {
     const { movies, selectedMovie, isRegistered, user } = this.state;
     
+    
     if (isRegistered) {//Creates registration Form
       return <RegistrationView onRegister={(bool) => this.onRegister(bool)} />
     }
@@ -113,23 +115,44 @@ export class MainView extends React.Component {
 
     if (movies.length === 0) return <div className="main-view" />;
     
+    
 
     return (
-      <Row>
-      {selectedMovie
-        ? (
-            <Col md={10} className="main-view justify-content-md-center">
-              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-            </Col>
-          )
-          : movies.map(movie => (
-            <Col md={3} style={{ "display": "flex", "marginBottom":"1.5rem"}}>
-              <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/> 
-            </Col>
-          ))
-          }           
-        </Row>
+      <Container className="main-container container-fluid">
+        <Nav className="main-view-nav">
+          <Nav.Item>
+            <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'></img>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link href="/home">Home</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link>Movies</Nav.Link>
+          </Nav.Item>
+          <NavDropdown title="Profile">
+            <NavDropdown.Item>
+              <Nav.Link onClick={() => {this.onLoggedOut()}}>Logout</Nav.Link>
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+      
+        <Row>
+        {selectedMovie
+          ? (
+              <Col md={10} className="main-view justify-content-md-center">
+                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              </Col>
+            )
+            : movies.map(movie => (
+              <Col md={3} style={{ "display": "flex", "marginBottom":"1.5rem"}}>
+                <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/> 
+              </Col>
+            ))
+            }           
+          </Row>
+        </Container>
       );
+      
   }
   
 }

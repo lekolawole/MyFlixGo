@@ -1,17 +1,40 @@
 img {
-  width: 25rem;
-}
-
-.movie-view {
-  display: flex;
+  width: 15rem;
 }
 
 .movie-poster {
-  margin-right: 5rem;
+  margin-right: 7rem;
 }
 
-.main-view-movie {
-  display: hidden;
+.movie-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.movie-description {
+  font-size: 20px;
+  line-height: 2rem;
+}
+
+.col, .row {
+  margin-top: 2rem;
+}
+
+.main-container {
+  margin: 0;
+  padding: 0;
+}
+
+.main-view-nav {
+  max-width: 100vw;
+  width: 100vw;
+  margin-bottom: 5rem;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  display: flex;
+  position: relative;
+  left: 50%;
+  right: 50%;
 }
 
 .nav {
@@ -23,7 +46,9 @@ img {
 .nav-link {
   color: #000;
   text-align: center;
+  text-transform: uppercase;
   margin-left: 2.5rem;
+  font-weight: bold;
 }
 
 .main-logo {
@@ -32,8 +57,6 @@ img {
   margin-right: 10%;
 }
 
-.main-container {
-  margin-top: 5rem;
-}
+
 
 /*# sourceMappingURL=index.5f1df611.css.map */
