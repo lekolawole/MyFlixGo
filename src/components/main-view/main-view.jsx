@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Row, Col, Button, Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
@@ -13,6 +13,7 @@ import { bool } from 'prop-types';
 import './main-view.scss';
 
 import { NavbarView } from '../navbar-view/navbar-view';
+import { Redirect } from 'react-router-dom';
 
 export class MainView extends React.Component {
 
@@ -125,22 +126,6 @@ export class MainView extends React.Component {
         
         <Router>
           <NavbarView />
-        {/* <Nav className="main-view-nav">
-          <Nav.Item>
-            <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'></img>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href="/home">Home</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>Movies</Nav.Link>
-          </Nav.Item>
-          <NavDropdown title="Profile">
-            <NavDropdown.Item>
-              <Nav.Link onClick={() => {this.onLoggedOut()}}>Logout</Nav.Link>
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Nav> */}
       
         <div className="main-view">
           <Row className="main-view justify-content-md-center">
@@ -151,6 +136,16 @@ export class MainView extends React.Component {
                 </Col>
               ))
             }} />
+            <Route path="/register" render={() => {
+              if (user) {
+                return <Redirect to="/" />;
+              }
+              if (!user)
+                return (
+                  <Col lg={8} md={8}><RegistrationView /></Col>
+                );
+            }}
+          />
             <Route path="/movies/:title" render={({ match, history }) => {
               return <Col md={10}>
                 <MovieView movie={movies.find(m => m._id === match.params.title)} onBackClick={() => history.goBack()}/>
@@ -168,6 +163,7 @@ export class MainView extends React.Component {
                 <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()}/>
               </Col>
             }}/>
+            
           </Row>
         </div>
         </Router>

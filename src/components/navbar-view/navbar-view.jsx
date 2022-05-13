@@ -1,4 +1,4 @@
-import { Container, Nav, NavDropdown, Button } from 'react-bootstrap';
+import { Container, Nav, NavDropdown, Button, NavItem } from 'react-bootstrap';
 import React from 'react';
 import ReactDOM from 'react-dom'; 
 import './navbar-view.scss';
@@ -33,7 +33,13 @@ export class NavbarView extends React.Component {
           <Nav.Item>
             <Nav.Link>Movies</Nav.Link>
           </Nav.Item>
+          <Nav.Item>
+            <Nav.Link>My List</Nav.Link>
+          </Nav.Item>
           <NavDropdown title="Profile">
+            <NavDropdown.Item>
+              <Nav.Item>My Account</Nav.Item>
+            </NavDropdown.Item>
             <NavDropdown.Item>
               <Nav.Item>
                 <Route path="/" render={({ match }) => {
