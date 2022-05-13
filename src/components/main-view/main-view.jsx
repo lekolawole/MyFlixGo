@@ -11,7 +11,8 @@ import { MovieView } from '../movie-view/movie-view';
 import { GenreView } from '../genre-view/genre-view';
 import { bool } from 'prop-types';
 import './main-view.scss';
-//import { NavbarView } from '../navbar-view/navbar-view';
+
+import { NavbarView } from '../navbar-view/navbar-view';
 
 export class MainView extends React.Component {
 
@@ -65,13 +66,13 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-  onLoggedOut() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.setState({
-      user: null
-    });
-  }
+  // onLoggedOut() {
+  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('user');
+  //   this.setState({
+  //     user: null
+  //   });
+  // }
 
   onRegister(isRegistered) {
     this.setState({
@@ -121,9 +122,10 @@ export class MainView extends React.Component {
 
     return (
       <Container className="main-container container-fluid">
+        
         <Router>
-          
-        <Nav className="main-view-nav">
+          <NavbarView />
+        {/* <Nav className="main-view-nav">
           <Nav.Item>
             <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'></img>
           </Nav.Item>
@@ -138,7 +140,7 @@ export class MainView extends React.Component {
               <Nav.Link onClick={() => {this.onLoggedOut()}}>Logout</Nav.Link>
             </NavDropdown.Item>
           </NavDropdown>
-        </Nav>
+        </Nav> */}
       
         <div className="main-view">
           <Row className="main-view justify-content-md-center">
