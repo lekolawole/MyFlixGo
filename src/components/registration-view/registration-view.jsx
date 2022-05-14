@@ -57,6 +57,7 @@ export function RegistrationView(props) {
       .then(response => {
         console.log(response.data);
         alert('Registration successful, please login!');
+        window.open('/',"_self");
       })
       .catch(e => {
         console.log('Error during registration.');
