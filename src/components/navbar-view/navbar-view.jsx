@@ -33,9 +33,9 @@ export class NavbarView extends React.Component {
           <Nav.Item>
             <Nav.Link>Movies</Nav.Link>
           </Nav.Item>
-          <Nav.Item>
+          {/* <Nav.Item>
             <Nav.Link>My List</Nav.Link>
-          </Nav.Item>
+          </Nav.Item> */}
           <NavDropdown title="Profile">
             <NavDropdown.Item>
               <Nav.Item>My Account</Nav.Item>
