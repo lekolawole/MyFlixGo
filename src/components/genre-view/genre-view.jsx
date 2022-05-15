@@ -15,7 +15,7 @@ export class GenreView extends React.Component {
           <Col>
             <div className="genre-name">
               <span className="label">  
-                <h1 className="value">Genre: {genre.Name}</h1>
+                <h1 className="value">{genre.Name}</h1>
               </span>
             </div>
           </Col>

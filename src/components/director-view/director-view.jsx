@@ -1,13 +1,44 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+import {Container, Row, Col, Card} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-function DirectorView(props) {
-  return(
-    <div>
-      <h1>{props.director._id}</h1>
-      <p>{props.director.Bio}</p>
-    </div>
-  )
+
+export class DirectorView extends React.Component {
+  render() {
+    const { director, movie, onBackClick } = this.props;
+
+    return (
+      <Container>
+        <Row>
+          <Col>
+            <div className="director-name">
+              <span className="label">  
+                <h1 className="value">{director.Name}</h1>
+              </span>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="director-description">
+              <span className="value">{director.Bio}</span>
+            </div>
+          </Col>
+          <Col>
+            <Button onClick={() => { onBackClick(null); }}>Back</Button>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
 
-export default DirectorView;
-
+DirectorView.propTypes = {
+  director: PropTypes.shape({
+    Name: PropTypes.string.isRequired,
+    Bio: PropTypes.string.isRequired
+  }).isRequired, 
+  onBackClick: PropTypes.func.isRequired
+};

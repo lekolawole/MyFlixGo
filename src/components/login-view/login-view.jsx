@@ -74,7 +74,9 @@ export function LoginView(props) {
 
             <div style={{"margin":"1.2rem"}}>
               <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
-              <Button variant="secondary" type="submit" onClick={handleRegister}>New User? Register here</Button>
+              <Link to="/register">
+                <Button variant="secondary" type="submit" onClick={handleRegister}>New User? Register here</Button>
+              </Link>
             </div>
           </Form>
         </Col>
