@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 export class MovieView extends React.Component {
 
+  
   render() {
     const { movie, onBackClick } = this.props;
 
@@ -19,8 +20,9 @@ export class MovieView extends React.Component {
           </Col>
           <Col md={8}>
             <div md={2} className="movie-title">
-              <span className="label">Title: </span>
+              <span className="label"></span>
               <span className="value">{movie.Title}</span>
+              <Button variant="secondary" className="favorite-button">+</Button>
             </div>
             <div className="movie-rating">
               <span className="label">Rating: </span>
@@ -39,11 +41,14 @@ export class MovieView extends React.Component {
               <Link to={`/genres/${movie.Genre.Name}`}>
                 <Button variant="link">{movie.Genre.Name}</Button>
               </Link>
+            </div>
+            <div>
               
             </div>
           </Col>
           <Col>
             <Button onClick={() => { onBackClick(null); }}>Back</Button>
+            
           </Col>
       </Row>
 
@@ -58,7 +63,7 @@ MovieView.propTypes = {
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string,
-    Director: PropTypes.string.isRequired,
+    MovieDirector: PropTypes.string.isRequired,
     Rating: PropTypes.string.isRequired
   }).isRequired,
   // Director: PropTypes.shape({

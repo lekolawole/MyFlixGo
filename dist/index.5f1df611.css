@@ -20,6 +20,10 @@ img {
   margin-top: 2rem;
 }
 
+.favorite-button {
+  margin-left: 2rem;
+}
+
 .main-container {
   margin: 0;
   padding: 0;

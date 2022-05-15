@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 export class NavbarView extends React.Component {
 
+  
   onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -19,7 +20,10 @@ export class NavbarView extends React.Component {
     window.location.reload();
   }
   
+  
   render() {
+    let user = localStorage.getItem("user");
+  
     return(
       <div>
       <Router>
@@ -30,15 +34,12 @@ export class NavbarView extends React.Component {
           <Nav.Item>
             <Nav.Link href="/">Home</Nav.Link>
           </Nav.Item>
-          <Nav.Item>
-            <Nav.Link>Movies</Nav.Link>
-          </Nav.Item>
-          {/* <Nav.Item>
-            <Nav.Link>My List</Nav.Link>
-          </Nav.Item> */}
           <NavDropdown title="Profile">
+            <NavDropdown.Item>Hi, {user}</NavDropdown.Item>
             <NavDropdown.Item>
-              <Nav.Item>My Account</Nav.Item>
+              <Link to={`/users/${user}`} className="nav-links">My Account
+                {/* <Button variant="link">My Account</Button> */}
+              </Link>
             </NavDropdown.Item>
             <NavDropdown.Item>
               <Nav.Item>
@@ -47,7 +48,7 @@ export class NavbarView extends React.Component {
                       <LoginView />
                 }}
                 />
-                <Link to={`/`} onClick={() => {this.onLoggedOut()}}>Logout</Link>
+                <Link to={`/`} onClick={() => {this.onLoggedOut()}} className="nav-links">Logout</Link>
               </Nav.Item>
             </NavDropdown.Item>
           </NavDropdown>

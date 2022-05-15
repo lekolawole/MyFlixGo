@@ -11,6 +11,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 import { DirectorView } from '../director-view/director-view';
+
 import { bool } from 'prop-types';
 import './main-view.scss';
 
@@ -48,9 +49,10 @@ export class MainView extends React.Component {
   }
 
   onLoggedIn(authData) { //authenticates user credentials
-    console.log(authData);
+    // console.log(authData);
     this.setState({
-      user: authData.user.Username
+      user: authData.user.Username,
+      email: authData.user.Email
     });
 
     localStorage.setItem('token', authData.token);
@@ -78,6 +80,7 @@ export class MainView extends React.Component {
     console.log(error);
   });
 }
+
   
 
   render() {
