@@ -55,67 +55,64 @@ export class UpdatedUser extends React.Component {
    <Container>
      <Row>
        <Col>
-       <Button
-          onClick={this.showHide}
-          aria-controls="example-collapse-text"
-          role="button"
-          aria-expanded="false"
-          >
-            Click to Manage Profile
-        </Button>
-        <Collapse in={!this.state.collapseMenu}>
-        <Form id="example-collapse-text">
-          <Form.Group>
-            <Form.Label>Username </Form.Label>
-            <Form.Control 
-              style={{ "width":"24rem", "display":"flex"}}
-                type="text" 
-                value={user} 
-                placeholder= 'Enter a username' 
-                onChange={e => setUsername(e.target.value)}
-                />
-          </Form.Group>
+        <Button
+            onClick={this.showHide}
+            aria-controls="example-collapse-text"
+            role="button"
+            aria-expanded="false"
+            >
+              //Click to Manage Profile
+          </Button>
+        </Col>
+        <Col>
+          <Collapse in={this.state.collapseMenu}>
+       
+          <Form id="example-collapse-text">
+            <Form.Group>
+              <Form.Label>Username </Form.Label>
+              <Form.Control 
+                style={{ "width":"24rem", "display":"flex"}}
+                  type="text" 
+                  value={user} 
+                  placeholder= 'Enter a username' 
+                  onChange={e => setUsername(e.target.value)}
+                  />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Email </Form.Label>
-            <Form.Control 
-              style={{ "width":"24rem", "display":"flex"}}
-                type="text" 
-                value={email} 
-                placeholder= 'Enter a username' 
-                onChange={e => setUsername(e.target.value)}
-                />
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>Email </Form.Label>
+              <Form.Control 
+                style={{ "width":"24rem", "display":"flex"}}
+                  type="text" 
+                  value={email} 
+                  placeholder= 'Enter a username' 
+                  onChange={e => setUsername(e.target.value)}
+                  />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Password </Form.Label>
-            <Form.Control 
-              style={{ "width":"24rem", "display":"flex"}}
-                type="text" 
-                value={password} 
-                placeholder= {password} 
-                onChange={e => setUsername(e.target.value)}
-                />
-          </Form.Group>
+            <Form.Group>
+              <Form.Label>Password </Form.Label>
+              <Form.Control 
+                style={{ "width":"24rem", "display":"flex"}}
+                  type="text" 
+                  value={password} 
+                  placeholder= {password} 
+                  onChange={e => setUsername(e.target.value)}
+                  />
+            </Form.Group>
 
-          <Form.Group>
-            <Form.Label>Birthday </Form.Label>
-            <Form.Control 
-              style={{ "width":"24rem", "display":"flex"}}
-                type="text" 
-                value={birthday} 
-                placeholder= 'Enter a username' 
-                onChange={e => setUsername(e.target.value)}
-                />
-          </Form.Group>
-        </Form>
+            <Form.Group>
+              <Form.Label>Birthday </Form.Label>
+              <Form.Control 
+                style={{ "width":"24rem", "display":"flex"}}
+                  type="text" 
+                  value={birthday} 
+                  placeholder= 'Enter a username' 
+                  onChange={e => setUsername(e.target.value)}
+                  />
+            </Form.Group>
+          </Form>
         </Collapse>
-       </Col>
-     </Row>
-     <Row>
-       <Col>
-        <Button>Save Changes</Button>
-        <Button variant="secondary" style={{"marginLeft":"5rem"}}>Cancel</Button>
        </Col>
      </Row>
    </Container>
