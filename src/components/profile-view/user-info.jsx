@@ -12,7 +12,8 @@ export class UserInfo extends React.Component {
     })
     .then((response) => {
       this.setState({
-        user: response.data
+        user: response.data.Username,
+        email: response.data.Email
       });
     })
     .catch((e) => 
