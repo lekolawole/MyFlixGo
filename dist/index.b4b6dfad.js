@@ -25149,11 +25149,14 @@ class MainView extends _reactDefault.default.Component {
         // console.log(authData);
         this.setState({
             user: authData.user.Username,
-            email: authData.user.Email
+            email: authData.user.Email,
+            birthday: authData.user.Birthday
         });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.Username);
         localStorage.setItem('email', authData.user.Email);
+        localStorage.setItem('birthday', authData.user.Birthday);
+        localStorage.setItem('password', authData.user.Password);
         this.getMovies(authData.token);
     }
     // onRegister(isRegistered) {
@@ -25181,7 +25184,7 @@ class MainView extends _reactDefault.default.Component {
             onRegister: (bool)=>this.onRegister(bool)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 92,
+            lineNumber: 95,
             columnNumber: 14
         }, this);
         return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
@@ -25190,7 +25193,7 @@ class MainView extends _reactDefault.default.Component {
                 children: [
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbarView.NavbarView, {}, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 99,
+                        lineNumber: 102,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -25221,7 +25224,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 103,
+                                    lineNumber: 106,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25236,7 +25239,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 122,
+                                    lineNumber: 125,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25261,7 +25264,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 130,
+                                    lineNumber: 133,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25286,7 +25289,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 143,
+                                    lineNumber: 146,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25311,7 +25314,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 155,
+                                    lineNumber: 158,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25329,29 +25332,29 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 167,
+                                    lineNumber: 170,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 102,
+                            lineNumber: 105,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 101,
+                        lineNumber: 104,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 98,
+                lineNumber: 101,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 96,
+            lineNumber: 99,
             columnNumber: 7
         }, this);
     }
@@ -42316,6 +42319,8 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _userInfo = require("./user-info");
 var _userInfoDefault = parcelHelpers.interopDefault(_userInfo);
+var _updatedUser = require("./updated-user");
+var _updatedUserDefault = parcelHelpers.interopDefault(_updatedUser);
 var _favoriteMovies = require("./favorite-movies");
 var _favoriteMoviesDefault = parcelHelpers.interopDefault(_favoriteMovies);
 var _axios = require("axios");
@@ -42334,6 +42339,8 @@ class ProfileView extends _reactDefault.default.Component {
     getUser(token) {
         let user = localStorage.getItem("user");
         let email = localStorage.getItem("email");
+        let birthday = localStorage.getItem("birthday");
+        let password = localStorage.getItem("password");
         _axiosDefault.default.get(`https://my-flix-22.herokuapp.com/users/${user}`, ({
             headers: {
                 Authorization: `Bearer ${token}`
@@ -42347,6 +42354,8 @@ class ProfileView extends _reactDefault.default.Component {
     render() {
         const user = localStorage.getItem("user");
         let email = localStorage.getItem("email");
+        let birthday = localStorage.getItem("birthday");
+        let password = localStorage.getItem("password");
         return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
             children: [
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
@@ -42357,17 +42366,17 @@ class ProfileView extends _reactDefault.default.Component {
                             children: "My Account"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.js",
-                            lineNumber: 42,
+                            lineNumber: 47,
                             columnNumber: 20
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.js",
-                        lineNumber: 42,
+                        lineNumber: 47,
                         columnNumber: 8
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.js",
-                    lineNumber: 41,
+                    lineNumber: 46,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
@@ -42379,25 +42388,27 @@ class ProfileView extends _reactDefault.default.Component {
                                 children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Body, {
                                     children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_userInfoDefault.default, {
                                         name: user.Username,
-                                        email: user.Email
+                                        email: user.Email,
+                                        birthday: user.Birthday,
+                                        password: user.Password
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.js",
-                                        lineNumber: 48,
+                                        lineNumber: 53,
                                         columnNumber: 13
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.js",
-                                    lineNumber: 47,
+                                    lineNumber: 52,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.js",
-                                lineNumber: 46,
+                                lineNumber: 51,
                                 columnNumber: 11
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.js",
-                            lineNumber: 45,
+                            lineNumber: 50,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
@@ -42405,43 +42416,41 @@ class ProfileView extends _reactDefault.default.Component {
                             sm: 8,
                             children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card, {
                                 children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Body, {
-                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                                        children: "Hello"
-                                    }, void 0, false, {
+                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_updatedUserDefault.default, {}, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.js",
-                                        lineNumber: 55,
+                                        lineNumber: 60,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.js",
-                                    lineNumber: 54,
+                                    lineNumber: 59,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.js",
-                                lineNumber: 53,
+                                lineNumber: 58,
                                 columnNumber: 11
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.js",
-                            lineNumber: 52,
+                            lineNumber: 57,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/profile-view/profile-view.js",
-                    lineNumber: 44,
+                    lineNumber: 49,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {}, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.js",
-                    lineNumber: 60,
+                    lineNumber: 72,
                     columnNumber: 7
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/profile-view/profile-view.js",
-            lineNumber: 40,
+            lineNumber: 45,
             columnNumber: 5
         }, this);
     }
@@ -42453,7 +42462,7 @@ exports.default = ProfileView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","./user-info":"66eot","./favorite-movies":"dTTQH","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"66eot":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","./user-info":"66eot","./favorite-movies":"dTTQH","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./updated-user":"b0906"}],"66eot":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1330 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42470,6 +42479,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _profileViewScss = require("./profile-view.scss");
 class UserInfo extends _reactDefault.default.Component {
     getUser(token) {
         let user = localStorage.getItem("user");
@@ -42490,64 +42500,46 @@ class UserInfo extends _reactDefault.default.Component {
         const user = localStorage.getItem("user");
         let email = localStorage.getItem("email");
         return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
-            children: [
-                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
-                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
-                        children: [
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                                children: [
-                                    "Name: ",
-                                    user
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/profile-view/user-info.jsx",
-                                lineNumber: 34,
-                                columnNumber: 9
-                            }, this),
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                                children: [
-                                    "e-mail: ",
-                                    user.email
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/components/profile-view/user-info.jsx",
-                                lineNumber: 35,
-                                columnNumber: 9
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/profile-view/user-info.jsx",
-                        lineNumber: 33,
-                        columnNumber: 8
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 32,
-                    columnNumber: 6
-                }, this),
-                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
-                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
-                        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                            children: "Manage Profile"
-                        }, void 0, false, {
+            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
+                className: "user-row",
+                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
+                    children: [
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                            className: "user-col-left info",
+                            children: [
+                                "Name: ",
+                                user
+                            ]
+                        }, void 0, true, {
                             fileName: "src/components/profile-view/user-info.jsx",
-                            lineNumber: 40,
+                            lineNumber: 35,
+                            columnNumber: 9
+                        }, this),
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                            className: "info",
+                            children: [
+                                "e-mail: ",
+                                email
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/profile-view/user-info.jsx",
+                            lineNumber: 36,
                             columnNumber: 9
                         }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/user-info.jsx",
-                        lineNumber: 39,
-                        columnNumber: 8
-                    }, this)
-                }, void 0, false, {
+                    ]
+                }, void 0, true, {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 38,
-                    columnNumber: 6
+                    lineNumber: 34,
+                    columnNumber: 8
                 }, this)
-            ]
-        }, void 0, true, {
+            }, void 0, false, {
+                fileName: "src/components/profile-view/user-info.jsx",
+                lineNumber: 33,
+                columnNumber: 6
+            }, this)
+        }, void 0, false, {
             fileName: "src/components/profile-view/user-info.jsx",
-            lineNumber: 31,
+            lineNumber: 32,
             columnNumber: 4
         }, this);
     }
@@ -42566,7 +42558,7 @@ exports.default = UserInfo; // UserInfo.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dTTQH":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./profile-view.scss":"eyKYH"}],"eyKYH":[function() {},{}],"dTTQH":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8767 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42648,7 +42640,317 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9tpci":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"b0906":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$798b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$798b.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "UpdatedUser", ()=>UpdatedUser
+);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _profileViewScss = require("./profile-view.scss");
+class UpdatedUser extends _reactDefault.default.Component {
+    //const [open, setOpen] = useState(false);
+    constructor(props){
+        super(props);
+        this.state = {
+            collaspeMenu: true
+        };
+        this.showHide = this.showHide.bind(this);
+    }
+    showHide(e) {
+        e.preventDefault();
+        this.setState({
+            collapseMenu: !this.state.collapseMenu
+        });
+    }
+    getUser(token) {
+        let user = localStorage.getItem("user");
+        let email = localStorage.getItem("email");
+        let password = localStorage.getItem("password");
+        axios.get(`https://my-flix-22.herokuapp.com/users/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            this.setState({
+                user: response.data.Username,
+                email: response.data.Email,
+                birthday: response.data.Birthday
+            });
+        }).catch((e)=>console.log(e)
+        );
+    }
+    render() {
+        const user = localStorage.getItem("user");
+        let email = localStorage.getItem("email");
+        let birthday = localStorage.getItem("birthday");
+        let password = localStorage.getItem("password");
+        return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
+            children: [
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
+                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
+                        children: [
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                                onClick: this.showHide,
+                                "aria-controls": "example-collapse-text",
+                                role: "button",
+                                "aria-expanded": "false",
+                                children: "Click to Manage Profile"
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/updated-user.jsx",
+                                lineNumber: 58,
+                                columnNumber: 8
+                            }, this),
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Collapse, {
+                                in: !this.state.collapseMenu,
+                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form, {
+                                    id: "example-collapse-text",
+                                    children: [
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                                            children: [
+                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                                                    children: "Username "
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/updated-user.jsx",
+                                                    lineNumber: 69,
+                                                    columnNumber: 13
+                                                }, this),
+                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                                                    style: {
+                                                        "width": "24rem",
+                                                        "display": "flex"
+                                                    },
+                                                    type: "text",
+                                                    value: user,
+                                                    placeholder: "Enter a username",
+                                                    onChange: (e)=>setUsername(e.target.value)
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/updated-user.jsx",
+                                                    lineNumber: 70,
+                                                    columnNumber: 13
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/components/profile-view/updated-user.jsx",
+                                            lineNumber: 68,
+                                            columnNumber: 11
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                                            children: [
+                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                                                    children: "Email "
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/updated-user.jsx",
+                                                    lineNumber: 80,
+                                                    columnNumber: 13
+                                                }, this),
+                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                                                    style: {
+                                                        "width": "24rem",
+                                                        "display": "flex"
+                                                    },
+                                                    type: "text",
+                                                    value: email,
+                                                    placeholder: "Enter a username",
+                                                    onChange: (e)=>setUsername(e.target.value)
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/updated-user.jsx",
+                                                    lineNumber: 81,
+                                                    columnNumber: 13
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/components/profile-view/updated-user.jsx",
+                                            lineNumber: 79,
+                                            columnNumber: 11
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                                            children: [
+                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                                                    children: "Password "
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/updated-user.jsx",
+                                                    lineNumber: 91,
+                                                    columnNumber: 13
+                                                }, this),
+                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                                                    style: {
+                                                        "width": "24rem",
+                                                        "display": "flex"
+                                                    },
+                                                    type: "text",
+                                                    value: password,
+                                                    placeholder: password,
+                                                    onChange: (e)=>setUsername(e.target.value)
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/updated-user.jsx",
+                                                    lineNumber: 92,
+                                                    columnNumber: 13
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/components/profile-view/updated-user.jsx",
+                                            lineNumber: 90,
+                                            columnNumber: 11
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                                            children: [
+                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                                                    children: "Birthday "
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/updated-user.jsx",
+                                                    lineNumber: 102,
+                                                    columnNumber: 13
+                                                }, this),
+                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                                                    style: {
+                                                        "width": "24rem",
+                                                        "display": "flex"
+                                                    },
+                                                    type: "text",
+                                                    value: birthday,
+                                                    placeholder: "Enter a username",
+                                                    onChange: (e)=>setUsername(e.target.value)
+                                                }, void 0, false, {
+                                                    fileName: "src/components/profile-view/updated-user.jsx",
+                                                    lineNumber: 103,
+                                                    columnNumber: 13
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "src/components/profile-view/updated-user.jsx",
+                                            lineNumber: 101,
+                                            columnNumber: 11
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "src/components/profile-view/updated-user.jsx",
+                                    lineNumber: 67,
+                                    columnNumber: 9
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/updated-user.jsx",
+                                lineNumber: 66,
+                                columnNumber: 9
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/profile-view/updated-user.jsx",
+                        lineNumber: 57,
+                        columnNumber: 8
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/updated-user.jsx",
+                    lineNumber: 56,
+                    columnNumber: 6
+                }, this),
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
+                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
+                        children: [
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                                children: "Save Changes"
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/updated-user.jsx",
+                                lineNumber: 117,
+                                columnNumber: 9
+                            }, this),
+                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                                variant: "secondary",
+                                style: {
+                                    "marginLeft": "5rem"
+                                },
+                                children: "Cancel"
+                            }, void 0, false, {
+                                fileName: "src/components/profile-view/updated-user.jsx",
+                                lineNumber: 118,
+                                columnNumber: 9
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/profile-view/updated-user.jsx",
+                        lineNumber: 116,
+                        columnNumber: 8
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/updated-user.jsx",
+                    lineNumber: 115,
+                    columnNumber: 6
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/profile-view/updated-user.jsx",
+            lineNumber: 55,
+            columnNumber: 4
+        }, this);
+    }
+}
+exports.default = UpdatedUser; // UserInfo.propTypes = {
+ //   user: PropTypes.shape({
+ //     username: PropTypes.string.isRequired,
+ //     password: PropTypes.string.isRequired,
+ //     birthday: PropTypes.string.isRequired,
+ //     email: PropTypes.string.isRequired
+ //   }).isRequired
+ // }
+ // <Form>
+ //           <Form.Group>
+ //             <Form.Label>Username </Form.Label>
+ //             <Form.Control 
+ //               style={{ "width":"24rem", "display":"flex"}}
+ //                     type="text" 
+ //                     value={user} 
+ //                     placeholder= {user} 
+ //                     onChange={e => setUsername(e.target.value)}
+ //                     />
+ //           </Form.Group>
+ //           <Form.Group>
+ //             <Form.Label>Email </Form.Label>
+ //             <Form.Control 
+ //               style={{ "width":"24rem", "display":"flex"}}
+ //                     type="text" 
+ //                     value={email} 
+ //                     placeholder= {email} 
+ //                     onChange={e => setUsername(e.target.value)}
+ //                     />
+ //           </Form.Group>
+ //           <Form.Group>
+ //             <Form.Label>Password </Form.Label>
+ //             <Form.Control
+ //               style={{ "width":"24rem", "display":"flex"}}
+ //                     type="text" 
+ //                     value={password} 
+ //                     placeholder= {password}
+ //                     onChange={e => setUsername(e.target.value)}
+ //                     />
+ //           </Form.Group>
+ //           <Form.Group>
+ //             <Form.Label>Birthday </Form.Label>
+ //             <Form.Control 
+ //               style={{ "width":"24rem", "display":"flex"}}
+ //                     type="text" 
+ //                     value={birthday} 
+ //                     placeholder= {birthday}
+ //                     onChange={e => setUsername(e.target.value)}
+ //                     />
+ //           </Form.Group>
+ //         </Form>
+
+  $parcel$ReactRefreshHelpers$798b.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./profile-view.scss":"eyKYH"}],"eyKYH":[function() {},{}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42852,10 +43154,16 @@ class NavbarView extends _reactDefault.default.Component {
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.NavDropdown.Item, {
-                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
-                                        to: `/users/${user}`,
-                                        className: "nav-links",
-                                        children: "My Account"
+                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Nav.Item, {
+                                        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
+                                            to: `/users/${user}`,
+                                            className: "nav-links",
+                                            children: "My Account"
+                                        }, void 0, false, {
+                                            fileName: "src/components/navbar-view/navbar-view.jsx",
+                                            lineNumber: 41,
+                                            columnNumber: 17
+                                        }, this)
                                     }, void 0, false, {
                                         fileName: "src/components/navbar-view/navbar-view.jsx",
                                         lineNumber: 40,
@@ -42876,7 +43184,7 @@ class NavbarView extends _reactDefault.default.Component {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "src/components/navbar-view/navbar-view.jsx",
-                                                lineNumber: 46,
+                                                lineNumber: 49,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
@@ -42888,18 +43196,18 @@ class NavbarView extends _reactDefault.default.Component {
                                                 children: "Logout"
                                             }, void 0, false, {
                                                 fileName: "src/components/navbar-view/navbar-view.jsx",
-                                                lineNumber: 51,
+                                                lineNumber: 54,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                                        lineNumber: 45,
+                                        lineNumber: 48,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 44,
+                                    lineNumber: 47,
                                     columnNumber: 13
                                 }, this)
                             ]

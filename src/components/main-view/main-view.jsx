@@ -52,12 +52,15 @@ export class MainView extends React.Component {
     // console.log(authData);
     this.setState({
       user: authData.user.Username,
-      email: authData.user.Email
+      email: authData.user.Email,
+      birthday: authData.user.Birthday,
     });
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
     localStorage.setItem('email', authData.user.Email);
+    localStorage.setItem('birthday', authData.user.Birthday);
+    localStorage.setItem('password', authData.user.Password);
     this.getMovies(authData.token);
   }
 

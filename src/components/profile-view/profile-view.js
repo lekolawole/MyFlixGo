@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import UserInfo from "./user-info";
+import UpdatedUser from "./updated-user";
 import FavoriteMovies from "./favorite-movies";
 import axios from "axios";
 
@@ -21,6 +22,8 @@ export class ProfileView extends React.Component {
   getUser(token) {
     let user = localStorage.getItem("user");
     let email = localStorage.getItem("email");
+    let birthday = localStorage.getItem("birthday");
+    let password = localStorage.getItem("password");
     
     axios.get(`https://my-flix-22.herokuapp.com/users/${user}`, {
        headers: { Authorization: `Bearer ${token}`
@@ -35,6 +38,8 @@ export class ProfileView extends React.Component {
 
     const user = localStorage.getItem("user");
     let email = localStorage.getItem("email");
+    let birthday = localStorage.getItem("birthday");
+    let password = localStorage.getItem("password");
 
   return (
     <Container>
@@ -45,17 +50,24 @@ export class ProfileView extends React.Component {
         <Col xs={12} sm={4}>
           <Card>
             <Card.Body>
-            <UserInfo name={user.Username} email={ user.Email } />
+            <UserInfo name={user.Username} email={ user.Email } birthday={user.Birthday} password={user.Password}/>
             </Card.Body>
           </Card>
         </Col>
         <Col xs={12} sm={8}>
           <Card>
             <Card.Body>
+              <UpdatedUser />
+            </Card.Body>
+          </Card>   
+        </Col>
+        {/* <Col xs={12} sm={8}>
+          <Card>
+            <Card.Body>
               <div>Hello</div>
             </Card.Body>
           </Card>
-        </Col>
+        </Col> */}
       </Row>
       <Row>
         {/* <Col>

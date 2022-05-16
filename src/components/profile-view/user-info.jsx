@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Col, Container, Form, Control, Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import './profile-view.scss';
 
 export class UserInfo extends React.Component {
    getUser(token) {
@@ -29,15 +30,10 @@ export class UserInfo extends React.Component {
   
   return (
    <Container>
-     <Row>
+     <Row className="user-row">
        <Col>
-        <div>Name: {user}</div>
-        <div>e-mail: {user.email}</div>
-       </Col>
-     </Row>
-     <Row>
-       <Col>
-        <Button>Manage Profile</Button>
+        <div className="user-col-left info">Name: {user}</div>
+        <div className="info">e-mail: {email}</div>
        </Col>
      </Row>
    </Container>

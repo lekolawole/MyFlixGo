@@ -24,6 +24,18 @@ img {
   margin-left: 2rem;
 }
 
+.user-row {
+  margin: 0;
+}
+
+.user-col-left {
+  margin-bottom: 2rem;
+}
+
+.info {
+  font-weight: bold;
+}
+
 .main-container {
   margin: 0;
   padding: 0;
