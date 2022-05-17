@@ -1025,12 +1025,12 @@ class MyFlixApplication extends _reactDefault.default.Component {
             className: "main-container",
             children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_mainView.MainView, {}, void 0, false, {
                 fileName: "src/index.jsx",
-                lineNumber: 15,
+                lineNumber: 16,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "src/index.jsx",
-            lineNumber: 14,
+            lineNumber: 15,
             columnNumber: 7
         }, this);
     }
@@ -42462,7 +42462,7 @@ exports.default = ProfileView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","./user-info":"66eot","./favorite-movies":"dTTQH","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./updated-user":"b0906"}],"66eot":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","./user-info":"66eot","./updated-user":"b0906","./favorite-movies":"dTTQH","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"66eot":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1330 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42558,7 +42558,339 @@ exports.default = UserInfo; // UserInfo.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./profile-view.scss":"eyKYH"}],"eyKYH":[function() {},{}],"dTTQH":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","./profile-view.scss":"eyKYH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"b0906":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$798b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$798b.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "UpdatedUser", ()=>UpdatedUser
+);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _profileViewScss = require("./profile-view.scss");
+class UpdatedUser extends _reactDefault.default.Component {
+    //const [open, setOpen] = useState(false);
+    constructor(props){
+        super(props);
+        this.state = {
+            collaspeMenu: true
+        };
+        this.showHide = this.showHide.bind(this);
+    }
+    showHide(e) {
+        e.preventDefault();
+        this.setState({
+            collapseMenu: !this.state.collapseMenu
+        });
+    }
+    getUser(token) {
+        let user = localStorage.getItem("user");
+        let email = localStorage.getItem("email");
+        let password = localStorage.getItem("password");
+        axios.get(`https://my-flix-22.herokuapp.com/users/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            this.setState({
+                user: response.data.Username,
+                email: response.data.Email,
+                birthday: response.data.Birthday
+            });
+        }).catch((e)=>console.log(e)
+        );
+    }
+    // updateUser = (e) => {
+    //   e.preventDefault();
+    //   const isReq = validate();
+    //   const validate = () => {
+    //   let isReq = true;
+    //   if(!username){
+    //     setUsernameErr('Username is Required');
+    //     isReq = false;
+    //   }else if(username.length < 2){
+    //     setUsernameErr('Username must be 2 characters long');
+    //     isReq = false;
+    //   }
+    //   if(!password){
+    //     setPasswordErr('Password is Reaquired');
+    //     isReq = false;
+    //   }else if(password.length < 8){
+    //     setPasswordErr('Password must be 8 characters long');
+    //     isReq = false;
+    //   }
+    //   if(!email){
+    //     setEmailErr('Email is Required');
+    //     isReq = false;
+    //   }else if(email.indexOf('@') === -1) {
+    //     setEmailErr('Must be a valid email address');
+    //     isReq = false;
+    //   }
+    //   return isReq;
+    // };
+    //   if(isReq){
+    //       axios.post(`https://my-flix-22.herokuapp.com/users/{user}`, {
+    //       Username: username,
+    //       Password: password,
+    //       Email: email,
+    //       Birthday: birthday
+    //     })
+    //     .then(response => {
+    //       console.log(response.data);
+    //       alert('Profile changes were saved!');
+    //     })
+    //     .catch(e => {
+    //       console.log('Error during update.');
+    //       alert('Changes not saved')
+    //     });
+    //   }
+    //   console.log(username, password, email, birthday);
+    // };
+    render() {
+        const user = localStorage.getItem("user");
+        let email = localStorage.getItem("email");
+        let birthday = localStorage.getItem("birthday");
+        let password = localStorage.getItem("password");
+        return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
+            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
+                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
+                    children: [
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                            onClick: this.showHide,
+                            "aria-controls": "example-collapse-text",
+                            role: "button",
+                            "aria-expanded": "false",
+                            children: "Click to Manage Profile"
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/updated-user.jsx",
+                            lineNumber: 105,
+                            columnNumber: 9
+                        }, this),
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Collapse, {
+                            in: !this.state.collapseMenu,
+                            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form, {
+                                id: "example-collapse-text",
+                                children: [
+                                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                                        children: [
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                                                children: "Username "
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/updated-user.jsx",
+                                                lineNumber: 116,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                                                style: {
+                                                    "width": "24rem",
+                                                    "display": "flex"
+                                                },
+                                                type: "text",
+                                                value: user,
+                                                placeholder: "Enter a username",
+                                                onChange: (e)=>{
+                                                    console.log('changed');
+                                                }
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/updated-user.jsx",
+                                                lineNumber: 117,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/updated-user.jsx",
+                                        lineNumber: 115,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                                        children: [
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                                                children: "Email "
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/updated-user.jsx",
+                                                lineNumber: 127,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                                                style: {
+                                                    "width": "24rem",
+                                                    "display": "flex"
+                                                },
+                                                type: "text",
+                                                value: email,
+                                                placeholder: "Enter a username",
+                                                onChange: (e)=>console.log('changed')
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/updated-user.jsx",
+                                                lineNumber: 128,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/updated-user.jsx",
+                                        lineNumber: 126,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                                        children: [
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                                                children: "Password "
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/updated-user.jsx",
+                                                lineNumber: 138,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                                                style: {
+                                                    "width": "24rem",
+                                                    "display": "flex"
+                                                },
+                                                type: "text",
+                                                value: password,
+                                                placeholder: password,
+                                                onChange: (e)=>console.log('changed')
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/updated-user.jsx",
+                                                lineNumber: 139,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/updated-user.jsx",
+                                        lineNumber: 137,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                                        children: [
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                                                children: "Birthday "
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/updated-user.jsx",
+                                                lineNumber: 149,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                                                style: {
+                                                    "width": "24rem",
+                                                    "display": "flex"
+                                                },
+                                                type: "text",
+                                                value: birthday,
+                                                placeholder: "Enter a username",
+                                                onChange: (e)=>console.log('changed')
+                                            }, void 0, false, {
+                                                fileName: "src/components/profile-view/updated-user.jsx",
+                                                lineNumber: 150,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/profile-view/updated-user.jsx",
+                                        lineNumber: 148,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                                        type: "submit",
+                                        children: "Save Changes"
+                                    }, void 0, false, {
+                                        fileName: "src/components/profile-view/updated-user.jsx",
+                                        lineNumber: 158,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/components/profile-view/updated-user.jsx",
+                                lineNumber: 114,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/updated-user.jsx",
+                            lineNumber: 113,
+                            columnNumber: 9
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "src/components/profile-view/updated-user.jsx",
+                    lineNumber: 104,
+                    columnNumber: 8
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/profile-view/updated-user.jsx",
+                lineNumber: 103,
+                columnNumber: 6
+            }, this)
+        }, void 0, false, {
+            fileName: "src/components/profile-view/updated-user.jsx",
+            lineNumber: 102,
+            columnNumber: 4
+        }, this);
+    }
+}
+exports.default = UpdatedUser; // UserInfo.propTypes = {
+ //   user: PropTypes.shape({
+ //     username: PropTypes.string.isRequired,
+ //     password: PropTypes.string.isRequired,
+ //     birthday: PropTypes.string.isRequired,
+ //     email: PropTypes.string.isRequired
+ //   }).isRequired
+ // }
+ // <Form>
+ //           <Form.Group>
+ //             <Form.Label>Username </Form.Label>
+ //             <Form.Control 
+ //               style={{ "width":"24rem", "display":"flex"}}
+ //                     type="text" 
+ //                     value={user} 
+ //                     placeholder= {user} 
+ //                     onChange={e => setUsername(e.target.value)}
+ //                     />
+ //           </Form.Group>
+ //           <Form.Group>
+ //             <Form.Label>Email </Form.Label>
+ //             <Form.Control 
+ //               style={{ "width":"24rem", "display":"flex"}}
+ //                     type="text" 
+ //                     value={email} 
+ //                     placeholder= {email} 
+ //                     onChange={e => setUsername(e.target.value)}
+ //                     />
+ //           </Form.Group>
+ //           <Form.Group>
+ //             <Form.Label>Password </Form.Label>
+ //             <Form.Control
+ //               style={{ "width":"24rem", "display":"flex"}}
+ //                     type="text" 
+ //                     value={password} 
+ //                     placeholder= {password}
+ //                     onChange={e => setUsername(e.target.value)}
+ //                     />
+ //           </Form.Group>
+ //           <Form.Group>
+ //             <Form.Label>Birthday </Form.Label>
+ //             <Form.Control 
+ //               style={{ "width":"24rem", "display":"flex"}}
+ //                     type="text" 
+ //                     value={birthday} 
+ //                     placeholder= {birthday}
+ //                     onChange={e => setUsername(e.target.value)}
+ //                     />
+ //           </Form.Group>
+ //         </Form>
+
+  $parcel$ReactRefreshHelpers$798b.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","./profile-view.scss":"eyKYH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"dTTQH":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8767 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42640,317 +42972,7 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"b0906":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$798b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$798b.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "UpdatedUser", ()=>UpdatedUser
-);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactBootstrap = require("react-bootstrap");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _profileViewScss = require("./profile-view.scss");
-class UpdatedUser extends _reactDefault.default.Component {
-    //const [open, setOpen] = useState(false);
-    constructor(props){
-        super(props);
-        this.state = {
-            collaspeMenu: true
-        };
-        this.showHide = this.showHide.bind(this);
-    }
-    showHide(e) {
-        e.preventDefault();
-        this.setState({
-            collapseMenu: !this.state.collapseMenu
-        });
-    }
-    getUser(token) {
-        let user = localStorage.getItem("user");
-        let email = localStorage.getItem("email");
-        let password = localStorage.getItem("password");
-        axios.get(`https://my-flix-22.herokuapp.com/users/${user}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            this.setState({
-                user: response.data.Username,
-                email: response.data.Email,
-                birthday: response.data.Birthday
-            });
-        }).catch((e)=>console.log(e)
-        );
-    }
-    render() {
-        const user = localStorage.getItem("user");
-        let email = localStorage.getItem("email");
-        let birthday = localStorage.getItem("birthday");
-        let password = localStorage.getItem("password");
-        return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
-            children: [
-                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
-                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
-                        children: [
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                                onClick: this.showHide,
-                                "aria-controls": "example-collapse-text",
-                                role: "button",
-                                "aria-expanded": "false",
-                                children: "Click to Manage Profile"
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/updated-user.jsx",
-                                lineNumber: 58,
-                                columnNumber: 8
-                            }, this),
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Collapse, {
-                                in: !this.state.collapseMenu,
-                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form, {
-                                    id: "example-collapse-text",
-                                    children: [
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
-                                            children: [
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
-                                                    children: "Username "
-                                                }, void 0, false, {
-                                                    fileName: "src/components/profile-view/updated-user.jsx",
-                                                    lineNumber: 69,
-                                                    columnNumber: 13
-                                                }, this),
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
-                                                    style: {
-                                                        "width": "24rem",
-                                                        "display": "flex"
-                                                    },
-                                                    type: "text",
-                                                    value: user,
-                                                    placeholder: "Enter a username",
-                                                    onChange: (e)=>setUsername(e.target.value)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/profile-view/updated-user.jsx",
-                                                    lineNumber: 70,
-                                                    columnNumber: 13
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/components/profile-view/updated-user.jsx",
-                                            lineNumber: 68,
-                                            columnNumber: 11
-                                        }, this),
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
-                                            children: [
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
-                                                    children: "Email "
-                                                }, void 0, false, {
-                                                    fileName: "src/components/profile-view/updated-user.jsx",
-                                                    lineNumber: 80,
-                                                    columnNumber: 13
-                                                }, this),
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
-                                                    style: {
-                                                        "width": "24rem",
-                                                        "display": "flex"
-                                                    },
-                                                    type: "text",
-                                                    value: email,
-                                                    placeholder: "Enter a username",
-                                                    onChange: (e)=>setUsername(e.target.value)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/profile-view/updated-user.jsx",
-                                                    lineNumber: 81,
-                                                    columnNumber: 13
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/components/profile-view/updated-user.jsx",
-                                            lineNumber: 79,
-                                            columnNumber: 11
-                                        }, this),
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
-                                            children: [
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
-                                                    children: "Password "
-                                                }, void 0, false, {
-                                                    fileName: "src/components/profile-view/updated-user.jsx",
-                                                    lineNumber: 91,
-                                                    columnNumber: 13
-                                                }, this),
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
-                                                    style: {
-                                                        "width": "24rem",
-                                                        "display": "flex"
-                                                    },
-                                                    type: "text",
-                                                    value: password,
-                                                    placeholder: password,
-                                                    onChange: (e)=>setUsername(e.target.value)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/profile-view/updated-user.jsx",
-                                                    lineNumber: 92,
-                                                    columnNumber: 13
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/components/profile-view/updated-user.jsx",
-                                            lineNumber: 90,
-                                            columnNumber: 11
-                                        }, this),
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
-                                            children: [
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
-                                                    children: "Birthday "
-                                                }, void 0, false, {
-                                                    fileName: "src/components/profile-view/updated-user.jsx",
-                                                    lineNumber: 102,
-                                                    columnNumber: 13
-                                                }, this),
-                                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
-                                                    style: {
-                                                        "width": "24rem",
-                                                        "display": "flex"
-                                                    },
-                                                    type: "text",
-                                                    value: birthday,
-                                                    placeholder: "Enter a username",
-                                                    onChange: (e)=>setUsername(e.target.value)
-                                                }, void 0, false, {
-                                                    fileName: "src/components/profile-view/updated-user.jsx",
-                                                    lineNumber: 103,
-                                                    columnNumber: 13
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "src/components/profile-view/updated-user.jsx",
-                                            lineNumber: 101,
-                                            columnNumber: 11
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "src/components/profile-view/updated-user.jsx",
-                                    lineNumber: 67,
-                                    columnNumber: 9
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/updated-user.jsx",
-                                lineNumber: 66,
-                                columnNumber: 9
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/profile-view/updated-user.jsx",
-                        lineNumber: 57,
-                        columnNumber: 8
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/profile-view/updated-user.jsx",
-                    lineNumber: 56,
-                    columnNumber: 6
-                }, this),
-                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
-                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
-                        children: [
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                                children: "Save Changes"
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/updated-user.jsx",
-                                lineNumber: 117,
-                                columnNumber: 9
-                            }, this),
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                                variant: "secondary",
-                                style: {
-                                    "marginLeft": "5rem"
-                                },
-                                children: "Cancel"
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/updated-user.jsx",
-                                lineNumber: 118,
-                                columnNumber: 9
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/profile-view/updated-user.jsx",
-                        lineNumber: 116,
-                        columnNumber: 8
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/profile-view/updated-user.jsx",
-                    lineNumber: 115,
-                    columnNumber: 6
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "src/components/profile-view/updated-user.jsx",
-            lineNumber: 55,
-            columnNumber: 4
-        }, this);
-    }
-}
-exports.default = UpdatedUser; // UserInfo.propTypes = {
- //   user: PropTypes.shape({
- //     username: PropTypes.string.isRequired,
- //     password: PropTypes.string.isRequired,
- //     birthday: PropTypes.string.isRequired,
- //     email: PropTypes.string.isRequired
- //   }).isRequired
- // }
- // <Form>
- //           <Form.Group>
- //             <Form.Label>Username </Form.Label>
- //             <Form.Control 
- //               style={{ "width":"24rem", "display":"flex"}}
- //                     type="text" 
- //                     value={user} 
- //                     placeholder= {user} 
- //                     onChange={e => setUsername(e.target.value)}
- //                     />
- //           </Form.Group>
- //           <Form.Group>
- //             <Form.Label>Email </Form.Label>
- //             <Form.Control 
- //               style={{ "width":"24rem", "display":"flex"}}
- //                     type="text" 
- //                     value={email} 
- //                     placeholder= {email} 
- //                     onChange={e => setUsername(e.target.value)}
- //                     />
- //           </Form.Group>
- //           <Form.Group>
- //             <Form.Label>Password </Form.Label>
- //             <Form.Control
- //               style={{ "width":"24rem", "display":"flex"}}
- //                     type="text" 
- //                     value={password} 
- //                     placeholder= {password}
- //                     onChange={e => setUsername(e.target.value)}
- //                     />
- //           </Form.Group>
- //           <Form.Group>
- //             <Form.Label>Birthday </Form.Label>
- //             <Form.Control 
- //               style={{ "width":"24rem", "display":"flex"}}
- //                     type="text" 
- //                     value={birthday} 
- //                     placeholder= {birthday}
- //                     onChange={e => setUsername(e.target.value)}
- //                     />
- //           </Form.Group>
- //         </Form>
-
-  $parcel$ReactRefreshHelpers$798b.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./profile-view.scss":"eyKYH"}],"eyKYH":[function() {},{}],"9tpci":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
