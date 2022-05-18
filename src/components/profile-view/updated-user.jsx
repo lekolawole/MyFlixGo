@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Card, Col, Container, Form, Control, Row, Collapse } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './profile-view.scss';
@@ -39,6 +39,12 @@ export class UpdatedUser extends React.Component {
     })
     .catch((e) => 
       console.log(e))
+  }
+
+  updateUser = (e) => {
+    const [ userUpdate, setUserUpdate ] = useState(this.props.user);
+
+    setUserUpdate(e.target.value)
   }
   
   // updateUser = (e) => {
@@ -92,6 +98,32 @@ export class UpdatedUser extends React.Component {
   //   console.log(username, password, email, birthday);
   // };
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const isReq = validate();
+
+    if(isReq){
+        axios.post('https://my-flix-22.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      })
+      .then(response => {
+        console.log(response.data);
+        alert('Registration successful, please login!');
+        window.open('/',"_self");
+      })
+      .catch(e => {
+        console.log('Error during registration.');
+        alert('Registration not complete')
+      });
+    }
+    
+    console.log(username, password, email, birthday);
+    props.onRegister(false)
+  };
+
   render() {
     const user = localStorage.getItem("user");
     let email = localStorage.getItem("email");
@@ -119,7 +151,7 @@ export class UpdatedUser extends React.Component {
                     type="text" 
                     value={user} 
                     placeholder= 'Enter a username' 
-                    onChange={(e) => {console.log('changed')}}
+                    onChange={(e) => {this.updateUser()}}
                     />
               </Form.Group>
 
@@ -130,7 +162,7 @@ export class UpdatedUser extends React.Component {
                   type="text" 
                   value={email} 
                   placeholder= 'Enter a username' 
-                  onChange={(e) => console.log('changed')}
+                  onChange={(e) => {this.updateUser()}}
                   />
             </Form.Group>
 
@@ -141,7 +173,7 @@ export class UpdatedUser extends React.Component {
                   type="text" 
                   value={password} 
                   placeholder= {password} 
-                  onChange={(e) => console.log('changed')}
+                  onChange={(e) => {this.updateUser()}}
                   />
             </Form.Group>
 
@@ -152,12 +184,12 @@ export class UpdatedUser extends React.Component {
                   type="text" 
                   value={birthday} 
                   placeholder= 'Enter a username' 
-                  onChange={(e) => console.log('changed')}
+                  onChange={(e) => {this.updateUser()}}
                   />
             </Form.Group>
             <Button 
               type="submit"
-              //onClick={this.updateUser()}
+              onClick={this.handleSubmit()}
               >Save Changes</Button>
           </Form>
         </Collapse>
