@@ -10,7 +10,10 @@ import './index.scss';
 //Main component
 class MyFlixApplication extends React.Component {
   render() {
-    
+    // forces Parcel to reload
+    if (module.hot) {
+      module.hot.accept()
+    }
     return (
       <Container className="main-container">
         <MainView />

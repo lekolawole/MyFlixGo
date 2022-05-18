@@ -19,40 +19,39 @@ export class MovieView extends React.Component {
     const user = localStorage.getItem('user');
     const token = localStorage.getItem('token');
     console.log(user);
-    console.log(movie._id);
+    //console.log(movie._id);
+    console.log(movie);
     console.log(token);
-
+    let movieData = localStorage.setItem(token, movie);
     // this.setState = {
     //   Favorite: user.FavoriteMovies
     // }
   }
-addRemoveFavMovie() {
-    const { movie } = this.props;
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
 
-  axios.post(`/users/${user}/movies/${movie._id}`, {}, {
-    headers: { Authorization: `Bearer ${token}`}
-  })
-  .then(response => {
-    // Assign the result to the state
-    this.setState({
-      FavoriteMovies: true
+  addRemoveFavMovie() {
+      const { movie } = this.props;
+      const token = localStorage.getItem('token');
+      const user = localStorage.getItem('user');
+
+    axios.post(`/users/${user}/movies/${movie._id}`, {}, {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      // Assign the result to the state
+      this.setState({
+        FavoriteMovies: true
+      });
+      user.FavoriteMovies.push(movie._id);
+      alert(`${movie.Title} was added to your Favorites.`)
+    })
+    .catch(function (error) {
+      console.log(error);
     });
-    user.FavoriteMovies.push(movie._id);
-    alert(`${movie.Title} was added to your Favorites.`)
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
   }
-  
 
   render() {
     const { movie, onBackClick, addRemoveFavMovie } = this.props;
     let user = localStorage.getItem('user');
-
-  
 
     return (
       <Container className="movie-view-container">
@@ -66,7 +65,7 @@ addRemoveFavMovie() {
               <span className="value">{movie.Title}</span>
               <Button variant="secondary" className="favorite-button" onClick={() => 
               
-              //{console.log(movie._id); console.log(user)}}
+              //{console.log(movie._id); console.log(user)}} testing
                 { this.addRemoveFavMovie() }}
                 >+</Button>
             </div>
@@ -88,17 +87,11 @@ addRemoveFavMovie() {
                 <Button variant="link">{movie.Genre.Name}</Button>
               </Link>
             </div>
-            <div>
-              
-            </div>
           </Col>
           <Col>
             <Button onClick={() => { onBackClick(null); }}>Back</Button>
-            
           </Col>
-      </Row>
-
-
+        </Row>
       </Container>
     );
   }
@@ -119,5 +112,4 @@ MovieView.propTypes = {
   // Director: PropTypes.shape({
   //   Name: PropTypes.string.isRequired
   // }).isRequired,
-
 };

@@ -23,7 +23,7 @@ export class UpdatedUser extends React.Component {
     });
   }
 
-   getUser(token) {
+  getUser(token) {
     let user = localStorage.getItem("user");
     let email = localStorage.getItem("email");
     let password = localStorage.getItem("password");
@@ -56,12 +56,6 @@ export class UpdatedUser extends React.Component {
     console.log(error);
   });
   }
-
-  // updateUser = (e) => {
-  //   const [ userUpdate, setUserUpdate ] = useState(this.props.user);
-
-  //   setUserUpdate(e.target.value)
-  // }
   
   updateUser = (e) => {
     //e.preventDefault();
@@ -89,7 +83,6 @@ export class UpdatedUser extends React.Component {
       setEmailErr('Must be a valid email address');
       isReq = false;
     }
-
     
     return isReq;
   };
@@ -110,10 +103,10 @@ export class UpdatedUser extends React.Component {
         alert('Changes not saved')
       });
     }
-    
     console.log(username, password, email, birthday);
   };
 
+  //Testing handle Submit button
   // handleSubmit = (e) => {
   //   e.preventDefault();
   //   const isReq = validate();
@@ -156,7 +149,7 @@ export class UpdatedUser extends React.Component {
             role="button"
             aria-expanded="false">
             Click to Manage Profile
-          </Button>
+        </Button>
 
         <Collapse in={!this.state.collapseMenu}>
             <Form id="example-collapse-text">
@@ -171,38 +164,38 @@ export class UpdatedUser extends React.Component {
                     />
               </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Email </Form.Label>
-              <Form.Control 
-                style={{ "width":"24rem", "display":"flex"}}
-                  type="text" 
-                  value={email} 
-                  placeholder= 'Enter a username' 
-                  onChange={(e) => {this.updateUser()}}
-                  />
-            </Form.Group>
+              <Form.Group>
+                <Form.Label>Email </Form.Label>
+                <Form.Control 
+                  style={{ "width":"24rem", "display":"flex"}}
+                    type="text" 
+                    value={email} 
+                    placeholder= 'Enter a username' 
+                    onChange={(e) => {this.updateUser()}}
+                    />
+              </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Password </Form.Label>
-              <Form.Control 
-                style={{ "width":"24rem", "display":"flex"}}
-                  type="text" 
-                  value={password} 
-                  placeholder= {password} 
-                  onChange={(e) => {this.updateUser()}}
-                  />
-            </Form.Group>
+              <Form.Group>
+                <Form.Label>Password </Form.Label>
+                <Form.Control 
+                  style={{ "width":"24rem", "display":"flex"}}
+                    type="text" 
+                    value={password} 
+                    placeholder= {password} 
+                    onChange={(e) => {this.updateUser()}}
+                    />
+              </Form.Group>
 
-            <Form.Group>
-              <Form.Label>Birthday </Form.Label>
-              <Form.Control 
-                style={{ "width":"24rem", "display":"flex"}}
-                  type="text" 
-                  value={birthday} 
-                  placeholder= 'Enter a username' 
-                  onChange={(e) => {this.updateUser()}}
-                  />
-            </Form.Group>
+              <Form.Group>
+                <Form.Label>Birthday </Form.Label>
+                <Form.Control 
+                  style={{ "width":"24rem", "display":"flex"}}
+                    type="text" 
+                    value={birthday} 
+                    placeholder= 'Enter a username' 
+                    onChange={(e) => {this.updateUser()}}
+                    />
+              </Form.Group>
             <Button 
               type="submit"
               //onClick={this.handleSubmit()}
@@ -214,7 +207,6 @@ export class UpdatedUser extends React.Component {
    </Container>
   )
   }
-  
 }
 
 export default UpdatedUser;
@@ -227,53 +219,3 @@ export default UpdatedUser;
 //     email: PropTypes.string.isRequired
 //   }).isRequired
 // }
-
-
-
-
-
-// <Form>
-//           <Form.Group>
-//             <Form.Label>Username </Form.Label>
-//             <Form.Control 
-//               style={{ "width":"24rem", "display":"flex"}}
-//                     type="text" 
-//                     value={user} 
-//                     placeholder= {user} 
-//                     onChange={e => setUsername(e.target.value)}
-//                     />
-//           </Form.Group>
-
-//           <Form.Group>
-//             <Form.Label>Email </Form.Label>
-//             <Form.Control 
-//               style={{ "width":"24rem", "display":"flex"}}
-//                     type="text" 
-//                     value={email} 
-//                     placeholder= {email} 
-//                     onChange={e => setUsername(e.target.value)}
-//                     />
-//           </Form.Group>
-
-//           <Form.Group>
-//             <Form.Label>Password </Form.Label>
-//             <Form.Control
-//               style={{ "width":"24rem", "display":"flex"}}
-//                     type="text" 
-//                     value={password} 
-//                     placeholder= {password}
-//                     onChange={e => setUsername(e.target.value)}
-//                     />
-//           </Form.Group>
-
-//           <Form.Group>
-//             <Form.Label>Birthday </Form.Label>
-//             <Form.Control 
-//               style={{ "width":"24rem", "display":"flex"}}
-//                     type="text" 
-//                     value={birthday} 
-//                     placeholder= {birthday}
-//                     onChange={e => setUsername(e.target.value)}
-//                     />
-//           </Form.Group>
-//         </Form>

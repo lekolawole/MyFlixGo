@@ -35,13 +35,15 @@ export class MovieCard extends React.Component {
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description}</Card.Text>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="link" 
-            onClick={() => {
+            <Button 
+              variant="link" 
+              onClick={() => {
               //console.log(movie._id);
-              
             }}>Open</Button>
           </Link>
-          <Button variant="secondary" className="favorite-button" 
+          <Button 
+            variant="secondary" 
+            className="favorite-button" 
           //onClick={() => { this.addRemoveFavMovie(user, movie) }}
           >+</Button>
         </Card.Body>

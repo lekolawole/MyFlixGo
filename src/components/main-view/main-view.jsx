@@ -28,7 +28,8 @@ export class MainView extends React.Component {
       genres: [],
       //selectedMovie: null,
       //isRegistered: null,
-      user: null
+      user: null, 
+      FavoriteMovies: []
     };
   }
 
@@ -39,13 +40,7 @@ export class MainView extends React.Component {
       user: localStorage.getItem('user')//sets user credentials for state
     });
     this.getMovies(accessToken);
-  }
-}
-
-  setSelectedMovie(movie) {
-    this.setState({
-      selectedMovie: movie
-    });
+    }
   }
 
   onLoggedIn(authData) { //authenticates user credentials
@@ -85,10 +80,8 @@ export class MainView extends React.Component {
   })
   .catch(function (error) {
     console.log(error);
-  });
-}
-
-  
+    });
+  }
 
   render() {
     const { movies, selectedMovie, isRegistered, user } = this.state;
@@ -100,10 +93,8 @@ export class MainView extends React.Component {
 
     return (
       <Container className="main-container container-fluid">
-        
         <Router>
           <NavbarView />
-      
             <div className="main-view">
               <Row className="main-view justify-content-md-center">
                 <Route exact path="/" render={() => {
@@ -131,8 +122,7 @@ export class MainView extends React.Component {
                       <RegistrationView />
                     </Col>
                     );
-                }}
-              />
+                }}/>
                 <Route path="/movies/:movieId" render={({ match, history }) => {
                   if (!user) {
                     return (<Col>
@@ -144,8 +134,8 @@ export class MainView extends React.Component {
                   if (movies.length === 0) return <div className="main-view" />;
                   return <Col md={10}>
                     <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()}/>
-                </Col>
-              }} />
+                  </Col>
+                }} />
                 <Route path="/directors/:name" render={({ match, history }) => {
                   if (!user) { 
                     return (<Col>
@@ -177,16 +167,12 @@ export class MainView extends React.Component {
                       <ProfileView user={user} onBackClick={() => history.goBack()}/>
                     </Col>
                   }} />
-                
               </Row>
             </div>
           </Router>
-
         </Container>
       );
-      
   }
-  
 }
 
 MainView.propTypes = {
@@ -195,19 +181,3 @@ MainView.propTypes = {
     Description: PropTypes.string.isRequired
   }).isRequired
 }
-
-
-
-{/*{selectedMovie
-          ? (
-              <Col md={10} className="main-view justify-content-md-center">
-                <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
-              </Col>
-            )
-            : movies.map(movie => (
-              <Col md={3} style={{ "display": "flex", "marginBottom":"1.5rem"}}>
-                <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/> 
-              </Col>
-            ))
-            }     
-          */}  

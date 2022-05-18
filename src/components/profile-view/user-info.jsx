@@ -25,8 +25,6 @@ export class UserInfo extends React.Component {
     const user = localStorage.getItem("user");
     let email = localStorage.getItem("email");
     let FavoriteMovies = localStorage.getItem("FavoriteMovies");
-    
-
   
   return (
    <Container>
@@ -42,7 +40,6 @@ export class UserInfo extends React.Component {
    </Container>
   )
   }
-  
 }
 
 export default UserInfo;

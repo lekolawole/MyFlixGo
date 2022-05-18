@@ -26,38 +26,36 @@ export class NavbarView extends React.Component {
   
     return(
       <div>
-      <Router>
-        <Nav className="main-view-nav">
-          <Nav.Item>
-            <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'></img>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href="/">Home</Nav.Link>
-          </Nav.Item>
-          <NavDropdown title="Profile">
-            <NavDropdown.Item>Hi, {user}</NavDropdown.Item>
-            <NavDropdown.Item>
-              <Nav.Item>
-                <Link to={`/users/${user}`} className="nav-links">My Account
-                {/* <Button variant="link">My Account</Button> */}
-                </Link>
-              </Nav.Item>
-              
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <Nav.Item>
-                <Route path="/" render={({ match }) => {
-                  return 
-                      <LoginView />
-                }}
-                />
-                <Link to={`/`} onClick={() => {this.onLoggedOut()}} className="nav-links">Logout</Link>
-              </Nav.Item>
-            </NavDropdown.Item>
-          </NavDropdown>
-      </Nav>
+        <Router>
+          <Nav className="main-view-nav">
+            <Nav.Item>
+              <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'></img>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link href="/">Home</Nav.Link>
+            </Nav.Item>
+            <NavDropdown title="Profile">
+              <NavDropdown.Item>Hi, {user}</NavDropdown.Item>
+              <NavDropdown.Item>
+                <Nav.Item>
+                  <Link to={`/users/${user}`} className="nav-links">My Account
+                  {/* <Button variant="link">My Account</Button> */}
+                  </Link>
+                </Nav.Item>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Nav.Item>
+                  <Route path="/" render={({ match }) => {
+                    return 
+                        <LoginView />
+                  }}
+                  />
+                  <Link to={`/`} onClick={() => {this.onLoggedOut()}} className="nav-links">Logout</Link>
+                </Nav.Item>
+              </NavDropdown.Item>
+            </NavDropdown>
+        </Nav>
       </Router>
-      
     </div>
     )
   }
