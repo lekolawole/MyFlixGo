@@ -16,15 +16,7 @@ img {
   line-height: 2rem;
 }
 
-.col, .row {
-  margin-top: 2rem;
-}
-
-.favorite-button {
-  margin-left: 2rem;
-}
-
-.movie-view-container {
+.col {
   margin-top: 2rem;
 }
 
@@ -109,8 +101,28 @@ img {
   right: 50%;
 }
 
+.nav {
+  background-color: #ffb72a;
+  padding: 1rem 0 1rem 5rem;
+  display: flex;
+}
+
+.nav-link {
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: 2.5rem;
+  font-weight: bold;
+}
+
+.main-logo {
+  width: 11.75rem;
+  margin-left: 5rem;
+  margin-right: 10%;
+}
+
 .main-container {
-  margin: 0;
+  margin-top: 5rem;
 }
 
 /*# sourceMappingURL=index.5f1df611.css.map */
