@@ -24,7 +24,7 @@ export class UserInfo extends React.Component {
   render() {
     const user = localStorage.getItem("user");
     let email = localStorage.getItem("email");
-    
+    let FavoriteMovies = localStorage.getItem("FavoriteMovies");
     
 
   
@@ -34,6 +34,9 @@ export class UserInfo extends React.Component {
        <Col>
         <div className="user-col-left info">Name: {user}</div>
         <div className="info">e-mail: {email}</div>
+       </Col>
+       <Col>
+        <Button onClick={() => {console.log(FavoriteMovies)}}>Favorite Movies</Button>
        </Col>
      </Row>
    </Container>
@@ -48,7 +51,6 @@ export default UserInfo;
 //   user: PropTypes.shape({
 //     username: PropTypes.string.isRequired,
 //     password: PropTypes.string.isRequired,
-//     birthday: PropTypes.string.isRequired,
-//     email: PropTypes.string.isRequired
+//     FavoriteMovies: PropTypes.array.isRequired
 //   }).isRequired
 // }

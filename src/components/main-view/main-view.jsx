@@ -54,6 +54,8 @@ export class MainView extends React.Component {
       user: authData.user.Username,
       email: authData.user.Email,
       birthday: authData.user.Birthday,
+      FavoriteMovies: authData.user.FavoriteMovies,
+      password: authData.user.Password
     });
 
     localStorage.setItem('token', authData.token);
@@ -61,6 +63,7 @@ export class MainView extends React.Component {
     localStorage.setItem('email', authData.user.Email);
     localStorage.setItem('birthday', authData.user.Birthday);
     localStorage.setItem('password', authData.user.Password);
+    localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
     this.getMovies(authData.token);
   }
 

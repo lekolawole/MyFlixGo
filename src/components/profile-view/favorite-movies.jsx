@@ -2,16 +2,17 @@ import React from "react";
 import { Card, Button } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
-function FavoriteMovies({ favoriteMovieList }) {
+function FavoriteMovies({ user }) {
+  
   return (
     <div>
       <h1>Favorites</h1>
-      {favoriteMovieList.map((movies) => {
+      {user.FavoriteMovies.map((movie) => {
         return (
-          <div key={movies._id}>
-            <img src={movies.ImagePath} />
+          <div key={movie._id}>
+            <img src={movie.ImagePath} />
             <Link to={`/movies/${movies._id}`}>
-              <h4>{movies.Title}</h4>
+              <h4>{movie.Title}</h4>
             </Link>
             <Button variant="secondary" onClick={() => removeFav(movies._id)}>Remove from Favorites</Button>
           </div>

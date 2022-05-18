@@ -3,12 +3,54 @@ import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import './movie-view.scss';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 export class MovieView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      FavoriteMovies: false
+    };
+  }
 
+
+  componentDidMount() {
+    const { movie } = this.props;
+    const user = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+    console.log(user);
+    console.log(movie._id);
+    console.log(token);
+
+    // this.setState = {
+    //   Favorite: user.FavoriteMovies
+    // }
+  }
+addRemoveFavMovie() {
+    const { movie } = this.props;
+    const token = localStorage.getItem('token');
+    const user = localStorage.getItem('user');
+
+  axios.post(`/users/${user}/movies/${movie._id}`, {}, {
+    headers: { Authorization: `Bearer ${token}`}
+  })
+  .then(response => {
+    // Assign the result to the state
+    this.setState({
+      FavoriteMovies: true
+    });
+    user.FavoriteMovies.push(movie._id);
+    alert(`${movie.Title} was added to your Favorites.`)
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+  }
   
+
   render() {
-    const { movie, onBackClick } = this.props;
+    const { movie, onBackClick, addRemoveFavMovie } = this.props;
+    let user = localStorage.getItem('user');
 
   
 
@@ -22,7 +64,11 @@ export class MovieView extends React.Component {
             <div md={2} className="movie-title">
               <span className="label"></span>
               <span className="value">{movie.Title}</span>
-              <Button variant="secondary" className="favorite-button">+</Button>
+              <Button variant="secondary" className="favorite-button" onClick={() => 
+              
+              //{console.log(movie._id); console.log(user)}}
+                { this.addRemoveFavMovie() }}
+                >+</Button>
             </div>
             <div className="movie-rating">
               <span className="label">Rating: </span>
@@ -63,9 +109,13 @@ MovieView.propTypes = {
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string,
-    MovieDirector: PropTypes.string.isRequired,
+    MovieDirector: PropTypes.object.isRequired,
     Rating: PropTypes.string.isRequired
   }).isRequired,
+  // user: PropTypes.shape({
+  //   username: PropTypes.string.isRequired,
+  //   password: PropTypes.string.isRequired,
+  // }).isRequired
   // Director: PropTypes.shape({
   //   Name: PropTypes.string.isRequired
   // }).isRequired,
