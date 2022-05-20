@@ -40,6 +40,10 @@ img {
   font-weight: bold;
 }
 
+.container {
+  padding-bottom: 10rem;
+}
+
 .main-container {
   margin: 0;
   padding: 0;

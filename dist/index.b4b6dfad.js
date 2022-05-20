@@ -43015,67 +43015,65 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
+var _profileViewScss = require("./profile-view.scss");
 function FavMoviesView({ movieData  }) {
     const user = localStorage.getItem('user');
     const FavoriteMovies = localStorage.getItem('FavoriteMovies');
-    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
-        children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
-                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
-                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h1", {
-                        children: "Favorite Movies"
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/fav-movies.jsx",
-                        lineNumber: 13,
-                        columnNumber: 11
-                    }, this)
+    return FavoriteMovies.map((movies)=>{
+        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+            children: [
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("img", {
+                    src: movies.ImagePath
                 }, void 0, false, {
                     fileName: "src/components/profile-view/fav-movies.jsx",
                     lineNumber: 12,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/profile-view/fav-movies.jsx",
-                lineNumber: 11,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Row, {
-                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
+                    columnNumber: 13
+                }, this),
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
                     children: [
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                            children: user
-                        }, user, false, {
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("img", {
+                            src: movie.ImagePath
+                        }, void 0, false, {
                             fileName: "src/components/profile-view/fav-movies.jsx",
-                            lineNumber: 19,
-                            columnNumber: 11
+                            lineNumber: 14,
+                            columnNumber: 13
                         }, this),
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
+                            to: `/movies/${movies._id}`,
                             children: [
-                                "Favorite Movie (ID): ",
-                                FavoriteMovies
+                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h4", {
+                                    children: movies.Title
+                                }, void 0, false, {
+                                    fileName: "src/components/profile-view/fav-movies.jsx",
+                                    lineNumber: 16,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h4", {
+                                    children: movie.Title
+                                }, void 0, false, {
+                                    fileName: "src/components/profile-view/fav-movies.jsx",
+                                    lineNumber: 17,
+                                    columnNumber: 15
+                                }, this)
                             ]
-                        }, FavoriteMovies, true, {
+                        }, void 0, true, {
                             fileName: "src/components/profile-view/fav-movies.jsx",
-                            lineNumber: 21,
-                            columnNumber: 11
+                            lineNumber: 15,
+                            columnNumber: 13
                         }, this)
                     ]
-                }, void 0, true, {
+                }, movie._id, true, {
                     fileName: "src/components/profile-view/fav-movies.jsx",
-                    lineNumber: 18,
-                    columnNumber: 9
+                    lineNumber: 13,
+                    columnNumber: 11
                 }, this)
-            }, void 0, false, {
-                fileName: "src/components/profile-view/fav-movies.jsx",
-                lineNumber: 17,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/profile-view/fav-movies.jsx",
-        lineNumber: 10,
-        columnNumber: 5
-    }, this);
+            ]
+        }, movies._id, true, {
+            fileName: "src/components/profile-view/fav-movies.jsx",
+            lineNumber: 11,
+            columnNumber: 8
+        }, this);
+    });
 }
 _c = FavMoviesView;
 exports.default = FavMoviesView;
@@ -43087,7 +43085,7 @@ $RefreshReg$(_c, "FavMoviesView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"cHIiW"}],"9tpci":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./profile-view.scss":"eyKYH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
