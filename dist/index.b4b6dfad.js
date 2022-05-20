@@ -25131,7 +25131,9 @@ class MainView extends _reactDefault.default.Component {
             //selectedMovie: null,
             //isRegistered: null,
             user: null,
-            FavoriteMovies: []
+            FavoriteMovies: [
+                {}
+            ]
         };
     }
     componentDidMount() {
@@ -25185,7 +25187,7 @@ class MainView extends _reactDefault.default.Component {
             onRegister: (bool)=>this.onRegister(bool)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 91,
+            lineNumber: 93,
             columnNumber: 14
         }, this);
         return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
@@ -25194,7 +25196,7 @@ class MainView extends _reactDefault.default.Component {
                 children: [
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbarView.NavbarView, {}, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 97,
+                        lineNumber: 99,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -25225,7 +25227,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 100,
+                                    lineNumber: 102,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25240,7 +25242,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 119,
+                                    lineNumber: 121,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25265,7 +25267,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 126,
+                                    lineNumber: 128,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25290,7 +25292,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 139,
+                                    lineNumber: 141,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25315,7 +25317,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 151,
+                                    lineNumber: 153,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25333,29 +25335,29 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 163,
+                                    lineNumber: 165,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 99,
+                            lineNumber: 101,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 98,
+                        lineNumber: 100,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 96,
+                lineNumber: 98,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 95,
+            lineNumber: 97,
             columnNumber: 7
         }, this);
     }
@@ -42556,7 +42558,106 @@ exports.default = ProfileView; // ProfileView.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","./user-info":"66eot","./updated-user":"b0906","axios":"jo6P5","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./fav-movies":"7O9I0"}],"66eot":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./fav-movies":"7O9I0","./user-info":"66eot","./updated-user":"b0906","prop-types":"7wKI2"}],"7O9I0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9d6d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9d6d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
+var _profileViewScss = require("./profile-view.scss");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _s = $RefreshSig$();
+function FavMoviesView(props) {
+    _s();
+    const movies = _react.useState([]);
+    const [favMovies, setFavMovies] = _react.useState([]);
+    console.log(movies);
+    let token1 = localStorage.getItem('token');
+    console.log(token1);
+    const user = localStorage.getItem('user');
+    //////////////// TESTING CONVERTING FavoriteMoviesObj INTO ARRAY (movieArr)
+    const FavoriteMovies = localStorage.getItem('FavoriteMovies');
+    const FavoriteMoviesObj = FavoriteMovies.split(',');
+    // console.log(typeof(FavoriteMoviesObj));
+    // console.log(FavoriteMoviesObj);
+    // Assigns _id key to object to reference later
+    const newMoviesObj = FavoriteMoviesObj.map((item)=>{
+        return {
+            _id: item
+        };
+    });
+    //creates new array from previous object
+    const moviesArr = Object.entries(newMoviesObj).map((entry)=>entry[1]
+    );
+    //console.log(newMoviesObj)
+    //const moviesArr = Object.entries(newMoviesObj).map(entry => entry[1]);
+    console.log(typeof moviesArr[0]._id);
+    //////////// Testing GET request to produce similar grid of movies as in MainView
+    // console.log(token);
+    getMovies = (token)=>{
+        _axiosDefault.default.get('https://my-flix-22.herokuapp.com/movies/:movieId', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            // Assign the result to the state
+            this.setState({
+                movies: response.data
+            });
+            console.log(movies);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    };
+    return(// moviesArr.map((movie) => {
+    //   {getMovies};
+    // <Col 
+    //   //movie={movies.find(movie => movie._id === matchMedia.params.movieId)}
+    // >
+    //   <div key={movie._id}>
+    //     <img src={movie.ImagePath} />
+    //     <Link to={`/movies/${movie._id}`}>
+    //       <h4>{movie.Title}</h4>
+    //       <h4>{movie.Title}</h4>
+    //     </Link> 
+    //   </div>
+    // </Col>
+    // })
+    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h1", {
+            children: moviesArr[0]._id
+        }, void 0, false, {
+            fileName: "src/components/profile-view/fav-movies.jsx",
+            lineNumber: 74,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "src/components/profile-view/fav-movies.jsx",
+        lineNumber: 73,
+        columnNumber: 5
+    }, this));
+}
+_s(FavMoviesView, "KJPHeLnmUgFEV+EtyTXEIAQnuBI=");
+_c = FavMoviesView;
+exports.default = FavMoviesView;
+var _c;
+$RefreshReg$(_c, "FavMoviesView");
+
+  $parcel$ReactRefreshHelpers$9d6d.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./profile-view.scss":"eyKYH","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"66eot":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1330 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43001,119 +43102,7 @@ exports.default = UpdatedUser; // UserInfo.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","./profile-view.scss":"eyKYH","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"7O9I0":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$9d6d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$9d6d.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactBootstrap = require("react-bootstrap");
-var _reactRouterDom = require("react-router-dom");
-var _profileViewScss = require("./profile-view.scss");
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
-function FavMoviesView() {
-    let token = localStorage.getItem('token');
-    console.log(token);
-    const user = localStorage.getItem('user');
-    //////////////// TESTING CONVERTING FavoriteMoviesObj INTO ARRAY (movieArr)
-    const FavoriteMovies = localStorage.getItem('FavoriteMovies');
-    const FavoriteMoviesObj = FavoriteMovies.split(',');
-    // console.log(typeof(FavoriteMoviesObj));
-    // console.log(FavoriteMoviesObj);
-    // Assigns _id key to object to reference later
-    const newMoviesObj = FavoriteMoviesObj.map((item)=>{
-        return {
-            _id: item
-        };
-    });
-    //creates new array from previous object
-    const moviesArr = Object.entries(newMoviesObj).map((entry)=>entry[1]
-    );
-    //console.log(newMoviesObj)
-    //const moviesArr = Object.entries(newMoviesObj).map(entry => entry[1]);
-    console.log(moviesArr);
-    //////////// Testing GET request to produce similar grid of movies as in MainView
-    // console.log(token);
-    // const getMovies = (token) => {
-    //   axios.get('https://my-flix-22.herokuapp.com/movies', {
-    //     headers: { Authorization: `Bearer ${token}`}
-    //   })
-    //   .then(response => {
-    //     // Assign the result to the state
-    //     this.setState({
-    //       movies: response.data
-    //     });
-    //     console.log(movies);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     });
-    // }
-    return moviesArr.map((movie)=>{
-        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
-            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                children: [
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("img", {
-                        src: movie.ImagePath
-                    }, void 0, false, {
-                        fileName: "src/components/profile-view/fav-movies.jsx",
-                        lineNumber: 56,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
-                        to: `/movies/${movie._id}`,
-                        children: [
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h4", {
-                                children: movie.Title
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/fav-movies.jsx",
-                                lineNumber: 58,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h4", {
-                                children: movie.Title
-                            }, void 0, false, {
-                                fileName: "src/components/profile-view/fav-movies.jsx",
-                                lineNumber: 59,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/profile-view/fav-movies.jsx",
-                        lineNumber: 57,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, movie._id, true, {
-                fileName: "src/components/profile-view/fav-movies.jsx",
-                lineNumber: 55,
-                columnNumber: 7
-            }, this)
-        }, void 0, false, {
-            fileName: "src/components/profile-view/fav-movies.jsx",
-            lineNumber: 54,
-            columnNumber: 5
-        }, this);
-    });
-}
-_c = FavMoviesView;
-exports.default = FavMoviesView;
-var _c;
-$RefreshReg$(_c, "FavMoviesView");
-
-  $parcel$ReactRefreshHelpers$9d6d.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./profile-view.scss":"eyKYH","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"9tpci":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","prop-types":"7wKI2","./profile-view.scss":"eyKYH","axios":"jo6P5"}],"eyKYH":[function() {},{}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

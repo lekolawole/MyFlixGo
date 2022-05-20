@@ -29,7 +29,9 @@ export class MainView extends React.Component {
       //selectedMovie: null,
       //isRegistered: null,
       user: null, 
-      FavoriteMovies: []
+      FavoriteMovies: [
+        {}
+      ]
     };
   }
 
