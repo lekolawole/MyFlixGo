@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -6,23 +6,49 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export class MovieCard extends React.Component {
-  addRemoveFavMovie() {
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    const movie = this.movie;
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: '',
+      movies: [],
+      FavoriteMovies: []
+    };
+  }
+  
+  ///////////////////TESTING ADD MOVIE IN CONSOLE
+  addFavMovie(movie) {
+      const { user, token } = this.props;
+      const { FavoriteMovies } = this.state;
+      
+      const { id } = movie._id;
+      // const token = localStorage.getItem('token');
+      // const user = localStorage.getItem('user');
 
-    axios.post(`/users/${user}/movies/${movie}`, {
-    headers: { Authorization: `Bearer ${token}`}
-  })
-  .then(response => {
-    // Assign the result to the state
-    this.setState({
-      FavoriteMovies: response.data
-    });
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+     
+        console.log(`${movie.Title} has been added.`);
+
+        const newFavoritesList = [...FavoriteMovies, movie];
+        this.setState({
+        FavoriteMovies: newFavoritesList,
+        })
+      
+    // axios.post(`/users/${user}/movies/${movie._id}`, {}, {
+    //   headers: { Authorization: `Bearer ${token}`}
+    // })
+    // .then(response => {
+    //   // Assign the result to the state
+    //   this.setState({
+    //     FavoriteMovies: response.data.FavoriteMovies
+    //   });
+    //   // const updatedUser = {
+    //   //   ...user, FavoriteMovies: user.FavoriteMovies.push(movie._id)
+    //   // }; 
+    //   alert(`${movie.Title} was added to your Favorites.`);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    console.log(FavoriteMovies)
   }
 
   render() {
@@ -44,7 +70,7 @@ export class MovieCard extends React.Component {
           <Button 
             variant="secondary" 
             className="favorite-button" 
-          //onClick={() => { this.addRemoveFavMovie(user, movie) }}
+          onClick={() => { this.addFavMovie(movie) }}
           >+</Button>
         </Card.Body>
       </Card>

@@ -24,14 +24,12 @@ export class MainView extends React.Component {
     super();
     this.state = {// initial state for MainView
       movies: [], // constructs array of movies from API
-      directors: [],
-      genres: [],
+      // directors: [],
+      // genres: [],
       //selectedMovie: null,
       //isRegistered: null,
       user: null, 
-      FavoriteMovies: [
-        {}
-      ]
+      FavoriteMovies: []
     };
   }
 
@@ -87,7 +85,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie, isRegistered, user, token } = this.state;
+    const { movies, selectedMovie, isRegistered, user, token, FavoriteMovies } = this.state;
     //let { authUser } = this.props;
     
     if (isRegistered) {//Creates registration Form
@@ -136,7 +134,7 @@ export class MainView extends React.Component {
                     );}
                   if (movies.length === 0) return <div className="main-view" />;
                   return <Col md={10}>
-                    <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} user={user} token={token}/>
+                    <MovieView movie={movies.find(m => m._id === match.params.movieId)} FavoriteMovies={FavoriteMovies} onBackClick={() => history.goBack()} user={user} token={token}/>
                   </Col>
                 }} />
                 <Route path="/directors/:name" render={({ match, history }) => {

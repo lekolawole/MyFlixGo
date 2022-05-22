@@ -9,70 +9,85 @@ export class MovieView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      FavoriteMovies: false
+      user: '',
+      movies: [],
+      FavoriteMovies: []
     };
   }
 
 
   componentDidMount() {
-    const { movie, user, token } = this.props;
+    const { movie, user, token, FavoriteMovies } = this.props;
+    console.log(FavoriteMovies)
     //const user = localStorage.getItem('user');
     //const token = localStorage.getItem('token');
     // console.log(user);
     //console.log(movie._id);
     //console.log(movie);
-    console.log(token);
+    // console.log(token);
     //let movieData = localStorage.setItem(token, movie);
-    this.setState = {
-      Favorite: user.FavoriteMovies
-    }
-  }
-  
-  onLoggedIn(authData) { //authenticates user credentials
-    // console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-      email: authData.user.Email,
-      birthday: authData.user.Birthday,
-      FavoriteMovies: authData.user.FavoriteMovies,
-      password: authData.user.Password
-    });
-
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
-    localStorage.setItem('email', authData.user.Email);
-    localStorage.setItem('birthday', authData.user.Birthday);
-    localStorage.setItem('password', authData.user.Password);
-    localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
-    this.getMovies(authData.token);
+    // this.setState = {
+    //   FavoriteMovies: user.FavoriteMovies
+    // }
   }
 
-  addRemoveFavMovie(token) {
-      const { movie, user, onUserUpdated } = this.props;
-      //const token = localStorage.getItem('token');
-      //const user = localStorage.getItem('user');
+  // onLoggedIn(authData) { //authenticates user credentials
+  //   // console.log(authData);
+  //   this.setState({
+  //     user: authData.user.Username,
+  //     email: authData.user.Email,
+  //     birthday: authData.user.Birthday,
+  //     FavoriteMovies: authData.user.FavoriteMovies,
+  //     password: authData.user.Password
+  //   });
 
+  //   localStorage.setItem('token', authData.token);
+  //   localStorage.setItem('user', authData.user.Username);
+  //   localStorage.setItem('email', authData.user.Email);
+  //   localStorage.setItem('birthday', authData.user.Birthday);
+  //   localStorage.setItem('password', authData.user.Password);
+  //   //localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
+  //   this.getMovies(authData.token);
+  // }
+
+  addFavMovie(movie) {
+      const { user, token } = this.props;
+      const { FavoriteMovies } = this.state;
+      const { id } = movie._id;
+      // const token = localStorage.getItem('token');
+      // const user = localStorage.getItem('user');
+
+     
+        alert(`${movie.Title} has been added.`);
+
+        const newFavoritesList = [...FavoriteMovies, movie];
+        this.setState({
+        FavoriteMovies: newFavoritesList,
+        })
+      
     axios.post(`/users/${user}/movies/${movie._id}`, {}, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
       // Assign the result to the state
       this.setState({
-        FavoriteMovies: true
+        FavoriteMovies: response.data.FavoriteMovies
       });
-      const updatedUser = {
-        ...user, FavoriteMovies: user.FavoriteMovies.push(movie._id)
-      }; 
-      onUserUpdated(updatedUser);
+      // const updatedUser = {
+      //   ...user, FavoriteMovies: user.FavoriteMovies.push(movie._id)
+      // }; 
       alert(`${movie.Title} was added to your Favorites.`);
     })
     .catch(function (error) {
       console.log(error);
     });
+    console.log(FavoriteMovies)
   }
 
   render() {
     const { movie, onBackClick, addRemoveFavMovie } = this.props;
+    const { FavoriteMovies } = this.state; 
+
     let user = localStorage.getItem('user');
 
     return (
@@ -88,7 +103,7 @@ export class MovieView extends React.Component {
               <Button variant="secondary" className="favorite-button" onClick={() => 
               
               //{console.log(movie._id); console.log(user)}} testing
-                { this.addRemoveFavMovie() }}
+                { this.addFavMovie(movie) }}
                 >+</Button>
             </div>
             <div className="movie-rating">

@@ -25132,14 +25132,12 @@ class MainView extends _reactDefault.default.Component {
         super();
         this.state = {
             movies: [],
-            directors: [],
-            genres: [],
+            // directors: [],
+            // genres: [],
             //selectedMovie: null,
             //isRegistered: null,
             user: null,
-            FavoriteMovies: [
-                {}
-            ]
+            FavoriteMovies: []
         };
     }
     componentDidMount() {
@@ -25189,13 +25187,13 @@ class MainView extends _reactDefault.default.Component {
         });
     }
     render() {
-        const { movies , selectedMovie , isRegistered , user: user1 , token  } = this.state;
+        const { movies , selectedMovie , isRegistered , user: user1 , token , FavoriteMovies  } = this.state;
         //let { authUser } = this.props;
         if (isRegistered) return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_registrationView.RegistrationView, {
             onRegister: (bool)=>this.onRegister(bool)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 94,
+            lineNumber: 92,
             columnNumber: 14
         }, this);
         return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
@@ -25204,7 +25202,7 @@ class MainView extends _reactDefault.default.Component {
                 children: [
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbarView.NavbarView, {}, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 100,
+                        lineNumber: 98,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -25235,7 +25233,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 103,
+                                    lineNumber: 101,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25250,7 +25248,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 122,
+                                    lineNumber: 120,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25269,6 +25267,7 @@ class MainView extends _reactDefault.default.Component {
                                             children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieView.MovieView, {
                                                 movie: movies.find((m)=>m._id === match.params.movieId
                                                 ),
+                                                FavoriteMovies: FavoriteMovies,
                                                 onBackClick: ()=>history.goBack()
                                                 ,
                                                 user: user1,
@@ -25278,7 +25277,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 129,
+                                    lineNumber: 127,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25303,7 +25302,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 142,
+                                    lineNumber: 140,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25328,7 +25327,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 154,
+                                    lineNumber: 152,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25346,29 +25345,29 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 166,
+                                    lineNumber: 164,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 102,
+                            lineNumber: 100,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 101,
+                        lineNumber: 99,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 99,
+                lineNumber: 97,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 98,
+            lineNumber: 96,
             columnNumber: 7
         }, this);
     }
@@ -41891,22 +41890,46 @@ var _reactRouterDom = require("react-router-dom");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 class MovieCard extends _reactDefault.default.Component {
-    addRemoveFavMovie() {
-        const token = localStorage.getItem('token');
-        const user = localStorage.getItem('user');
-        const movie = this.movie;
-        _axiosDefault.default.post(`/users/${user}/movies/${movie}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            // Assign the result to the state
-            this.setState({
-                FavoriteMovies: response.data
-            });
-        }).catch(function(error) {
-            console.log(error);
+    constructor(props){
+        super(props);
+        this.state = {
+            user: '',
+            movies: [],
+            FavoriteMovies: []
+        };
+    }
+    ///////////////////TESTING ADD MOVIE IN CONSOLE
+    addFavMovie(movie) {
+        const { user , token  } = this.props;
+        const { FavoriteMovies  } = this.state;
+        const { id  } = movie._id;
+        // const token = localStorage.getItem('token');
+        // const user = localStorage.getItem('user');
+        console.log(`${movie.Title} has been added.`);
+        const newFavoritesList = [
+            ...FavoriteMovies,
+            movie
+        ];
+        this.setState({
+            FavoriteMovies: newFavoritesList
         });
+        // axios.post(`/users/${user}/movies/${movie._id}`, {}, {
+        //   headers: { Authorization: `Bearer ${token}`}
+        // })
+        // .then(response => {
+        //   // Assign the result to the state
+        //   this.setState({
+        //     FavoriteMovies: response.data.FavoriteMovies
+        //   });
+        //   // const updatedUser = {
+        //   //   ...user, FavoriteMovies: user.FavoriteMovies.push(movie._id)
+        //   // }; 
+        //   alert(`${movie.Title} was added to your Favorites.`);
+        // })
+        // .catch(function (error) {
+        //   console.log(error);
+        // });
+        console.log(FavoriteMovies);
     }
     render() {
         const { movie , user  } = this.props;
@@ -41917,7 +41940,7 @@ class MovieCard extends _reactDefault.default.Component {
                     src: movie.ImagePath
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 33,
+                    lineNumber: 59,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_cardDefault.default.Body, {
@@ -41926,14 +41949,14 @@ class MovieCard extends _reactDefault.default.Component {
                             children: movie.Title
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 35,
+                            lineNumber: 61,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_cardDefault.default.Text, {
                             children: movie.Description
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 36,
+                            lineNumber: 62,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
@@ -41946,33 +41969,36 @@ class MovieCard extends _reactDefault.default.Component {
                                 children: "Open"
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 38,
+                                lineNumber: 64,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 37,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonDefault.default, {
                             variant: "secondary",
                             className: "favorite-button",
+                            onClick: ()=>{
+                                this.addFavMovie(movie);
+                            },
                             children: "+"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
-                            lineNumber: 44,
+                            lineNumber: 70,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 34,
+                    lineNumber: 60,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 32,
+            lineNumber: 58,
             columnNumber: 7
         }, this);
     }
@@ -42015,43 +42041,56 @@ class MovieView extends _reactDefault.default.Component {
     constructor(props){
         super(props);
         this.state = {
-            FavoriteMovies: false
+            user: '',
+            movies: [],
+            FavoriteMovies: []
         };
     }
     componentDidMount() {
-        const { movie , user , token  } = this.props;
-        //const user = localStorage.getItem('user');
-        //const token = localStorage.getItem('token');
-        // console.log(user);
-        //console.log(movie._id);
-        //console.log(movie);
-        console.log(token);
-        //let movieData = localStorage.setItem(token, movie);
-        this.setState = {
-            Favorite: user.FavoriteMovies
-        };
+        const { movie , user , token , FavoriteMovies  } = this.props;
+        console.log(FavoriteMovies);
+    //const user = localStorage.getItem('user');
+    //const token = localStorage.getItem('token');
+    // console.log(user);
+    //console.log(movie._id);
+    //console.log(movie);
+    // console.log(token);
+    //let movieData = localStorage.setItem(token, movie);
+    // this.setState = {
+    //   FavoriteMovies: user.FavoriteMovies
+    // }
     }
-    onLoggedIn(authData) {
-        // console.log(authData);
+    // onLoggedIn(authData) { //authenticates user credentials
+    //   // console.log(authData);
+    //   this.setState({
+    //     user: authData.user.Username,
+    //     email: authData.user.Email,
+    //     birthday: authData.user.Birthday,
+    //     FavoriteMovies: authData.user.FavoriteMovies,
+    //     password: authData.user.Password
+    //   });
+    //   localStorage.setItem('token', authData.token);
+    //   localStorage.setItem('user', authData.user.Username);
+    //   localStorage.setItem('email', authData.user.Email);
+    //   localStorage.setItem('birthday', authData.user.Birthday);
+    //   localStorage.setItem('password', authData.user.Password);
+    //   //localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
+    //   this.getMovies(authData.token);
+    // }
+    addFavMovie(movie) {
+        const { user , token  } = this.props;
+        const { FavoriteMovies  } = this.state;
+        const { id  } = movie._id;
+        // const token = localStorage.getItem('token');
+        // const user = localStorage.getItem('user');
+        alert(`${movie.Title} has been added.`);
+        const newFavoritesList = [
+            ...FavoriteMovies,
+            movie
+        ];
         this.setState({
-            user: authData.user.Username,
-            email: authData.user.Email,
-            birthday: authData.user.Birthday,
-            FavoriteMovies: authData.user.FavoriteMovies,
-            password: authData.user.Password
+            FavoriteMovies: newFavoritesList
         });
-        localStorage.setItem('token', authData.token);
-        localStorage.setItem('user', authData.user.Username);
-        localStorage.setItem('email', authData.user.Email);
-        localStorage.setItem('birthday', authData.user.Birthday);
-        localStorage.setItem('password', authData.user.Password);
-        localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies);
-        this.getMovies(authData.token);
-    }
-    addRemoveFavMovie(token) {
-        const { movie , user , onUserUpdated  } = this.props;
-        //const token = localStorage.getItem('token');
-        //const user = localStorage.getItem('user');
         _axiosDefault.default.post(`/users/${user}/movies/${movie._id}`, {}, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -42059,20 +42098,20 @@ class MovieView extends _reactDefault.default.Component {
         }).then((response)=>{
             // Assign the result to the state
             this.setState({
-                FavoriteMovies: true
+                FavoriteMovies: response.data.FavoriteMovies
             });
-            const updatedUser = {
-                ...user,
-                FavoriteMovies: user.FavoriteMovies.push(movie._id)
-            };
-            onUserUpdated(updatedUser);
+            // const updatedUser = {
+            //   ...user, FavoriteMovies: user.FavoriteMovies.push(movie._id)
+            // }; 
             alert(`${movie.Title} was added to your Favorites.`);
         }).catch(function(error) {
             console.log(error);
         });
+        console.log(FavoriteMovies);
     }
     render() {
         const { movie , onBackClick , addRemoveFavMovie  } = this.props;
+        const { FavoriteMovies  } = this.state;
         let user = localStorage.getItem('user');
         return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
             className: "movie-view-container",
@@ -42086,12 +42125,12 @@ class MovieView extends _reactDefault.default.Component {
                             src: movie.ImagePath
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 82,
+                            lineNumber: 97,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 81,
+                        lineNumber: 96,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
@@ -42105,7 +42144,7 @@ class MovieView extends _reactDefault.default.Component {
                                         className: "label"
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 86,
+                                        lineNumber: 101,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("span", {
@@ -42113,7 +42152,7 @@ class MovieView extends _reactDefault.default.Component {
                                         children: movie.Title
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 87,
+                                        lineNumber: 102,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
@@ -42121,18 +42160,18 @@ class MovieView extends _reactDefault.default.Component {
                                         className: "favorite-button",
                                         onClick: ()=>//{console.log(movie._id); console.log(user)}} testing
                                         {
-                                            this.addRemoveFavMovie();
+                                            this.addFavMovie(movie);
                                         },
                                         children: "+"
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 88,
+                                        lineNumber: 103,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 85,
+                                lineNumber: 100,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -42143,7 +42182,7 @@ class MovieView extends _reactDefault.default.Component {
                                         children: "Rating: "
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 95,
+                                        lineNumber: 110,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("span", {
@@ -42154,7 +42193,7 @@ class MovieView extends _reactDefault.default.Component {
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 96,
+                                        lineNumber: 111,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -42165,13 +42204,13 @@ class MovieView extends _reactDefault.default.Component {
                                         children: movie.ReleaseYear
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 98,
+                                        lineNumber: 113,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 94,
+                                lineNumber: 109,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -42181,12 +42220,12 @@ class MovieView extends _reactDefault.default.Component {
                                     children: movie.Description
                                 }, void 0, false, {
                                     fileName: "src/components/movie-view/movie-view.jsx",
-                                    lineNumber: 101,
+                                    lineNumber: 116,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 100,
+                                lineNumber: 115,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -42198,12 +42237,12 @@ class MovieView extends _reactDefault.default.Component {
                                             children: movie.MovieDirector.Name
                                         }, void 0, false, {
                                             fileName: "src/components/movie-view/movie-view.jsx",
-                                            lineNumber: 105,
+                                            lineNumber: 120,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 104,
+                                        lineNumber: 119,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
@@ -42213,24 +42252,24 @@ class MovieView extends _reactDefault.default.Component {
                                             children: movie.Genre.Name
                                         }, void 0, false, {
                                             fileName: "src/components/movie-view/movie-view.jsx",
-                                            lineNumber: 109,
+                                            lineNumber: 124,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
-                                        lineNumber: 108,
+                                        lineNumber: 123,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 103,
+                                lineNumber: 118,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 84,
+                        lineNumber: 99,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
@@ -42241,23 +42280,23 @@ class MovieView extends _reactDefault.default.Component {
                             children: "Back"
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 114,
+                            lineNumber: 129,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 113,
+                        lineNumber: 128,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 80,
+                lineNumber: 95,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "src/components/movie-view/movie-view.jsx",
-            lineNumber: 79,
+            lineNumber: 94,
             columnNumber: 7
         }, this);
     }
@@ -43052,31 +43091,46 @@ function FavMoviesView(props) {
     _s();
     const movies = _react.useState([]);
     const [favMovies, setFavMovies] = _react.useState([]);
-    console.log(movies);
+    // console.log(movies);
     let token1 = localStorage.getItem('token');
-    console.log(token1);
+    // console.log(token)
     const user = localStorage.getItem('user');
     //////////////// TESTING CONVERTING FavoriteMoviesObj INTO ARRAY (movieArr)
-    const FavoriteMovies = localStorage.getItem('FavoriteMovies');
-    const FavoriteMoviesObj = FavoriteMovies.split(',');
+    const FavoriteMovies1 = localStorage.getItem('FavoriteMovies');
+    const FavoriteMoviesObj1 = FavoriteMovies1.split(',');
     // console.log(typeof(FavoriteMoviesObj));
     // console.log(FavoriteMoviesObj);
     // Assigns _id key to object to reference later
-    const newMoviesObj = FavoriteMoviesObj.map((item)=>{
+    const newMoviesObj1 = FavoriteMoviesObj1.map((item)=>{
         return {
             _id: item
         };
     });
     //creates new array from previous object
-    const moviesArr = Object.entries(newMoviesObj).map((entry)=>entry[1]
+    const moviesArr1 = Object.entries(newMoviesObj1).map((entry)=>entry[1]
     );
     //console.log(newMoviesObj)
     //const moviesArr = Object.entries(newMoviesObj).map(entry => entry[1]);
-    console.log(typeof moviesArr[0]._id);
+    // console.log(typeof(moviesArr[0]._id));
+    console.log(moviesArr1);
+    const getMoviesFromString = ()=>{
+        const FavoriteMovies = localStorage.getItem('FavoriteMovies');
+        const { movie , user , token  } = this.props;
+        console.log(FavoriteMovies);
+        const FavoriteMoviesObj = FavoriteMovies.split(',');
+        const newMoviesObj = FavoriteMoviesObj.map((item)=>{
+            return {
+                _id: item
+            };
+        });
+        const moviesArr = Object.entries(newMoviesObj).map((entry)=>entry[1]
+        );
+        console.log(moviesArr);
+    };
     //////////// Testing GET request to produce similar grid of movies as in MainView
     // console.log(token);
     getMovies = (token)=>{
-        _axiosDefault.default.get('https://my-flix-22.herokuapp.com/movies', {
+        _axiosDefault.default.get('https://my-flix-22.herokuapp.com/movies/:movieId', {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -43106,15 +43160,15 @@ function FavMoviesView(props) {
     // })
     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
         children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h1", {
-            children: moviesArr[0]._id
+            children: moviesArr1[0]._id
         }, void 0, false, {
             fileName: "src/components/profile-view/fav-movies.jsx",
-            lineNumber: 74,
+            lineNumber: 90,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/profile-view/fav-movies.jsx",
-        lineNumber: 73,
+        lineNumber: 89,
         columnNumber: 5
     }, this));
 }

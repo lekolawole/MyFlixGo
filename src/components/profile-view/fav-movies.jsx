@@ -7,10 +7,11 @@ import axios from "axios";
 function FavMoviesView(props) {
   const movies = useState([]);
   const [favMovies, setFavMovies] = useState([])
-  console.log(movies);
+  // console.log(movies);
   let token = localStorage.getItem('token');
-  console.log(token)
+  // console.log(token)
   const user = localStorage.getItem('user');
+  
   
 
   //////////////// TESTING CONVERTING FavoriteMoviesObj INTO ARRAY (movieArr)
@@ -31,15 +32,30 @@ function FavMoviesView(props) {
     );
     //console.log(newMoviesObj)
     //const moviesArr = Object.entries(newMoviesObj).map(entry => entry[1]);
-    console.log(typeof(moviesArr[0]._id));
+    // console.log(typeof(moviesArr[0]._id));
+    console.log(moviesArr)
   
+  const getMoviesFromString = () => {
+    const FavoriteMovies = localStorage.getItem('FavoriteMovies');
+    const { movie, user, token } = this.props;
+    console.log(FavoriteMovies);
+
+        const FavoriteMoviesObj = FavoriteMovies.split(',');
+        const newMoviesObj = FavoriteMoviesObj.map((item) => {
+          return {
+            _id: item
+          }
+        });
+        const moviesArr = Object.entries(newMoviesObj).map(entry => entry[1]);
+         console.log(moviesArr)
+  }
     
 
 //////////// Testing GET request to produce similar grid of movies as in MainView
   
   // console.log(token);
   getMovies = (token) => {
-    axios.get('https://my-flix-22.herokuapp.com/movies', {
+    axios.get('https://my-flix-22.herokuapp.com/movies/:movieId', {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
