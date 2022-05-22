@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
+import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
@@ -7,24 +9,32 @@ export class MovieView extends React.Component {
     const { movie, onBackClick } = this.props;
 
     return (
-      <div className="movie-view">
-        <div className="movie-poster">
-          <img src={movie.ImagePath} />
-        </div>
-        <div className="movie-title">
-          <span className="label">Title: </span>
-          <span className="value">{movie.Title}</span>
-        </div>
-        <div className="movie-description">
-          <span className="label">Description: </span>
-          <span className="value">{movie.Description}</span>
-        </div>
-        <div className="movie-rating">
-          <span className="label">Rating: </span>
-          <span className="value">{movie.Rating}</span>
-        </div>
-        <button onClick={() => { onBackClick(null); }}>Back</button>
-      </div>
+      <Container className="movie-view-container">
+        <Row className="movie-view">
+          <Col md={2} className="movie-poster">
+            <img src={movie.ImagePath} />
+          </Col>
+          <Col md={8}>
+            <div md={2} className="movie-title">
+              <span className="label">Title: </span>
+              <span className="value">{movie.Title}</span>
+            </div>
+            <div className="movie-rating">
+              <span className="label">Rating: </span>
+              <span className="value">{movie.Rating}</span>
+            </div>
+            <div className="movie-description">
+              <span className="label">Description: </span>
+              <span className="value">{movie.Description}</span>
+            </div>
+          </Col>
+          <Col>
+            <Button onClick={() => { onBackClick(null); }}>Back</Button>
+          </Col>
+      </Row>
+
+
+      </Container>
     );
   }
 }
@@ -34,7 +44,7 @@ MovieView.propTypes = {
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string,
-    Director: PropTypes.string.isRequired,
+    MovieDirector: PropTypes.string.isRequired,
     Rating: PropTypes.string.isRequired
   }).isRequired
 };

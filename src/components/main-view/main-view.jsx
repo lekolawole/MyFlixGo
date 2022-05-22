@@ -1,6 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import axios from 'axios';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
@@ -20,17 +23,31 @@ export class MainView extends React.Component {
     };
   }
 
+   //loads app from server
   componentDidMount() {
-    axios.get('https://my-flix-22.herokuapp.com/movies')
-      .then(response => {
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+         let accessToken = localStorage.getItem('token');
+         if (accessToken !== null) {
+             this.setState({
+                 user: localStorage.getItem('user')
+             });
+             this.getMovies(accessToken);
+         }
   }
+  
+  getMovies(token) {
+   axios.get('https://my-flix-22.herokuapp.com/movies', {
+     headers: { Authorization: `Bearer ${token}`}
+   })
+   .then(response => {
+     // Assign the result to the state
+     this.setState({
+       movies: response.data
+     });
+   })
+   .catch(function (error) {
+     console.log(error);
+   });
+ }
 
   setSelectedMovie(movie) {
     this.setState({
@@ -43,6 +60,17 @@ export class MainView extends React.Component {
       user
     });
   }
+
+  onLoggedIn(authData) {
+     console.log(authData);
+     this.setState({
+       user: authData.user.Username
+     });
+
+     localStorage.setItem('token', authData.token);
+     localStorage.setItem('user', authData.user.Username);
+     this.getMovies(authData.token);
+   }
 
   onRegister(isRegistered) {
     this.setState({
@@ -58,7 +86,7 @@ export class MainView extends React.Component {
     }
     
 
-    if (!user) {
+    if (!user) { //if user is not already logged in
       return (
         <LoginView 
         onLoggedIn={user => this.onLoggedIn(user)} 
@@ -72,15 +100,21 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className="main-view" />;
 
     return (
-      <div className="main-view">
+      <Row>
       {selectedMovie
-        ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
-        : movies.map(movie => (
-          <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/>
-        ))
-      }
-    </div>
-    );
+        ? (
+            <Col md={10} className="main-view justify-content-md-center">
+              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+            </Col>
+          )
+          : movies.map(movie => (
+            <Col md={3} style={{ "display": "flex", "marginBottom":"1.5rem"}}>
+              <MovieCard key={movie._id} movie={movie} onMovieClick={(newSelectedMovie) => { this.setSelectedMovie(newSelectedMovie) }}/> 
+            </Col>
+          ))
+          }           
+        </Row>
+      );
   }
   
 }

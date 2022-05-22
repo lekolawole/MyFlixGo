@@ -1,3 +1,25 @@
+img {
+  width: 15rem;
+}
+
+.movie-poster {
+  margin-right: 7rem;
+}
+
+.movie-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.movie-description {
+  font-size: 20px;
+  line-height: 2rem;
+}
+
+.col {
+  margin-top: 2rem;
+}
+
 .nav {
   background-color: #ffb72a;
   padding: 1rem 0 1rem 5rem;
@@ -22,4 +44,4 @@
   margin-top: 5rem;
 }
 
-/*# sourceMappingURL=index.ce1d6491.css.map */
+/*# sourceMappingURL=index.5f1df611.css.map */
