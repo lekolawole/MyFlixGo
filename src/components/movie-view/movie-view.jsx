@@ -15,23 +15,42 @@ export class MovieView extends React.Component {
 
 
   componentDidMount() {
-    const { movie } = this.props;
-    const user = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
-    console.log(user);
+    const { movie, user, token } = this.props;
+    //const user = localStorage.getItem('user');
+    //const token = localStorage.getItem('token');
+    // console.log(user);
     //console.log(movie._id);
-    console.log(movie);
+    //console.log(movie);
     console.log(token);
-    let movieData = localStorage.setItem(token, movie);
-    // this.setState = {
-    //   Favorite: user.FavoriteMovies
-    // }
+    //let movieData = localStorage.setItem(token, movie);
+    this.setState = {
+      Favorite: user.FavoriteMovies
+    }
+  }
+  
+  onLoggedIn(authData) { //authenticates user credentials
+    // console.log(authData);
+    this.setState({
+      user: authData.user.Username,
+      email: authData.user.Email,
+      birthday: authData.user.Birthday,
+      FavoriteMovies: authData.user.FavoriteMovies,
+      password: authData.user.Password
+    });
+
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    localStorage.setItem('email', authData.user.Email);
+    localStorage.setItem('birthday', authData.user.Birthday);
+    localStorage.setItem('password', authData.user.Password);
+    localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
+    this.getMovies(authData.token);
   }
 
-  addRemoveFavMovie() {
-      const { movie } = this.props;
-      const token = localStorage.getItem('token');
-      const user = localStorage.getItem('user');
+  addRemoveFavMovie(token) {
+      const { movie, user, onUserUpdated } = this.props;
+      //const token = localStorage.getItem('token');
+      //const user = localStorage.getItem('user');
 
     axios.post(`/users/${user}/movies/${movie._id}`, {}, {
       headers: { Authorization: `Bearer ${token}`}
@@ -41,8 +60,11 @@ export class MovieView extends React.Component {
       this.setState({
         FavoriteMovies: true
       });
-      user.FavoriteMovies.push(movie._id);
-      alert(`${movie.Title} was added to your Favorites.`)
+      const updatedUser = {
+        ...user, FavoriteMovies: user.FavoriteMovies.push(movie._id)
+      }; 
+      onUserUpdated(updatedUser);
+      alert(`${movie.Title} was added to your Favorites.`);
     })
     .catch(function (error) {
       console.log(error);

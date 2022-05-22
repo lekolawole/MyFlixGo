@@ -39,7 +39,7 @@ function FavMoviesView(props) {
   
   // console.log(token);
   getMovies = (token) => {
-    axios.get('https://my-flix-22.herokuapp.com/movies/:movieId', {
+    axios.get('https://my-flix-22.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {

@@ -15,7 +15,8 @@ export class ProfileView extends React.Component {
       password: '',
       email: '',
       birthday: '',
-      FavoriteMovies: []
+      FavoriteMovies: [],
+      token: localStorage.getItem('token'),
     };
   }
 
@@ -52,7 +53,7 @@ export class ProfileView extends React.Component {
         <Col xs={12} sm={4}>
           <Card>
             <Card.Body>
-              <UserInfo name={user.Username} email={ user.Email } birthday={user.Birthday} password={user.Password} FavoriteMovies={user.FavoriteMovies}/>
+              <UserInfo name={user.Username} email={ user.Email } birthday={user.Birthday} password={user.Password} FavoriteMovies={user.FavoriteMovies} />
             </Card.Body>
           </Card>
         </Col>

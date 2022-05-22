@@ -39,7 +39,8 @@ export class MainView extends React.Component {
   let accessToken = localStorage.getItem('token'); //accesses user token
   if (accessToken !== null) {
     this.setState({
-      user: localStorage.getItem('user')//sets user credentials for state
+      user: localStorage.getItem('user'),//sets user credentials for state
+      token: localStorage.getItem('token')
     });
     this.getMovies(accessToken);
     }
@@ -86,8 +87,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie, isRegistered, user } = this.state;
-    
+    const { movies, selectedMovie, isRegistered, user, token } = this.state;
+    //let { authUser } = this.props;
     
     if (isRegistered) {//Creates registration Form
       return <RegistrationView onRegister={(bool) => this.onRegister(bool)} />
@@ -135,7 +136,7 @@ export class MainView extends React.Component {
                     );}
                   if (movies.length === 0) return <div className="main-view" />;
                   return <Col md={10}>
-                    <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()}/>
+                    <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()} user={user} token={token}/>
                   </Col>
                 }} />
                 <Route path="/directors/:name" render={({ match, history }) => {
@@ -177,9 +178,9 @@ export class MainView extends React.Component {
   }
 }
 
-MainView.propTypes = {
-  movies: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired
-  }).isRequired
-}
+// MainView.propTypes = {
+//   movies: PropTypes.shape({
+//     Title: PropTypes.string.isRequired,
+//     Description: PropTypes.string.isRequired
+//   }).isRequired
+// }
