@@ -32,6 +32,7 @@ export class MainView extends React.Component {
              });
              this.getMovies(accessToken);
          }
+        
   }
   
   getMovies(token) {
@@ -55,16 +56,17 @@ export class MainView extends React.Component {
     });
   }
 
-  onLoggedIn(user) {
-    this.setState({
-      user
-    });
-  }
+  // onLoggedIn(user) {
+  //   this.setState({
+  //     user
+  //   });
+  // }
 
   onLoggedIn(authData) {
      console.log(authData);
      this.setState({
-       user: authData.user.Username
+       user: authData.user.Username,
+       FavoriteMovies: authData.user.FavoriteMovies
      });
 
      localStorage.setItem('token', authData.token);
@@ -79,7 +81,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie, isRegistered, user } = this.state;
+    const { movies, selectedMovie, isRegistered, user, FavoriteMovies } = this.state;
     
     if (isRegistered) {//Creates registration Form
       return <RegistrationView onRegister={(bool) => this.onRegister(bool)} />
@@ -104,7 +106,7 @@ export class MainView extends React.Component {
       {selectedMovie
         ? (
             <Col md={10} className="main-view justify-content-md-center">
-              <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
+              <MovieView movie={selectedMovie} FavoriteMovies={FavoriteMovies} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }} />
             </Col>
           )
           : movies.map(movie => (

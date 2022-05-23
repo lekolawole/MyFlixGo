@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
+import { AddFavMovie } from './AddFavMovie';
 import './movie-view.scss';
 
 export class MovieView extends React.Component {
 
   render() {
-    const { movie, onBackClick } = this.props;
+    const { movie, onBackClick, user, FavoriteMovies, token } = this.props;
 
     return (
       <Container className="movie-view-container">
@@ -31,6 +32,9 @@ export class MovieView extends React.Component {
           <Col>
             <Button onClick={() => { onBackClick(null); }}>Back</Button>
           </Col>
+          <Col>
+            <AddFavMovie movie={movie} user={user} FavoriteMovies={FavoriteMovies} token={token}/>
+          </Col>
       </Row>
 
 
@@ -44,7 +48,7 @@ MovieView.propTypes = {
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string,
-    MovieDirector: PropTypes.string.isRequired,
+    //MovieDirector: PropTypes.string.isRequired,
     Rating: PropTypes.string.isRequired
   }).isRequired
 };
