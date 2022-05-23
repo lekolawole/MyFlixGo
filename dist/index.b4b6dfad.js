@@ -45338,8 +45338,10 @@ const AddFavMovie = (props)=>{
     const [FavoriteMovies, setFavoriteMovies] = _react.useState([]);
     //const { user, movie, token } = props; 
     const [user1, setUser] = _react.useState('');
+    // let user = localStorage.getItem('user');
     const { movie  } = props;
     const [token, setToken] = _react.useState('');
+    // console.log(user);
     const addFavMovie = ()=>{
         let user = localStorage.getItem('user');
         const newUser = [
@@ -45351,24 +45353,17 @@ const AddFavMovie = (props)=>{
         ///////////Testing adding movie data to FavoriteMovies array in Console 
         // const newFavoritesList = [...FavoriteMovies, movie];
         // setFavoriteMovies(newFavoritesList);
-        _axiosDefault.default.post(`/users/${user}/movies/${movie._id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
+        _axiosDefault.default.post(`https://my-flix-22.herokuapp.com/users/${user}/movies/${movie._id}`).then((response)=>{
             // const updatedUser = {
             //   ...user, FavoriteMovies: FavoriteMovies.push(movie._id)
             // }; 
-            const newFavoritesList = [
-                ...FavoriteMovies,
-                movie
-            ];
-            setFavoriteMovies(newFavoritesList);
+            // const newFavoritesList = [...FavoriteMovies, movie];
+            // setFavoriteMovies(newFavoritesList);
             alert(`${movie.Title} was added to your Favorites.`);
         }).catch(function(error) {
-            console.log(error);
+            console.log(error.toJSON());
         });
-    //console.log(FavoriteMovies)
+        console.log(FavoriteMovies);
     };
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
         children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonDefault.default, {
@@ -45378,12 +45373,12 @@ const AddFavMovie = (props)=>{
             children: "+"
         }, void 0, false, {
             fileName: "src/components/movie-view/AddFavMovie.jsx",
-            lineNumber: 44,
+            lineNumber: 46,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/movie-view/AddFavMovie.jsx",
-        lineNumber: 43,
+        lineNumber: 45,
         columnNumber: 5
     }, undefined);
 };
