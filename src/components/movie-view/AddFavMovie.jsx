@@ -10,7 +10,7 @@ export const AddFavMovie = (props) => {
   const { movie } = props;
   const [token, setToken] = useState('');
 
-  const addFavMovie = (movie) => {   
+  const addFavMovie = () => {   
     let user = localStorage.getItem('user');
     const newUser = [...user];
     setUser(newUser);
@@ -22,22 +22,21 @@ export const AddFavMovie = (props) => {
     // const newFavoritesList = [...FavoriteMovies, movie];
     // setFavoriteMovies(newFavoritesList);
       
-    axios.push(`/users/${user}/movies/${movie._id}`, {
+    axios.post(`/users/${user}/movies/${movie._id}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => { 
-      const updatedUser = {
-        ...user, FavoriteMovies: FavoriteMovies.push(movie)
-      }; 
-
-      setUser(updatedUser);
-
+      // const updatedUser = {
+      //   ...user, FavoriteMovies: FavoriteMovies.push(movie._id)
+      // }; 
+      const newFavoritesList = [...FavoriteMovies, movie];
+      setFavoriteMovies(newFavoritesList);
       alert(`${movie.Title} was added to your Favorites.`);
     })
     .catch(function (error) {
       console.log(error);
     });
-    console.log(FavoriteMovies)
+    //console.log(FavoriteMovies)
   }
 
   return (

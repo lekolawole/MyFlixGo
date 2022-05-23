@@ -17,9 +17,10 @@ export class MovieView extends React.Component {
           </Col>
           <Col md={8}>
             <div md={2} className="movie-title">
-              <span className="label">Title: </span>
               <span className="value">{movie.Title}</span>
+              <AddFavMovie movie={movie} user={user} FavoriteMovies={FavoriteMovies} token={token}/>
             </div>
+              
             <div className="movie-rating">
               <span className="label">Rating: </span>
               <span className="value">{movie.Rating}</span>
@@ -31,9 +32,6 @@ export class MovieView extends React.Component {
           </Col>
           <Col>
             <Button onClick={() => { onBackClick(null); }}>Back</Button>
-          </Col>
-          <Col>
-            <AddFavMovie movie={movie} user={user} FavoriteMovies={FavoriteMovies} token={token}/>
           </Col>
       </Row>
 
