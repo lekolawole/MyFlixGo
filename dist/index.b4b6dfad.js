@@ -45550,7 +45550,7 @@ MovieView.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","./AddFavMovie":"aAcD7","./movie-view.scss":"jnlR5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"cHIiW"}],"aAcD7":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","./movie-view.scss":"jnlR5","prop-types":"7wKI2","./AddFavMovie":"aAcD7","react-router-dom":"cHIiW"}],"jnlR5":[function() {},{}],"aAcD7":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$b094 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45575,11 +45575,11 @@ const AddFavMovie = (props)=>{
     _s();
     const [FavoriteMovies, setFavoriteMovies] = _react.useState([]);
     //const { user, movie, token } = props; 
-    // const [user, setUser] = useState('');
-    let user1 = localStorage.getItem('user');
+    const [user1, setUser] = _react.useState('');
+    // let user = localStorage.getItem('user');
     const { movie  } = props;
     const [token, setToken] = _react.useState('');
-    console.log(user1);
+    // console.log(user);
     const addFavMovie = ()=>{
         let user = localStorage.getItem('user');
         const newUser = [
@@ -45620,7 +45620,7 @@ const AddFavMovie = (props)=>{
         columnNumber: 5
     }, undefined);
 };
-_s(AddFavMovie, "8NCReYLAavHGRbn6IBP+B7Ss3uM=");
+_s(AddFavMovie, "8FQyDMf/uaypOOvzGlnlU7af0NE=");
 _c = AddFavMovie;
 var _c;
 $RefreshReg$(_c, "AddFavMovie");
@@ -45630,7 +45630,7 @@ $RefreshReg$(_c, "AddFavMovie");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jnlR5":[function() {},{}],"4tuA0":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"4tuA0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$377f = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45871,7 +45871,9 @@ class ProfileView extends _reactDefault.default.Component {
                             sm: 8,
                             children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card, {
                                 children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Body, {
-                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_updatedUserDefault.default, {}, void 0, false, {
+                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_updatedUserDefault.default, {
+                                        user: user
+                                    }, void 0, false, {
                                         fileName: "src/components/profile-view/profile-view.js",
                                         lineNumber: 60,
                                         columnNumber: 15
@@ -46101,20 +46103,6 @@ class UpdatedUser extends _reactDefault.default.Component {
         }).catch((e)=>console.log(e)
         );
     }
-    addRemoveFavMovie(movieId, user) {
-        _axiosDefault.default.post(`/users/${user}/movies/${movie._id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            // Assign the result to the state
-            this.setState({
-                FavoriteMovie: response.data
-            });
-        }).catch(function(error) {
-            console.log(error);
-        });
-    }
     updateUser = (e)=>{
         //e.preventDefault();
         const validate = ()=>{
@@ -46197,7 +46185,7 @@ class UpdatedUser extends _reactDefault.default.Component {
                             children: "Click to Manage Profile"
                         }, void 0, false, {
                             fileName: "src/components/profile-view/updated-user.jsx",
-                            lineNumber: 146,
+                            lineNumber: 132,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Collapse, {
@@ -46211,7 +46199,7 @@ class UpdatedUser extends _reactDefault.default.Component {
                                                 children: "Username "
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/updated-user.jsx",
-                                                lineNumber: 157,
+                                                lineNumber: 143,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -46227,13 +46215,13 @@ class UpdatedUser extends _reactDefault.default.Component {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/updated-user.jsx",
-                                                lineNumber: 158,
+                                                lineNumber: 144,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/updated-user.jsx",
-                                        lineNumber: 156,
+                                        lineNumber: 142,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -46242,7 +46230,7 @@ class UpdatedUser extends _reactDefault.default.Component {
                                                 children: "Email "
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/updated-user.jsx",
-                                                lineNumber: 168,
+                                                lineNumber: 154,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -46258,13 +46246,13 @@ class UpdatedUser extends _reactDefault.default.Component {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/updated-user.jsx",
-                                                lineNumber: 169,
+                                                lineNumber: 155,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/updated-user.jsx",
-                                        lineNumber: 167,
+                                        lineNumber: 153,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -46273,7 +46261,7 @@ class UpdatedUser extends _reactDefault.default.Component {
                                                 children: "Password "
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/updated-user.jsx",
-                                                lineNumber: 179,
+                                                lineNumber: 165,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -46289,13 +46277,13 @@ class UpdatedUser extends _reactDefault.default.Component {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/updated-user.jsx",
-                                                lineNumber: 180,
+                                                lineNumber: 166,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/updated-user.jsx",
-                                        lineNumber: 178,
+                                        lineNumber: 164,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -46304,7 +46292,7 @@ class UpdatedUser extends _reactDefault.default.Component {
                                                 children: "Birthday "
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/updated-user.jsx",
-                                                lineNumber: 190,
+                                                lineNumber: 176,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -46320,13 +46308,13 @@ class UpdatedUser extends _reactDefault.default.Component {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/updated-user.jsx",
-                                                lineNumber: 191,
+                                                lineNumber: 177,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/profile-view/updated-user.jsx",
-                                        lineNumber: 189,
+                                        lineNumber: 175,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
@@ -46334,34 +46322,34 @@ class UpdatedUser extends _reactDefault.default.Component {
                                         children: "Save Changes"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/updated-user.jsx",
-                                        lineNumber: 199,
+                                        lineNumber: 185,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/profile-view/updated-user.jsx",
-                                lineNumber: 155,
+                                lineNumber: 141,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/updated-user.jsx",
-                            lineNumber: 154,
+                            lineNumber: 140,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/profile-view/updated-user.jsx",
-                    lineNumber: 145,
+                    lineNumber: 131,
                     columnNumber: 8
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/profile-view/updated-user.jsx",
-                lineNumber: 144,
+                lineNumber: 130,
                 columnNumber: 6
             }, this)
         }, void 0, false, {
             fileName: "src/components/profile-view/updated-user.jsx",
-            lineNumber: 143,
+            lineNumber: 129,
             columnNumber: 4
         }, this);
     }
@@ -46389,7 +46377,6 @@ $parcel$ReactRefreshHelpers$9d6d.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
@@ -46399,50 +46386,52 @@ var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 function FavMoviesView() {
     let token = localStorage.getItem('token');
-    console.log(token);
+    // console.log(token)
     const user = localStorage.getItem('user');
     const FavoriteMovies = localStorage.getItem('FavoriteMovies');
+    // console.log(FavoriteMovies)
     //////////////// TESTING CONVERTING FavoriteMoviesObj INTO ARRAY (movieArr)
     // const FavoriteMovies = localStorage.getItem('FavoriteMovies');
-    // const FavoriteMoviesObj = FavoriteMovies.split(',');
-    //   // console.log(typeof(FavoriteMoviesObj));
-    //   // console.log(FavoriteMoviesObj);
-    //   // Assigns _id key to object to reference later
-    //   const newMoviesObj = FavoriteMoviesObj.map((item) => {
-    //     return {
-    //       _id: item
-    //     }
-    //   });
-    //   //creates new array from previous object
-    //   const moviesArr = Object.entries(newMoviesObj).map(entry => entry[1]
-    //   );
-    //   //console.log(newMoviesObj)
-    //   //const moviesArr = Object.entries(newMoviesObj).map(entry => entry[1]);
-    //   console.log(moviesArr);
+    const FavoriteMoviesObj = FavoriteMovies.split(',');
+    // console.log(typeof(FavoriteMoviesObj));
+    // console.log(FavoriteMoviesObj);
+    // Assigns _id key to object to reference later
+    const newMoviesObj = FavoriteMoviesObj.map((item)=>{
+        return {
+            _id: item
+        };
+    });
+    //creates new array from previous object
+    const moviesArr = Object.entries(newMoviesObj).map((entry)=>entry[1]
+    );
+    //console.log(newMoviesObj)
+    //const moviesArr = Object.entries(newMoviesObj).map(entry => entry[1]);
+    console.log(moviesArr);
     //////////// Testing GET request to produce similar grid of movies as in MainView
     // console.log(token);
-    // const getMovies = (token) => {
-    //   axios.get('https://my-flix-22.herokuapp.com/movies', {
-    //     headers: { Authorization: `Bearer ${token}`}
-    //   })
-    //   .then(response => {
-    //     // Assign the result to the state
-    //     this.setState({
-    //       movies: response.data
-    //     });
-    //     console.log(movies);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     });
-    // }
-    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-        children: user
-    }, void 0, false, {
-        fileName: "src/components/profile-view/fav-movies.jsx",
-        lineNumber: 54,
-        columnNumber: 5
-    }, this);
+    const getMovies = (token)=>{
+        _axiosDefault.default.get('https://my-flix-22.herokuapp.com/movies', {
+        }).then((response)=>{
+            // Assign the result to the state
+            this.setState({
+                movies: response.data
+            });
+            console.log(movies);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    };
+// return (
+//   <div>
+//     <div>{user}</div>
+//     <div>{moviesArr}</div>
+//   </div>
+// )
+// return (
+//   moviesArr.map((item) => {
+//     `<li>${item}</li>`
+//   })
+// )
 // return ( //Maps new array (moviesArr) - need to write function to connect _id from moviesArr to API
 //   moviesArr.map((movie) => {
 //   <Col>
@@ -46466,7 +46455,7 @@ $RefreshReg$(_c, "FavMoviesView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./profile-view.scss":"eyKYH","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"9tpci":[function(require,module,exports) {
+},{"react":"21dqq","react-bootstrap":"3AD9A","react-router-dom":"cHIiW","./profile-view.scss":"eyKYH","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eyKYH":[function() {},{}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

@@ -6,11 +6,11 @@ import axios from "axios";
 export const AddFavMovie = (props) => {
   const [FavoriteMovies, setFavoriteMovies] = useState([]);
   //const { user, movie, token } = props; 
-  // const [user, setUser] = useState('');
-  let user = localStorage.getItem('user');
+  const [user, setUser] = useState('');
+  // let user = localStorage.getItem('user');
   const { movie } = props;
   const [token, setToken] = useState('');
-  console.log(user);
+  // console.log(user);
 
   const addFavMovie = () => {   
     let user = localStorage.getItem('user');

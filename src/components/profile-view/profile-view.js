@@ -57,7 +57,7 @@ export class ProfileView extends React.Component {
         <Col xs={12} sm={8}>
           <Card>
             <Card.Body>
-              <UpdatedUser />
+              <UpdatedUser user={user} />
             </Card.Body>
           </Card>   
         </Col>

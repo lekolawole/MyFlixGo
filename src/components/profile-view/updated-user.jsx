@@ -10,7 +10,7 @@ export class UpdatedUser extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      collaspeMenu: true
+      collaspeMenu: true,
     };
     this.showHide = this.showHide.bind(this);
   }
@@ -42,20 +42,6 @@ export class UpdatedUser extends React.Component {
       console.log(e))
   }
 
-  addRemoveFavMovie(movieId, user) {
-    axios.post(`/users/${user}/movies/${movie._id}`, {
-    headers: { Authorization: `Bearer ${token}`}
-  })
-  .then(response => {
-    // Assign the result to the state
-    this.setState({
-      FavoriteMovie: response.data
-    });
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  }
   
   updateUser = (e) => {
     //e.preventDefault();
