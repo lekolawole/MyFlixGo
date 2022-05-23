@@ -23,8 +23,6 @@ export class ProfileView extends React.Component {
   getUser(token) {
     let user = localStorage.getItem("user");
     let email = localStorage.getItem("email");
-    let birthday = localStorage.getItem("birthday");
-    let password = localStorage.getItem("password");
     
     axios.get(`https://my-flix-22.herokuapp.com/users/${user}`, {
        headers: { Authorization: `Bearer ${token}`

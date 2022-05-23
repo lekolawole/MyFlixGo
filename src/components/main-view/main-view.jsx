@@ -85,7 +85,7 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, selectedMovie, isRegistered, user } = this.state;
-    
+    const { token, FavoriteMovies } = this.props;
     
     if (isRegistered) {//Creates registration Form
       return <RegistrationView onRegister={(bool) => this.onRegister(bool)} />
@@ -133,7 +133,7 @@ export class MainView extends React.Component {
                     );}
                   if (movies.length === 0) return <div className="main-view" />;
                   return <Col md={10}>
-                    <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()}/>
+                    <MovieView user={user} token={token} FavoriteMovies={FavoriteMovies} movie={movies.find(m => m._id === match.params.movieId)} onBackClick={() => history.goBack()}/>
                   </Col>
                 }} />
                 <Route path="/directors/:name" render={({ match, history }) => {

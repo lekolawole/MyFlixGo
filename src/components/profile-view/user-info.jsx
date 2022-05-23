@@ -8,6 +8,7 @@ export class UserInfo extends React.Component {
     let user = localStorage.getItem("user");
     let email = localStorage.getItem("email");
     
+    
     axios.get(`https://my-flix-22.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
