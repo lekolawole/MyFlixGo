@@ -26,7 +26,7 @@ export class UpdatedUser extends React.Component {
   getUser(token) {
     let user = localStorage.getItem("user");
     let email = localStorage.getItem("email");
-    let password = localStorage.getItem("password");
+    
     
     axios.get(`https://my-flix-22.herokuapp.com/users/${user}`, {
       headers: { Authorization: `Bearer ${token}`}
@@ -34,8 +34,10 @@ export class UpdatedUser extends React.Component {
     .then((response) => {
       this.setState({
         user: response.data.Username,
-        email: response.data.Email,
-        birthday: response.data.Birthday
+        email: response.data.Email, 
+        password: response.data.Password,
+        birthday: response.data.Birthday,
+        FavoriteMovies: response.data.FavoriteMovies
       });
     })
     .catch((e) => 
