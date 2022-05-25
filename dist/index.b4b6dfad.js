@@ -45606,11 +45606,6 @@ const AddFavMovie = (props)=>{
         // const newFavoritesList = [...FavoriteMovies, movie];
         // setFavoriteMovies(newFavoritesList);
         _axiosDefault.default.post(`https://my-flix-22.herokuapp.com/users/${user}/movies/${movie1._id}`).then((response)=>{
-            // const updatedUser = {
-            //   ...user, FavoriteMovies: FavoriteMovies.push(movie._id)
-            // }; 
-            // const newFavoritesList = [...FavoriteMovies, movie];
-            // setFavoriteMovies(newFavoritesList);
             alert(`${movie1.Title} was added to your Favorites.`);
         }).catch(function(error) {
             console.log(error.toJSON());
@@ -45625,12 +45620,12 @@ const AddFavMovie = (props)=>{
             children: "+"
         }, void 0, false, {
             fileName: "src/components/movie-view/addFavMovie.jsx",
-            lineNumber: 64,
+            lineNumber: 59,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/movie-view/addFavMovie.jsx",
-        lineNumber: 63,
+        lineNumber: 58,
         columnNumber: 5
     }, undefined);
 };
@@ -45895,7 +45890,7 @@ class ProfileView extends _reactDefault.default.Component {
     removeFav = (e, movie)=>{
         e.preventDefault();
         const username = localStorage.getItem("user");
-        const token = localStorage.getItem.apply("token");
+        const token = localStorage.getItem("token");
         _axiosDefault.default.delete(`https://my-flix-22.herokuapp.com/users/${username}/movies/${movie._id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -46209,8 +46204,10 @@ class ProfileView extends _reactDefault.default.Component {
                                                 }, this),
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
                                                     value: movie._id,
-                                                    variant: "outline-danger",
+                                                    variant: "secondary",
                                                     onClick: (e)=>this.removeFav(e, movie)
+                                                    ,
+                                                    children: "-"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.js",
                                                     lineNumber: 241,

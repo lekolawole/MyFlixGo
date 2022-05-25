@@ -29,7 +29,7 @@ export const AddFavMovie = (props) => {
       console.log(error)
       })
   }
-  
+
   const addFav = () => {   
     let user = localStorage.getItem('user');
     const newUser = [...user];
@@ -46,11 +46,6 @@ export const AddFavMovie = (props) => {
     // {headers: { Authorization: `Bearer ${token}`}}
     )
     .then(response => { 
-      // const updatedUser = {
-      //   ...user, FavoriteMovies: FavoriteMovies.push(movie._id)
-      // }; 
-      // const newFavoritesList = [...FavoriteMovies, movie];
-      // setFavoriteMovies(newFavoritesList);
       alert(`${movie.Title} was added to your Favorites.`);
     })
     .catch(function (error) {

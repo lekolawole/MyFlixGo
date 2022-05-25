@@ -124,7 +124,7 @@ export class ProfileView extends React.Component {
   removeFav = (e, movie) => {
     e.preventDefault();
     const username = localStorage.getItem("user");
-    const token = localStorage.getItem.apply("token");
+    const token = localStorage.getItem("token");
 
     axios.delete(`https://my-flix-22.herokuapp.com/users/${username}/movies/${movie._id}`, 
      {
@@ -238,7 +238,7 @@ export class ProfileView extends React.Component {
                                 <Card.Img variant="top" src={movie.ImagePath} crossOrigin="true" alt="Movie Image" />
                                 <Card.Body>
                                     <Card.Title className="movie-title">{movie.Title}</Card.Title>
-                                    <Button value={movie._id} variant="outline-danger" onClick={(e) => this.removeFav(e, movie)}></Button> 
+                                    <Button value={movie._id} variant="secondary" onClick={(e) => this.removeFav(e, movie)}>-</Button> 
                                 </Card.Body>
                             </Card>
                         </Col>
