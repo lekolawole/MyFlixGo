@@ -12,7 +12,25 @@ export const AddFavMovie = (props) => {
   const [token, setToken] = useState('');
   // console.log(user);
 
-  const addFavMovie = () => {   
+  const removeFav = (e, movie) => {
+    e.preventDefault();
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem.apply("token");
+
+    axios.delete(`https://my-flix-22.herokuapp.com/users/${username}/movies/${movie._id}`, 
+     {
+       headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      alert('Removed from list');
+      this.componentDidMount();
+    })
+    .catch(function (error) {
+      console.log(error)
+      })
+  }
+  
+  const addFav = () => {   
     let user = localStorage.getItem('user');
     const newUser = [...user];
     setUser(newUser);
@@ -43,7 +61,7 @@ export const AddFavMovie = (props) => {
 
   return (
     <div>
-      <Button variant="secondary" onClick={()=> addFavMovie(movie)}>+</Button>
+      <Button variant="secondary" onClick={()=> addFav(movie)}>+</Button>
       {/* <Button onClick={findUser}>Find User</Button> */}
     </div>
   )

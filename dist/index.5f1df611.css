@@ -16,7 +16,15 @@ img {
   line-height: 2rem;
 }
 
-.col {
+.col, .row {
+  margin-top: 2rem;
+}
+
+.favorite-button {
+  margin-left: 2rem;
+}
+
+.movie-view-container {
   margin-top: 2rem;
 }
 

@@ -20,7 +20,7 @@ export class MovieView extends React.Component {
     
   }
 
-  addFavMovie(movie) {   
+  addFavM(movie) {   
     let user = localStorage.getItem('user');
     const newUser = [...user];
     setUser(newUser); 

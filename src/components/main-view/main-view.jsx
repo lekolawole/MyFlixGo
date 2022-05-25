@@ -29,7 +29,7 @@ export class MainView extends React.Component {
       //selectedMovie: null,
       //isRegistered: null,
       user: null, 
-      FavoriteMovies: []
+      //FavoriteMovies: []
     };
   }
 
@@ -164,7 +164,7 @@ export class MainView extends React.Component {
                   {history}) => {
                     if (!user) return <Redirect to="/" />
                     return <Col>
-                      <ProfileView user={user} onBackClick={() => history.goBack()}/>
+                      <ProfileView movies={movies} onBackClick={() => history.goBack()}/>
                     </Col>
                   }} />
               </Row>
