@@ -38,8 +38,8 @@ export class NavbarView extends React.Component {
               <NavDropdown.Item>Hi, {user}</NavDropdown.Item>
               <NavDropdown.Item>
                 <Nav.Item>
-                  <Link to={`/users/${user}`} className="nav-links">My Account
-                  {/* <Button variant="link">My Account</Button> */}
+                  <Link to={`/users/${user}`} className="nav-links">
+                  <Button variant="link">My Account</Button>
                   </Link>
                 </Nav.Item>
               </NavDropdown.Item>

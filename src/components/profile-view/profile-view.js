@@ -49,7 +49,7 @@ export class ProfileView extends React.Component {
   updateUser = (e) => {
     e.prevent.default;
     const username = localStorage.getItem("user");
-    const token = localStorage.getItem.apply("token");
+    const token = localStorage.getItem("token");
 
     axios.put(`https://my-flix-22.herokuapp.com/users/${username}`, 
       {
@@ -68,14 +68,14 @@ export class ProfileView extends React.Component {
         email: response.data.Email,
         birthday: response.data.Birthday
       });
-      localStorage.setItem('user', this.state.username);
+      localStorage.setItem('user', this.state.Username);
       alert('Profile updated!');
       window.open(`users/${user}`, '_self');
     })
     .catch(function (error) {
       console.log(error)
       })
-      console.log(username);
+      //console.log(username);
     }
 
   deleteUser() {
@@ -172,7 +172,6 @@ export class ProfileView extends React.Component {
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
                         value={username ?? ''} 
-                        placeholder= 'Enter a username' 
                         onChange={(e) => {this.setUsername(e.target.value)}}
                         required
                         />
@@ -184,7 +183,6 @@ export class ProfileView extends React.Component {
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
                         value={email ?? ''} 
-                        placeholder= 'Enter a username' 
                         onChange={(e) => {this.setEmail(e.target.value)}}
                         required
                         />
