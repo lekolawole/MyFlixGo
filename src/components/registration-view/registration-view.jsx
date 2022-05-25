@@ -26,7 +26,7 @@ export function RegistrationView(props) {
       isReq = false;
     }
     if(!password){
-      setPasswordErr('Password is Reaquired');
+      setPasswordErr('Password is Required');
       isReq = false;
     }else if(password.length < 8){
       setPasswordErr('Password must be 8 characters long');
@@ -137,22 +137,11 @@ export function RegistrationView(props) {
                   <p style={{"marginTop":"1rem"}}>I already have an account</p>
                 </a>
               </div>
-              
               </Card.Body>
             </Card>
           </CardGroup>
         </Col>
       </Row>
     </Container>
-    
   );
 }
-
-// RegistrationView.propTypes = {
-//   user: PropTypes.shape({
-//     username: PropTypes.string.isRequired,
-//     password: PropTypes.string.isRequired,
-//     birthday: PropTypes.string.isRequired,
-//     email: PropTypes.string.isRequired
-//   }).isRequired
-// }

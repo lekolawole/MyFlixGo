@@ -1,12 +1,8 @@
 import React from "react";
 import { Button, Container, Row, Col, Card, Form, Collapse } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-// import UserInfo from "./user-info";
-// import UpdatedUser from "./updated-user";
 import axios from "axios";
 import PropTypes from 'prop-types';
-import FavMoviesView from "./fav-movies";
-
 
 export class ProfileView extends React.Component {
   constructor() {
@@ -17,9 +13,9 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
-      collaspeMenu: true,
+      //collaspeMenu: true,
     };
-    this.showHide = this.showHide.bind(this);
+    //this.showHide = this.showHide.bind(this);
   }
 
   showHide(e) {
@@ -86,7 +82,6 @@ export class ProfileView extends React.Component {
     .catch(function (error) {
       console.log(error)
       })
-      //console.log(username);
     }
 
   deleteUser() {
@@ -173,7 +168,7 @@ export class ProfileView extends React.Component {
           </Card>
         </Col>
         <Col xs={12} sm={8}>
-          <Card>
+          <Card style={{"marginLeft":"5rem"}}>
             <Card.Body>
               <Card.Title>Update Profile</Card.Title>
                 <Form id="example-collapse-text" 
@@ -183,10 +178,10 @@ export class ProfileView extends React.Component {
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
-                        value={Username ?? ''} 
+                        //value={Username ?? ''} 
+                        placeholder= 'Username must have 2 characters' 
                         onChange={(e) => {this.setUsername(e.target.value)}}
-                        required
-                        />
+                        required/>
                   </Form.Group>
 
                   <Form.Group>
@@ -194,10 +189,10 @@ export class ProfileView extends React.Component {
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
-                        value={Email ?? ''} 
+                        //value={Email ?? ''} 
+                        placeholder= 'Email must include @ symbol' 
                         onChange={(e) => {this.setEmail(e.target.value)}}
-                        required
-                        />
+                        required/>
                   </Form.Group>
 
                   <Form.Group>
@@ -205,11 +200,10 @@ export class ProfileView extends React.Component {
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
-                        value= {Password ?? '' }
-                        placeholder= 'Enter new password' 
+                        //value= {Password ?? '' }
+                        placeholder= 'Password must have 8 characters' 
                         onChange={(e) => {this.setPassword(e.target.value)}}
-                        required
-                        />
+                        required/>
                   </Form.Group> 
 
                   {/* <Form.Group>
@@ -220,8 +214,7 @@ export class ProfileView extends React.Component {
                         value= '' 
                         placeholder= ''
                         onChange={(e) => {this.setBirthday(e.target.value)}}
-                        required
-                        />
+                        required/>
                   </Form.Group> */}
                 <Button 
                   type="submit"
@@ -244,24 +237,19 @@ export class ProfileView extends React.Component {
         {FavoriteMovies.length === 0 && <div className="favorites-header">Let's start adding <a href='/'>movies!</a>🍿</div>}
         {FavoriteMovies.length > 0 && 
         movies.map((movie) => {if (movie._id === FavoriteMovies.find((fav)=> fav === movie._id)) {return ( 
-                        <Col md={4} key={movie._id}>
-                            <Card className="favorite-movie" style={{"marginTop":"2rem"}}>
-                                <Card.Img variant="top" src={movie.ImagePath} crossOrigin="true" alt="Movie Image" />
-                                <Card.Body>
-                                    <Card.Title className="movie-title">{movie.Title}</Card.Title>
-                                    <Button value={movie._id} variant="secondary" onClick={(e) => this.removeFav(e, movie)}>-</Button> 
-                                    <Link to={`/movies/${movie._id}`}>
-            <Button 
-              variant="link" 
-              onClick={() => {
-              //console.log(movie._id);
-            }}>Open</Button>
-          </Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        );
-                    }})}
+          <Col md={4} key={movie._id}>
+              <Card className="favorite-movie" style={{"marginTop":"2rem"}}>
+                <Card.Img variant="top" src={movie.ImagePath} crossOrigin="true" alt="Movie Image" />
+                <Card.Body>
+                  <Card.Title className="movie-title">{movie.Title}</Card.Title>
+                  <Button value={movie._id} variant="secondary" onClick={(e) => this.removeFav(e, movie)}>-</Button> 
+                  <Link to={`/movies/${movie._id}`}>
+                    <Button variant="link" onClick={() => {}}>Open</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
+          </Col>);
+        }})}
       </Row>
     </Container>
     )

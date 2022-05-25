@@ -19,8 +19,8 @@
 }
 
 .favorites-header {
+  margin: 0 40% rem 40%;
   justify-content: center;
-  margin: 0 40% 2rem;
 }
 
 .add-button, .remove-button {
