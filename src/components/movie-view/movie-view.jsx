@@ -7,18 +7,6 @@ import { Link } from 'react-router-dom';
 import './movie-view.scss';
 
 export class MovieView extends React.Component {
-  // constructor(props){
-  //   super();
-  //   this.state = {
-  //     user: '',
-  //     FavoriteMovies: [],
-  //     movie: {}
-  //   }
-  // }
-
-  componentDidMount(){
-    
-  }
 
   addFavM(movie) {   
     let user = localStorage.getItem('user');

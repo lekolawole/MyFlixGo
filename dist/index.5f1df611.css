@@ -28,6 +28,10 @@ img {
   margin-top: 2rem;
 }
 
+.movie-rating {
+  margin-bottom: .7rem;
+}
+
 .user-row {
   margin: 0;
 }
@@ -42,6 +46,20 @@ img {
 
 .container {
   padding-bottom: 10rem;
+}
+
+.favorites-container {
+  margin-top: 5rem;
+}
+
+.favorites-header {
+  justify-content: center;
+  margin: 0 40% 2rem;
+}
+
+.add-button {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .main-container {

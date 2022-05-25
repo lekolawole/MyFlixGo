@@ -80,7 +80,7 @@ export class ProfileView extends React.Component {
 
   deleteUser() {
     const username = localStorage.getItem("user");
-    const token = localStorage.getItem.apply("token");
+    const token = localStorage.getItem("token");
 
     axios.delete(`https://my-flix-22.herokuapp.com/users/${username}`,
     {
@@ -91,6 +91,7 @@ export class ProfileView extends React.Component {
       alert('Profile deleted.');
       localStorage.removeItem('user');
       localStorage.removeItem('token');
+      window.open('/',"_self");
     })
     .catch(function (error) {
             console.log(error);
@@ -131,7 +132,7 @@ export class ProfileView extends React.Component {
        headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      alert('Removed from list');
+      //alert('Removed from list');
       this.componentDidMount();
     })
     .catch(function (error) {
@@ -229,12 +230,12 @@ export class ProfileView extends React.Component {
         </Col>
       </Row>
       <Row className="favorites-container">
-        <Col md={12}><h1>My List</h1></Col>
-        {
-        FavoriteMovies.length > 0 && 
+        <Col className="favorites-header" md={12}><h1>My List</h1></Col>
+        {FavoriteMovies.length === 0 && <div className="favorites-header" style={{"padding":"1rem"}}>Let's start adding <a href='/'>movies!🍿</a></div>}
+        {FavoriteMovies.length > 0 && 
         movies.map((movie) => {if (movie._id === FavoriteMovies.find((fav)=> fav === movie._id)) {return ( 
                         <Col md={4} key={movie._id}>
-                            <Card className="favorite-movie">
+                            <Card className="favorite-movie" style={{"marginTop":"2rem"}}>
                                 <Card.Img variant="top" src={movie.ImagePath} crossOrigin="true" alt="Movie Image" />
                                 <Card.Body>
                                     <Card.Title className="movie-title">{movie.Title}</Card.Title>

@@ -41,11 +41,6 @@ export class MovieCard extends React.Component {
               //console.log(movie._id);
             }}>Open</Button>
           </Link>
-          <Button 
-            variant="secondary" 
-            className="favorite-button" 
-          //onClick={() => { this.addRemoveFavMovie(user, movie) }}
-          >+</Button>
         </Card.Body>
       </Card>
     );

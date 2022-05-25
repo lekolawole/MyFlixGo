@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
+import '../profile-view/profile-view.scss';
 
 export const AddFavMovie = (props) => {
   const [FavoriteMovies, setFavoriteMovies] = useState([]);
@@ -56,7 +57,7 @@ export const AddFavMovie = (props) => {
 
   return (
     <div>
-      <Button variant="secondary" onClick={()=> addFav(movie)}>+</Button>
+      <Button className="add-button" variant="secondary" onClick={()=> addFav(movie)}>+</Button>
       {/* <Button onClick={findUser}>Find User</Button> */}
     </div>
   )
