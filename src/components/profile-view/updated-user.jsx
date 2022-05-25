@@ -6,13 +6,27 @@ import axios from "axios";
 
 export class UpdatedUser extends React.Component {
 
-    //const [open, setOpen] = useState(false);
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-      collaspeMenu: true,
-    };
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.showHide = this.showHide.bind(this);
+  }
+
+   handleChange(event) {
+     const target = event.target;
+     const value = target.value;
+     const name = target.name;
+    this.setState({[name]: value});
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
+
+    this.updateUser
   }
 
   showHide(e) {
@@ -23,76 +37,84 @@ export class UpdatedUser extends React.Component {
     });
   }
 
+  componentDidMount() {
+    const accessToken = localStorage.getItem('token');
+        let FavoriteMovies = localStorage.getItem('FavoriteMovies');
+        const FavoriteMoviesObj = FavoriteMovies.split(',');
+    this.getUser(accessToken);
+  }
+
   getUser(token) {
-    let user = localStorage.getItem("user");
-    let email = localStorage.getItem("email");
+    const username = localStorage.getItem("user");
     
-    
-    axios.get(`https://my-flix-22.herokuapp.com/users/${user}`, {
-      headers: { Authorization: `Bearer ${token}`}
-    })
-    .then((response) => {
+    axios.get(`https://my-flix-22.herokuapp.com/users/${username}`, {
+       headers: { Authorization: `Bearer ${token}`
+    }}).then(response => {
       this.setState({
-        user: response.data.Username,
-        email: response.data.Email, 
-        password: response.data.Password,
-        birthday: response.data.Birthday,
+        Username: response.data.Username,
+        Password: response.data.Password,
+        Email: response.data.Email,
+        Birthday: response.data.Birthday,
         FavoriteMovies: response.data.FavoriteMovies
       });
     })
-    .catch((e) => 
-      console.log(e))
-  }
+    .catch(function (error) {
+      console.log(error)
+      })
+    }
 
-  
+//////////////////Operations to updated user info 
   updateUser = (e) => {
-    //e.preventDefault();
-   
-    const validate = () => {
-    let isReq = true;
-    if(!username){
-      setUsernameErr('Username is Required');
-      isReq = false;
-    }else if(username.length < 2){
-      setUsernameErr('Username must be 2 characters long');
-      isReq = false;
-    }
-    if(!password){
-      setPasswordErr('Password is Reaquired');
-      isReq = false;
-    }else if(password.length < 8){
-      setPasswordErr('Password must be 8 characters long');
-      isReq = false;
-    }
-    if(!email){
-      setEmailErr('Email is Required');
-      isReq = false;
-    }else if(email.indexOf('@') === -1) {
-      setEmailErr('Must be a valid email address');
-      isReq = false;
-    }
-    
-    return isReq;
-  };
+    e.prevent.default;
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
-    if(isReq){
-        axios.post(`https://my-flix-22.herokuapp.com/users/{user}`, {
-        Username: username,
-        Password: password,
-        Email: email,
-        Birthday: birthday
-      })
-      .then(response => {
-        console.log(response.data);
-        alert('Profile changes were saved!');
-      })
-      .catch(e => {
-        console.log('Error during update.');
-        alert('Changes not saved')
+    axios.put(`https://my-flix-22.herokuapp.com/users/${username}`, 
+      {
+        Username: this.state.Username,
+        Password: this.state.Password,
+        Birthday: this.state.Birthday,
+        Email: this.state.Email
+    },
+     {
+       headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      this.setState({
+        Username: response.data.Username,
+        Password: response.data.Password,
+        Email: response.data.Email,
+        Birthday: response.data.Birthday
       });
+      localStorage.setItem('user', this.state.Username);
+      alert('Profile updated!');
+      window.open(`users/${username}`, '_self');
+    })
+    .catch(function (error) {
+      console.log(error)
+      })
+      //console.log(username);
     }
-    console.log(username, password, email, birthday);
-  };
+
+  deleteUser() {
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+
+    axios.delete(`https://my-flix-22.herokuapp.com/users/${username}`,
+    {
+       headers: { Authorization: `Bearer ${token}`}
+    })
+    .then((response) => {
+      console.log(response);
+      alert('Profile deleted.');
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      window.open('/',"_self");
+    })
+    .catch(function (error) {
+            console.log(error);
+        });
+    }
 
   //Testing handle Submit button
   // handleSubmit = (e) => {
@@ -140,15 +162,16 @@ export class UpdatedUser extends React.Component {
         </Button>
 
         <Collapse in={!this.state.collapseMenu}>
-            <Form id="example-collapse-text">
+            <Form id="example-collapse-text" onSubmit={this.handleSubmit}>
               <Form.Group>
                 <Form.Label>Username </Form.Label>
                 <Form.Control 
                   style={{ "width":"24rem", "display":"flex"}}
+                    name="Username"
                     type="text" 
-                    value={user} 
+                    value={this.state.Username ?? ''} 
                     placeholder= 'Enter a username' 
-                    onChange={(e) => {this.updateUser()}}
+                    onChange={this.handleChange}
                     />
               </Form.Group>
 
@@ -156,10 +179,11 @@ export class UpdatedUser extends React.Component {
                 <Form.Label>Email </Form.Label>
                 <Form.Control 
                   style={{ "width":"24rem", "display":"flex"}}
+                    name="Email"
                     type="text" 
-                    value={email} 
+                    value={this.state.Email ?? ''} 
                     placeholder= 'Enter a username' 
-                    onChange={(e) => {this.updateUser()}}
+                    onChange={this.handleChange}
                     />
               </Form.Group>
 
@@ -167,10 +191,11 @@ export class UpdatedUser extends React.Component {
                 <Form.Label>Password </Form.Label>
                 <Form.Control 
                   style={{ "width":"24rem", "display":"flex"}}
+                    name="Password"
                     type="text" 
-                    value={password} 
+                    value={this.state.Password ?? ''} 
                     placeholder= {password} 
-                    onChange={(e) => {this.updateUser()}}
+                   onChange={this.handleChange}
                     />
               </Form.Group>
 
@@ -179,9 +204,10 @@ export class UpdatedUser extends React.Component {
                 <Form.Control 
                   style={{ "width":"24rem", "display":"flex"}}
                     type="text" 
-                    value={birthday} 
+                    name="Birthday"
+                    value={this.state.Birthday ?? ''} 
                     placeholder= 'Enter a username' 
-                    onChange={(e) => {this.updateUser()}}
+                    onChange={this.handleChange}
                     />
               </Form.Group>
             <Button 

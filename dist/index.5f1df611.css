@@ -57,7 +57,7 @@ img {
   margin: 0 40% 2rem;
 }
 
-.add-button {
+.add-button, .remove-button {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }

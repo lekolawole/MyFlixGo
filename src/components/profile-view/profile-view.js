@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container, Row, Col, Card, Form, Collapse } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 // import UserInfo from "./user-info";
 // import UpdatedUser from "./updated-user";
 import axios from "axios";
@@ -11,12 +12,22 @@ export class ProfileView extends React.Component {
   constructor() {
     super();
     this.state = {
-      username: null,
-      password: null,
-      email: null,
-      birthday: null,
-      FavoriteMovies: []
+      Username: null,
+      Password: null,
+      Email: null,
+      Birthday: null,
+      FavoriteMovies: [],
+      collaspeMenu: true,
     };
+    this.showHide = this.showHide.bind(this);
+  }
+
+  showHide(e) {
+    e.preventDefault();
+
+    this.setState({
+      collapseMenu: !this.state.collapseMenu
+    });
   }
 
   componentDidMount() {
@@ -33,10 +44,10 @@ export class ProfileView extends React.Component {
        headers: { Authorization: `Bearer ${token}`
     }}).then(response => {
       this.setState({
-        username: response.data.Username,
-        password: response.data.Password,
-        email: response.data.Email,
-        birthday: response.data.Birthday,
+        Username: response.data.Username,
+        Password: response.data.Password,
+        Email: response.data.Email,
+        Birthday: response.data.Birthday,
         FavoriteMovies: response.data.FavoriteMovies
       });
     })
@@ -53,24 +64,24 @@ export class ProfileView extends React.Component {
 
     axios.put(`https://my-flix-22.herokuapp.com/users/${username}`, 
       {
-        username: this.state.Username,
-        password: this.state.Password,
-        birthday: this.state.Birthday,
-        email: this.state.Email
+        Username: this.state.Username,
+        Password: this.state.Password,
+        Birthday: this.state.Birthday,
+        Email: this.state.Email
     },
      {
        headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
       this.setState({
-        username: response.data.Username,
-        password: response.data.Password,
-        email: response.data.Email,
-        birthday: response.data.Birthday
+        Username: response.data.Username,
+        Password: response.data.Password,
+        Email: response.data.Email,
+        Birthday: response.data.Birthday
       });
       localStorage.setItem('user', this.state.Username);
       alert('Profile updated!');
-      window.open(`users/${user}`, '_self');
+      window.open(`users/${username}`, '_self');
     })
     .catch(function (error) {
       console.log(error)
@@ -100,25 +111,25 @@ export class ProfileView extends React.Component {
 
   setUsername(value) {
     this.setState({
-      username: value
+      Username: value
     });
   }
 
   setPassword(value) {
     this.setState({
-      password: value
+      Password: value
     });
   }
 
   setEmail(value) {
     this.setState({
-      email: value
+      Email: value
     });
   }
 
   setBirthday(value) {
     this.setState({
-      birthday: value
+      Birthday: value
     });
   }
 
@@ -141,7 +152,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const { username, email, birthday, FavoriteMovies, password } = this.state;
+    const { Username, Email, Birthday, FavoriteMovies, Password } = this.state;
     const { movies } = this.props;
 
 
@@ -155,9 +166,9 @@ export class ProfileView extends React.Component {
           <Card className="user-info">
             <Card.Body>
               <Card.Title>My Account Details</Card.Title>
-              <Card.Text>Name: {username}</Card.Text>
-              <Card.Text>Email: {email}</Card.Text>
-              <Card.Text>Birthday: {birthday}</Card.Text>
+              <Card.Text>Name: {Username}</Card.Text>
+              <Card.Text>Email: {Email}</Card.Text>
+              <Card.Text>Birthday: {Birthday}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
@@ -165,13 +176,14 @@ export class ProfileView extends React.Component {
           <Card>
             <Card.Body>
               <Card.Title>Update Profile</Card.Title>
-                <Form id="example-collapse-text" onSubmit={(e) => this.updateUser( e, this.username, this.password, this.email, this.birthday )}>
+                <Form id="example-collapse-text" 
+                onSubmit={(e) => this.updateUser( e, this.Username, this.Password, this.Email, this.Birthday)}>
                   <Form.Group>
                     <Form.Label>Username </Form.Label>
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
-                        value={username ?? ''} 
+                        value={Username ?? ''} 
                         onChange={(e) => {this.setUsername(e.target.value)}}
                         required
                         />
@@ -182,7 +194,7 @@ export class ProfileView extends React.Component {
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
-                        value={email ?? ''} 
+                        value={Email ?? ''} 
                         onChange={(e) => {this.setEmail(e.target.value)}}
                         required
                         />
@@ -193,12 +205,12 @@ export class ProfileView extends React.Component {
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
-                        value= {password ?? '' }
+                        value= {Password ?? '' }
                         placeholder= 'Enter new password' 
                         onChange={(e) => {this.setPassword(e.target.value)}}
                         required
                         />
-                  </Form.Group>
+                  </Form.Group> 
 
                   {/* <Form.Group>
                     <Form.Label>Birthday </Form.Label>
@@ -206,7 +218,7 @@ export class ProfileView extends React.Component {
                       style={{ "width":"24rem", "display":"flex"}}
                         type="date" 
                         value= '' 
-                        placeholder= 'yyyy-mm-dd'
+                        placeholder= ''
                         onChange={(e) => {this.setBirthday(e.target.value)}}
                         required
                         />
@@ -229,7 +241,7 @@ export class ProfileView extends React.Component {
       </Row>
       <Row className="favorites-container">
         <Col className="favorites-header" md={12}><h1>My List</h1></Col>
-        {FavoriteMovies.length === 0 && <div className="favorites-header" style={{"padding":"1rem"}}>Let's start adding <a href='/'>movies!🍿</a></div>}
+        {FavoriteMovies.length === 0 && <div className="favorites-header">Let's start adding <a href='/'>movies!</a>🍿</div>}
         {FavoriteMovies.length > 0 && 
         movies.map((movie) => {if (movie._id === FavoriteMovies.find((fav)=> fav === movie._id)) {return ( 
                         <Col md={4} key={movie._id}>
@@ -238,6 +250,13 @@ export class ProfileView extends React.Component {
                                 <Card.Body>
                                     <Card.Title className="movie-title">{movie.Title}</Card.Title>
                                     <Button value={movie._id} variant="secondary" onClick={(e) => this.removeFav(e, movie)}>-</Button> 
+                                    <Link to={`/movies/${movie._id}`}>
+            <Button 
+              variant="link" 
+              onClick={() => {
+              //console.log(movie._id);
+            }}>Open</Button>
+          </Link>
                                 </Card.Body>
                             </Card>
                         </Col>

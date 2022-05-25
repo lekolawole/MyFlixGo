@@ -44,7 +44,7 @@ export class MainView extends React.Component {
   }
 
   onLoggedIn(authData) { //authenticates user credentials
-    // console.log(authData);
+    console.log(authData);
     this.setState({
       user: authData.user.Username,
       email: authData.user.Email,
@@ -60,6 +60,8 @@ export class MainView extends React.Component {
     localStorage.setItem('password', authData.user.Password);
     localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
     this.getMovies(authData.token);
+    const profile = document.querySelector('.nav-dropdown');
+    profile.style.display = 'flex';
   }
 
   // onRegister(isRegistered) {
@@ -94,7 +96,7 @@ export class MainView extends React.Component {
     return (
       <Container className="main-container container-fluid">
         <Router>
-          <NavbarView />
+          <NavbarView user={user} />
             <div className="main-view">
               <Row className="main-view justify-content-md-center">
                 <Route exact path="/" render={() => {
@@ -175,9 +177,9 @@ export class MainView extends React.Component {
   }
 }
 
-MainView.propTypes = {
-  movies: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Description: PropTypes.string.isRequired
-  }).isRequired
-}
+// MainView.propTypes = {
+//   movies: PropTypes.shape({
+//     Title: PropTypes.string.isRequired,
+//     Description: PropTypes.string.isRequired
+//   }).isRequired
+// }

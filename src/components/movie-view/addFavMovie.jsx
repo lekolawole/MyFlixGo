@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import axios from "axios";
 import '../profile-view/profile-view.scss';
 
 export const AddFavMovie = (props) => {
   const [FavoriteMovies, setFavoriteMovies] = useState([]);
-  //const { user, movie, token } = props; 
   const [user, setUser] = useState('');
-  // let user = localStorage.getItem('user');
   const { movie } = props;
   const [token, setToken] = useState('');
-  // console.log(user);
 
+ 
   const removeFav = (e, movie) => {
     e.preventDefault();
     const username = localStorage.getItem("user");
-    const token = localStorage.getItem.apply("token");
+    const token = localStorage.getItem("token");
 
     axios.delete(`https://my-flix-22.herokuapp.com/users/${username}/movies/${movie._id}`, 
      {
@@ -24,7 +21,11 @@ export const AddFavMovie = (props) => {
     })
     .then(response => {
       alert('Removed from list');
-      this.componentDidMount();
+      const addButton = document.querySelector('.add-button');
+      addButton.style.display = 'block';
+
+      const remButton = document.querySelector('.remove-button');
+      remButton.style.display = 'none';
     })
     .catch(function (error) {
       console.log(error)
@@ -36,18 +37,17 @@ export const AddFavMovie = (props) => {
     const newUser = [...user];
     setUser(newUser);
     console.log(user);
-     
-    //alert(`${movie.Title} has been added.`);
-
-///////////Testing adding movie data to FavoriteMovies array in Console 
-    // const newFavoritesList = [...FavoriteMovies, movie];
-    // setFavoriteMovies(newFavoritesList);
       
     axios.post(`https://my-flix-22.herokuapp.com/users/${user}/movies/${movie._id}`, 
-    // {headers: { Authorization: `Bearer ${token}`}}
+    {headers: { Authorization: `Bearer ${token}`}}
     )
     .then(response => { 
       alert(`${movie.Title} was added to your Favorites.`);
+      const addButton = document.querySelector('.add-button');
+      addButton.style.display = 'none';
+
+      const remButton = document.querySelector('.remove-button');
+      remButton.style.display = 'block';
     })
     .catch(function (error) {
       console.log(error.toJSON());
@@ -57,8 +57,8 @@ export const AddFavMovie = (props) => {
 
   return (
     <div>
+      <Button className="remove-button" style={{"display":"none"}} value={movie._id} variant="secondary" onClick={(e) => removeFav(e, movie)}>-</Button>
       <Button className="add-button" variant="secondary" onClick={()=> addFav(movie)}>+</Button>
-      {/* <Button onClick={findUser}>Find User</Button> */}
     </div>
   )
 }

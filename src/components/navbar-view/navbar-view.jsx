@@ -1,10 +1,13 @@
-import { Container, Nav, NavDropdown, Button, NavItem } from 'react-bootstrap';
+import { Col, Container, Navbar, Form, FormControl, Nav, NavDropdown, Button, NavItem } from 'react-bootstrap';
 import React from 'react';
 import ReactDOM from 'react-dom'; 
+import PropTypes from 'prop-types';
+
 import './navbar-view.scss';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { LoginView } from '../login-view/login-view';
 import { Link } from 'react-router-dom';
+import ProfileView from '../profile-view/profile-view';
  
 
 export class NavbarView extends React.Component {
@@ -23,7 +26,7 @@ export class NavbarView extends React.Component {
   
   render() {
     let user = localStorage.getItem("user");
-  
+    const { movies } = this.props;
     return(
       <div>
         <Router>
@@ -32,14 +35,19 @@ export class NavbarView extends React.Component {
               <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'></img>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/">Movies</Nav.Link>
             </Nav.Item>
             <NavDropdown title="Profile">
               <NavDropdown.Item>Hi, {user}</NavDropdown.Item>
               <NavDropdown.Item>
                 <Nav.Item>
-                  <Link to={`/users/${user}`} className="nav-links">
-                  <Button variant="link">My Account</Button>
+                  {/* <Route path={`/users/${user}`} render={({ match }) => {
+                    if (!user) return <Redirect to="/" />
+                    return <Col>
+                      <ProfileView movies={movies} />
+                    </Col>
+                  }} /> */}
+                  <Link to={`/users/${user}`} className="nav-links">My Account
                   </Link>
                 </Nav.Item>
               </NavDropdown.Item>
@@ -55,6 +63,7 @@ export class NavbarView extends React.Component {
               </NavDropdown.Item>
             </NavDropdown>
         </Nav>
+
       </Router>
     </div>
     )

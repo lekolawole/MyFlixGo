@@ -44,6 +44,8 @@ export function LoginView(props) {
     const data = response.data;
     props.onLoggedIn(data);
     //console.log(data);
+    const profile = document.querySelector('.nav-dropdown');
+    profile.style.display = 'flex';
   })
   .catch(e => {
     console.log('no such user')
