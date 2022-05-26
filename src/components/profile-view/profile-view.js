@@ -54,9 +54,9 @@ export class ProfileView extends React.Component {
 
 //////////////////Operations to updated user info 
   updateUser = (e) => {
-    e.prevent.default;
     const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
+    e.preventDefault();
 
     axios.put(`https://my-flix-22.herokuapp.com/users/${username}`, 
       {
@@ -70,14 +70,17 @@ export class ProfileView extends React.Component {
     })
     .then(response => {
       this.setState({
-        Username: this.state.Username,
-        Password: this.state.Password,
-        Email: this.state.Email,
-        Birthday: this.state.Birthday
+        Username: response.data.Username,
+        Password: response.data.Password,
+        Email: response.data.Email,
+        Birthday: response.data.Birthday
       });
-      localStorage.setItem('user', this.state.Username);
+      localStorage.setItem("user", this.state.Username);
+      console.log(response.data.Username);
       alert('Profile updated!');
-      window.open(`users/${username}`, '_self');
+      window.open(`/users/${response.data.Username}`, '_self');
+      //window.location.reload();
+
     })
     .catch(function (error) {
       console.log(error)
@@ -172,13 +175,13 @@ export class ProfileView extends React.Component {
             <Card.Body>
               <Card.Title>Update Profile</Card.Title>
                 <Form id="example-collapse-text" 
-                onSubmit={(e) => this.updateUser( e, this.Username, this.Password, this.Email, this.Birthday)}>
+                onSubmit={(e) => this.updateUser( e, this.Username, this.Password, this.Email, this.Birthday )}>
                   <Form.Group>
                     <Form.Label>Username </Form.Label>
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
-                        //value={Username ?? ''} 
+                        value={Username ?? ''} 
                         placeholder= 'Username must have 2 characters' 
                         onChange={(e) => {this.setUsername(e.target.value)}}
                         required/>
@@ -189,7 +192,7 @@ export class ProfileView extends React.Component {
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
-                        //value={Email ?? ''} 
+                        value={Email ?? ''} 
                         placeholder= 'Email must include @ symbol' 
                         onChange={(e) => {this.setEmail(e.target.value)}}
                         required/>
@@ -200,7 +203,7 @@ export class ProfileView extends React.Component {
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 
-                        //value= {Password ?? '' }
+                        value= {Password ?? '' }
                         placeholder= 'Password must have 8 characters' 
                         onChange={(e) => {this.setPassword(e.target.value)}}
                         required/>
