@@ -19,8 +19,8 @@
 }
 
 .favorites-header {
-  margin: 0 40% rem 40%;
   justify-content: center;
+  margin: 5% 45% 0 40%;
 }
 
 .add-button, .remove-button {
@@ -62,31 +62,6 @@ img {
   margin-bottom: .7rem;
 }
 
-.main-container {
-  margin: 0;
-  padding: 0;
-}
-
-.nav {
-  background-color: #ffb72a;
-  padding: 1rem 0 1rem 5rem;
-  display: flex;
-}
-
-.nav-link {
-  color: #000;
-  text-align: center;
-  text-transform: uppercase;
-  margin-left: 2.5rem;
-  font-weight: bold;
-}
-
-.main-logo {
-  width: 11.75rem;
-  margin-left: 5rem;
-  margin-right: 10%;
-}
-
 .nav {
   background-color: #ffb72a;
   padding: 1rem 0 1rem 5rem;
@@ -117,6 +92,31 @@ img {
   position: relative;
   left: 50%;
   right: 50%;
+}
+
+.main-container {
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  background-color: #ffb72a;
+  padding: 1rem 0 1rem 5rem;
+  display: flex;
+}
+
+.nav-link {
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  margin-left: 2.5rem;
+  font-weight: bold;
+}
+
+.main-logo {
+  width: 11.75rem;
+  margin-left: 5rem;
+  margin-right: 10%;
 }
 
 .main-container {

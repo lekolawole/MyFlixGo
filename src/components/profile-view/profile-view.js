@@ -70,10 +70,10 @@ export class ProfileView extends React.Component {
     })
     .then(response => {
       this.setState({
-        Username: response.data.Username,
-        Password: response.data.Password,
-        Email: response.data.Email,
-        Birthday: response.data.Birthday
+        Username: this.state.Username,
+        Password: this.state.Password,
+        Email: this.state.Email,
+        Birthday: this.state.Birthday
       });
       localStorage.setItem('user', this.state.Username);
       alert('Profile updated!');
@@ -232,9 +232,14 @@ export class ProfileView extends React.Component {
           </Card>   
         </Col>
       </Row>
-      <Row className="favorites-container">
-        <Col className="favorites-header" md={12}><h1>My List</h1></Col>
-        {FavoriteMovies.length === 0 && <div className="favorites-header">Let's start adding <a href='/'>movies!</a>🍿</div>}
+      <Row className="favorites-container justify-content-md-center" >
+        <Col className="favorites-header" md={2}><h1>My List</h1></Col>
+        {FavoriteMovies.length === 0 && 
+          <Col md={12}>
+            <div className="favorites-header">
+              Let's start adding <a href='/'>movies!</a>🍿
+            </div>
+          </Col>}
         {FavoriteMovies.length > 0 && 
         movies.map((movie) => {if (movie._id === FavoriteMovies.find((fav)=> fav === movie._id)) {return ( 
           <Col md={4} key={movie._id}>
