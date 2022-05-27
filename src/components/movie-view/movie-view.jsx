@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
-import { AddFavMovie } from './AddFavMovie';
+import { AddFavMovie } from './addFavMovie';
 import { Link } from 'react-router-dom';
 
 import './movie-view.scss';

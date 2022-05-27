@@ -44,17 +44,13 @@ img {
   font-weight: bold;
 }
 
-.container {
-  padding-bottom: 10rem;
-}
-
 .favorites-container {
   margin-top: 5rem;
 }
 
 .favorites-header {
   justify-content: center;
-  margin: 0 40% 2rem;
+  margin: 5% 45% 0 40%;
 }
 
 .add-button, .remove-button {
@@ -62,9 +58,19 @@ img {
   margin-bottom: 1rem;
 }
 
+.form-control {
+  width: 24rem;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
 .main-container {
   margin: 0;
-  padding: 0;
+  padding-bottom: 5rem;
 }
 
 .nav {
