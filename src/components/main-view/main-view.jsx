@@ -16,7 +16,6 @@ import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 import { DirectorView } from '../director-view/director-view';
 
-import { bool } from 'prop-types';
 import './main-view.scss';
 
 import { NavbarView } from '../navbar-view/navbar-view';
