@@ -13,9 +13,7 @@ export class ProfileView extends React.Component {
       Email: null,
       Birthday: null,
       FavoriteMovies: [],
-      //collaspeMenu: true,
     };
-    //this.showHide = this.showHide.bind(this);
   }
 
   showHide(e) {
@@ -79,8 +77,6 @@ export class ProfileView extends React.Component {
       console.log(response.data.Username);
       alert('Profile updated!');
       window.open(`/users/${response.data.Username}`, '_self');
-      //window.location.reload();
-
     })
     .catch(function (error) {
       console.log(error)

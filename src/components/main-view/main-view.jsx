@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Row, Col, Button, Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 

@@ -1,7 +1,6 @@
-import { Col, Container, Navbar, Form, FormControl, Nav, NavDropdown, Button, NavItem } from 'react-bootstrap';
+import { Nav, NavDropdown, NavItem } from 'react-bootstrap';
 import React from 'react';
-import ReactDOM from 'react-dom'; 
-import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import './navbar-view.scss';
 import { BrowserRouter as Router, Route } from 'react-router-dom';

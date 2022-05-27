@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import {Container, Row, Col, Card} from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 
 
 export class GenreView extends React.Component {
