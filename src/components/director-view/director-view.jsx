@@ -11,8 +11,8 @@ export class DirectorView extends React.Component {
 
     return (
       <Container>
-        <Row>
-          <Col>
+        <Row className="justify-content-md-center">
+          <Col md={12}>
             <div className="director-name">
               <span className="label">  
                 <h1 className="value">{director.Name}</h1>
@@ -21,7 +21,7 @@ export class DirectorView extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col md={12}>
             <div className="director-description">
               <span className="value">{director.Bio}</span>
             </div>

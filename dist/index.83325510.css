@@ -28,6 +28,16 @@
   margin-bottom: 1rem;
 }
 
+.form-control {
+  width: 24rem;
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
 img {
   width: 15rem;
 }

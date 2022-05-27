@@ -11,8 +11,8 @@ export class GenreView extends React.Component {
 
     return (
       <Container>
-        <Row>
-          <Col>
+        <Row className="justify-content-md-center">
+          <Col md={12}>
             <div className="genre-name">
               <span className="label">  
                 <h1 className="value">{genre.Name}</h1>
@@ -20,8 +20,8 @@ export class GenreView extends React.Component {
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col>
+        <Row className="justify-content-md-center">
+          <Col md={12}>
             <div className="genre-description">
               <span className="value">{genre.Description}</span>
             </div>

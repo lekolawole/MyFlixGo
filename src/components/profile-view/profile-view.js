@@ -170,7 +170,7 @@ export class ProfileView extends React.Component {
             </Card.Body>
           </Card>
         </Col>
-        <Col xs={12} sm={8}>
+        <Col xs={12} sm={6}>
           <Card style={{"marginLeft":"5rem"}}>
             <Card.Body>
               <Card.Title>Update Profile</Card.Title>
@@ -208,17 +208,6 @@ export class ProfileView extends React.Component {
                         onChange={(e) => {this.setPassword(e.target.value)}}
                         required/>
                   </Form.Group> 
-
-                  {/* <Form.Group>
-                    <Form.Label>Birthday </Form.Label>
-                    <Form.Control 
-                      style={{ "width":"24rem", "display":"flex"}}
-                        type="date" 
-                        value= '' 
-                        placeholder= ''
-                        onChange={(e) => {this.setBirthday(e.target.value)}}
-                        required/>
-                  </Form.Group> */}
                 <Button 
                   type="submit"
                   variant="outline-success"

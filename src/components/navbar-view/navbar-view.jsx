@@ -7,7 +7,7 @@ import './navbar-view.scss';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import LoginView from '../login-view/login-view';
 import { Link } from 'react-router-dom';
-import ProfileView from '../profile-view/profile-view';
+import { ProfileView } from '../profile-view/profile-view';
  
 
 export class NavbarView extends React.Component {
@@ -41,6 +41,9 @@ export class NavbarView extends React.Component {
               <NavDropdown.Item>Hi, {user}</NavDropdown.Item>
               <NavDropdown.Item>
                 <Nav.Item>
+                  <Route path={`users/${user}`} render={({ match }) => {
+                    return <ProfileView movies={movies}/>
+                  }} />
                   <Link to={`/users/${user}`} className="nav-links">My Account
                   </Link>
                 </Nav.Item>
