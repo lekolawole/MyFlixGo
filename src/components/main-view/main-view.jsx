@@ -78,13 +78,9 @@ class MainView extends React.Component {
   render() {
     let { user } = this.state;
     const { movies } = this.props;
-    
-    // if (isRegistered) {//Creates registration Form
-    //   return <RegistrationView onRegister={(bool) => this.onRegister(bool)} />
-    // }
 
     return (
-      <Container className="main-container container-fluid">
+      <Container className="main-container">
         <Router>
           <NavbarView user={user} />
             <div className="main-view">
@@ -161,10 +157,3 @@ let mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps, { setMovies })(MainView)
-
-// MainView.propTypes = {
-//   movies: PropTypes.shape({
-//     Title: PropTypes.string.isRequired,
-//     Description: PropTypes.string.isRequired
-//   }).isRequired
-// }

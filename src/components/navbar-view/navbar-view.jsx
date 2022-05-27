@@ -30,7 +30,7 @@ export class NavbarView extends React.Component {
     return(
       <div>
         <Router>
-          <Nav className="main-view-nav">
+          <Nav variant="tabs" className="main-view-nav">
             <Nav.Item>
               <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'></img>
             </Nav.Item>

@@ -25184,18 +25184,15 @@ class MainView extends _reactDefault.default.Component {
     render() {
         let { user: user1  } = this.state;
         const { movies  } = this.props;
-        // if (isRegistered) {//Creates registration Form
-        //   return <RegistrationView onRegister={(bool) => this.onRegister(bool)} />
-        // }
         return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Container, {
-            className: "main-container container-fluid",
+            className: "main-container",
             children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
                 children: [
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbarView.NavbarView, {
                         user: user1
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 89,
+                        lineNumber: 85,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -25221,7 +25218,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 92,
+                                    lineNumber: 88,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25236,7 +25233,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 100,
+                                    lineNumber: 96,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25261,7 +25258,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 107,
+                                    lineNumber: 103,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25286,7 +25283,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 120,
+                                    lineNumber: 116,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25311,7 +25308,7 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 132,
+                                    lineNumber: 128,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -25329,29 +25326,29 @@ class MainView extends _reactDefault.default.Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 144,
+                                    lineNumber: 140,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 91,
+                            lineNumber: 87,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 90,
+                        lineNumber: 86,
                         columnNumber: 13
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 88,
+                lineNumber: 84,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 87,
+            lineNumber: 83,
             columnNumber: 7
         }, this);
     }
@@ -25363,13 +25360,7 @@ let mapStateToProps = (state)=>{
 };
 exports.default = _reactRedux.connect(mapStateToProps, {
     setMovies: _actions.setMovies
-})(MainView) // MainView.propTypes = {
- //   movies: PropTypes.shape({
- //     Title: PropTypes.string.isRequired,
- //     Description: PropTypes.string.isRequired
- //   }).isRequired
- // }
-;
+})(MainView);
 
   $parcel$ReactRefreshHelpers$f7a6.postlude(module);
 } finally {
@@ -44567,6 +44558,7 @@ class NavbarView extends _reactDefault.default.Component {
         return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
             children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
                 children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Nav, {
+                    variant: "tabs",
                     className: "main-view-nav",
                     children: [
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Nav.Item, {
@@ -44786,6 +44778,7 @@ class MovieCard extends _reactDefault.default.Component {
             children: [
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_cardDefault.default.Img, {
                     variant: "top",
+                    alt: "Movie",
                     src: movie.ImagePath
                 }, void 0, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
@@ -44867,6 +44860,10 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
+var _container = require("react-bootstrap/Container");
+var _containerDefault = parcelHelpers.interopDefault(_container);
 var _reactRedux = require("react-redux");
 var _visibilityFilterInput = require("../visibility-filter-input/visibility-filter-input");
 var _visibilityFilterInputDefault = parcelHelpers.interopDefault(_visibilityFilterInput);
@@ -44886,49 +44883,68 @@ function MoviesList(props) {
         className: "main-view"
     }, void 0, false, {
         fileName: "src/components/movies-list/movies-list.jsx",
-        lineNumber: 21,
+        lineNumber: 25,
         columnNumber: 23
     }, this);
-    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_containerDefault.default, {
         children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_colDefault.default, {
-                md: 12,
-                style: {
-                    "margin": "1rem"
-                },
-                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_visibilityFilterInputDefault.default, {
-                    visbilityFilter: visbilityFilter
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_rowDefault.default, {
+                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_colDefault.default, {
+                    md: 12,
+                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_visibilityFilterInputDefault.default, {
+                        visbilityFilter: visbilityFilter
+                    }, void 0, false, {
+                        fileName: "src/components/movies-list/movies-list.jsx",
+                        lineNumber: 31,
+                        columnNumber: 9
+                    }, this)
                 }, void 0, false, {
                     fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 26,
+                    lineNumber: 30,
                     columnNumber: 7
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/movies-list/movies-list.jsx",
-                lineNumber: 25,
+                lineNumber: 29,
                 columnNumber: 5
             }, this),
-            filteredMovies.map((m)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_colDefault.default, {
-                    md: 3,
-                    style: {
-                        "display": "flex",
-                        "marginBottom": "1.5rem"
-                    },
-                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieCard.MovieCard, {
-                        movie: m
-                    }, void 0, false, {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_rowDefault.default, {
+                className: "movie-scroll",
+                style: {
+                    "overflow-x": "auto",
+                    "flex-wrap": "nowrap"
+                },
+                children: filteredMovies.map((m)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_colDefault.default, {
+                        className: "movie-card",
+                        md: 4,
+                        style: {
+                            "display": "flex",
+                            "marginBottom": "1rem"
+                        },
+                        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieCard.MovieCard, {
+                            movie: m
+                        }, void 0, false, {
+                            fileName: "src/components/movies-list/movies-list.jsx",
+                            lineNumber: 38,
+                            columnNumber: 9
+                        }, this)
+                    }, m._id, false, {
                         fileName: "src/components/movies-list/movies-list.jsx",
-                        lineNumber: 30,
+                        lineNumber: 37,
                         columnNumber: 7
                     }, this)
-                }, m._id, false, {
-                    fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 29,
-                    columnNumber: 5
-                }, this)
-            )
+                )
+            }, void 0, false, {
+                fileName: "src/components/movies-list/movies-list.jsx",
+                lineNumber: 35,
+                columnNumber: 5
+            }, this)
         ]
-    }, void 0, true);
+    }, void 0, true, {
+        fileName: "src/components/movies-list/movies-list.jsx",
+        lineNumber: 28,
+        columnNumber: 5
+    }, this);
 }
 _c = MoviesList;
 exports.default = _reactRedux.connect(mapStateToProps)(MoviesList);
@@ -44940,7 +44956,7 @@ $RefreshReg$(_c, "MoviesList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Col":"2L2I6","react-redux":"bdVon","../visibility-filter-input/visibility-filter-input":"gtTIg","../movie-card/movie-card":"bwuIu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gtTIg":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Col":"2L2I6","react-bootstrap/Row":"cMC39","react-redux":"bdVon","../visibility-filter-input/visibility-filter-input":"gtTIg","../movie-card/movie-card":"bwuIu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Container":"hEdsw"}],"gtTIg":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$dea5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
