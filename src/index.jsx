@@ -1,11 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MainView } from './components/main-view/main-view';
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import moviesApp from './reducers/reducers';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
-// Import statement when bundling
+import MainView from './components/main-view/main-view';
 import './index.scss';
+
+const store = createStore(moviesApp, devToolsEnhancer());
 
 //Main component
 class MyFlixApplication extends React.Component {
@@ -15,9 +19,11 @@ class MyFlixApplication extends React.Component {
       module.hot.accept()
     }
     return (
-      <Container className="main-container">
-        <MainView />
-      </Container>
+      <Provider store={store}>
+        <Container className="main-container">
+          <MainView />
+        </Container>
+      </Provider>
     );
   }
 }

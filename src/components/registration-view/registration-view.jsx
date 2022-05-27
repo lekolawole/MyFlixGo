@@ -55,7 +55,8 @@ export function RegistrationView(props) {
         Birthday: birthday
       })
       .then(response => {
-        console.log(response.data);
+        const data = response.data;
+        console.log(data);
         alert('Registration successful, please login!');
         window.open('/',"_self");
       })
@@ -64,9 +65,7 @@ export function RegistrationView(props) {
         alert('Registration not complete')
       });
     }
-    
     console.log(username, password, email, birthday);
-    props.onRegister(false)
   };
 
 
