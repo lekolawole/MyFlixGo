@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
-import { AddFavMovie } from './AddFavMovie';
+import { AddFavMovie } from './addFavMovie';
 import { Link } from 'react-router-dom';
 
 import './movie-view.scss';
@@ -50,8 +50,6 @@ export class MovieView extends React.Component {
             <Button onClick={() => { onBackClick(null); }}>Back</Button>
           </Col>
       </Row>
-
-
       </Container>
     );
   }
@@ -66,27 +64,3 @@ MovieView.propTypes = {
     Rating: PropTypes.string.isRequired
   }).isRequired
 };
-
-{/* 
-import { Link } from 'react-router-dom';
-
- <div className="movie-rating">
-              <span className="label">Rating: </span>
-              <span className="value">{movie.Rating * 10}%</span>
-            //   {/* <span className="label">Release Year: </span> */}
-            //   <div style={{"display":"inline-block", "marginLeft":"10%"}}>{movie.ReleaseYear}</div>
-            // </div>
-{/* <Link to={`/directors/${movie.MovieDirector.Name}`}>
-                <Button variant="link">{movie.MovieDirector.Name}</Button>
-              </Link>
-
-              <Link to={`/genres/${movie.Genre.Name}`}>
-                <Button variant="link">{movie.Genre.Name}</Button>
-              </Link>
-            </div>
-      //     </Col>
-      //     <Col>
-      //       <Button onClick={() => { onBackClick(null); }}>Back</Button>
-      //     </Col>
-      //   </Row>
-      // </Container> */}

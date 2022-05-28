@@ -10,9 +10,9 @@
   font-weight: bold;
 }
 
-.container {
-  padding-bottom: 10rem;
-}
+// .container {
+//   padding-bottom: 10rem;
+// }
 
 .favorites-container {
   margin-top: 5rem;
@@ -26,4 +26,13 @@
 .add-button, .remove-button {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.form-control {
+  width: 24rem;
+  display: flex;
+  margin-bottom: 1rem;
+}
+.form-label {
+  font-weight: bold;
 }

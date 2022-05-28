@@ -1,0 +1,29 @@
+
+
+img {
+  width: 15rem;
+}
+
+.movie-poster {
+  margin-right: 7rem;
+}
+
+.movie-title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.movie-description {
+  font-size: 20px;
+  line-height: 2rem;
+}
+
+.col {
+  margin-top: 2rem;
+}
+
+.main-container {
+  margin: 0;
+}
+
+/*# sourceMappingURL=index.27d8da6b.css.map */
