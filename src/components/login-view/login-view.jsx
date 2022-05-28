@@ -44,8 +44,6 @@ export function LoginView(props) {
     const data = response.data;
     props.onLoggedIn(data);
     //console.log(data);
-    const profile = document.querySelector('.nav-dropdown');
-    profile.style.display = 'flex';
   })
   .catch(e => {
     console.log('no such user')
@@ -75,10 +73,10 @@ export function LoginView(props) {
               {passwordErr && <p>{passwordErr}</p>}
             </Form.Group>
 
-            <div style={{"margin":"1.2rem"}}>
+            <div style={{"margin":"1.2, 0, 0, 2rem"}}>
               <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
               <Link to="/register">
-                <Button variant="secondary" type="submit" onClick={handleRegister}>New User? Register here</Button>
+                <Button style={{"marginLeft":"4rem"}} variant="secondary" type="submit" onClick={handleRegister}>New User? Register here</Button>
               </Link>
             </div>
           </Form>

@@ -56,8 +56,6 @@ class MainView extends React.Component {
     localStorage.setItem('password', authData.user.Password);
     localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
     this.getMovies(authData.token);
-    const profile = document.querySelector('.nav-dropdown');
-    profile.style.display = 'flex';
   }
 
   getMovies(token) {
@@ -92,7 +90,7 @@ class MainView extends React.Component {
                     return <MoviesList movies={movies}/>
                 }} />
                 <Route path="/register" render={() => {
-                    if (user) return <Redirect to="/" />
+                    if (user) return <Redirect to="/register" />
                     return (<Col>
                       <RegistrationView />
                     </Col>
