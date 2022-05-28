@@ -30617,7 +30617,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
                                                 movies: movies,
-                                                user: user1 === match.params.Username,
+                                                user: user1,
                                                 onBackClick: ()=>history.goBack()
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, void 0, void 0);

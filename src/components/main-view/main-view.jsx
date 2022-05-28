@@ -130,7 +130,7 @@ class MainView extends React.Component {
                     if (!user) return 
                     // <Redirect to="/" />
                     return <Col>
-                      <ProfileView movies={movies} user={user === match.params.Username} onBackClick={() => history.goBack()}/>
+                      <ProfileView movies={movies} user={user} onBackClick={() => history.goBack()}/>
                     </Col>
                   }} />
               </Row>
