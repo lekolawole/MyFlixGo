@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MainView } from './components/main-view/main-view';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 
 // Import statement when bundling
 import './index.scss';
@@ -8,8 +10,14 @@ import './index.scss';
 //Main component
 class MyFlixApplication extends React.Component {
   render() {
+    // forces Parcel to reload
+    if (module.hot) {
+      module.hot.accept()
+    }
     return (
-      <MainView />
+      <Container className="main-container">
+        <MainView />
+      </Container>
     );
   }
 }

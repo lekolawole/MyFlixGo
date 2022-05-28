@@ -1,1 +1,1 @@
-{"mappings":"AAEA","sources":["src/index.scss"],"sourcesContent":["$color: steelblue;\n\n.my-flix {\n  color: $color;\n  border: 5px $color;\n}"],"names":[],"version":3,"file":"index.ce1d6491.css.map","sourceRoot":"/__parcel_source_root/"}
+{"mappings":"AAMA","sources":["src/index.scss"],"sourcesContent":["// $theme-colors: (\n//   \"primary\": #ffb72a\n// )\n\n\n\n.main-container {\n  margin: 0;\n}\n"],"names":[],"version":3,"file":"index.ce1d6491.css.map","sourceRoot":"/__parcel_source_root/"}
