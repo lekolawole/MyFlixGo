@@ -3,6 +3,9 @@ import { Button, Container, Row, Col, Card, Form, FormControl } from 'react-boot
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setMovies, setUser } from '../../actions/actions';
+
 
 export class ProfileView extends React.Component {
   constructor() {
@@ -244,7 +247,13 @@ export class ProfileView extends React.Component {
   }
 }
 
+let mapStateToProps = state => {
+  return { }
+}
+
+
 export default ProfileView;
+
 
 ProfileView.propTypes = {
     movies: PropTypes.arrayOf(PropTypes.shape({

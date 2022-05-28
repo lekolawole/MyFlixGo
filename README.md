@@ -23,3 +23,4 @@ Test it out! https://myflixgo.netlify.app
 Be sure to check out the package.json file for the this project's dependencies. 
 
 
+

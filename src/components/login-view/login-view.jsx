@@ -5,6 +5,9 @@ import { Col, Row, Container } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setMovies, setUser } from '../../actions/actions';
+
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
@@ -42,8 +45,12 @@ export function LoginView(props) {
     Password: password
   })
   .then(response => {
-    const data = response.data;
+    const { data } = response;
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', data.user);
+    props.setUser(data.token, data.user);
     props.onLoggedIn(data);
+    console.log(store.getState());
     //console.log(data);
   })
   .catch(e => {
