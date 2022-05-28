@@ -32,7 +32,7 @@ function MoviesList(props) {
       </Col>
     </Row>
 
-    <Row className="movie-scroll" style={{"overflow-x":"auto", "flex-wrap":"nowrap"}}>
+    <Row className="movie-scroll">
       {filteredMovies.map(m => (
       <Col className="movie-card" md={4} key={m._id} style={{ "display": "flex", "marginBottom":"1rem"}}>
         <MovieCard movie={m}/>

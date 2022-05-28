@@ -44797,10 +44797,6 @@ function MoviesList(props) {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                 className: "movie-scroll",
-                style: {
-                    "overflow-x": "auto",
-                    "flex-wrap": "nowrap"
-                },
                 children: filteredMovies.map((m)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                         className: "movie-card",
                         md: 4,
