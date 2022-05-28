@@ -3,7 +3,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import "./navbar-view.scss";
 
 export function NavbarView({ user }) {
-    const URL = 'https://my-flix-22.herokuapp.com/';
+    
     const onLoggedOut = () => {
         localStorage.clear();
         window.open("/", "_self");
@@ -28,7 +28,7 @@ export function NavbarView({ user }) {
                 <Navbar.Collapse id="navbar-collapse">
                     <Nav className="nav-items">
                         { isAuth() && (<Nav.Link href="/">Movies</Nav.Link>) }
-                        { isAuth() && (<Nav.Link href={`${URL}users/${user}`}>Hi, {user}</Nav.Link>) }
+                        { isAuth() && (<Nav.Link href={`/users/${user}`}>Hi, {user}</Nav.Link>) }
                         { isAuth() && (<Nav.Link variant="link" onClick={() => {onLoggedOut()}}>Logout</Nav.Link>) }
                         { !isAuth() && (<Nav.Link href='/'>Login</Nav.Link>) }
                     </Nav>

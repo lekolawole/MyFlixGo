@@ -46831,7 +46831,6 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _navbarViewScss = require("./navbar-view.scss");
 function NavbarView({ user  }) {
-    const URL = "https://my-flix-22.herokuapp.com/";
     const onLoggedOut = ()=>{
         localStorage.clear();
         window.open("/", "_self");
@@ -46880,7 +46879,7 @@ function NavbarView({ user  }) {
                             columnNumber: 40
                         }, this),
                         isAuth() && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
-                            href: `${URL}users/${user}`,
+                            href: `/users/${user}`,
                             children: [
                                 "Hi, ",
                                 user
