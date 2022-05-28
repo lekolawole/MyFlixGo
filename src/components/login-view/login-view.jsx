@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Col, Row, Container } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -52,9 +53,9 @@ export function LoginView(props) {
   
 };
 
-  const handleRegister = (e) => {
-    props.onRegister(true)
-  }
+  // const handleRegister = (e) => {
+  //   props.onRegister(true)
+  // }
 
   return (
     <Container className="main-container" style={{"marginTop":"10rem"}}>
@@ -76,7 +77,7 @@ export function LoginView(props) {
             <div style={{"margin":"1.2, 0, 0, 2rem"}}>
               <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
               <Link to="/register">
-                <Button style={{"marginLeft":"4rem"}} variant="secondary" type="submit" onClick={handleRegister}>New User? Register here</Button>
+                <Button style={{"marginLeft":"4rem"}} variant="secondary" type="submit">New User? Register here</Button>
               </Link>
             </div>
           </Form>
@@ -87,9 +88,9 @@ export function LoginView(props) {
 }
 
 
-// LoginView.propTypes = {
-//   user: PropTypes.shape({
-//     username: PropTypes.string.isRequired,
-//     password: PropTypes.string.isRequired,
-//   }).isRequired
-// }
+LoginView.propTypes = {
+  user: PropTypes.shape({
+    Username: PropTypes.string.isRequired,
+    Password: PropTypes.string.isRequired,
+  }).isRequired
+}

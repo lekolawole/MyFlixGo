@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Row, Col, Card, Form, Collapse } from 'react-bootstrap';
+import { Button, Container, Row, Col, Card, Form, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import PropTypes from 'prop-types';
@@ -16,23 +16,18 @@ export class ProfileView extends React.Component {
     };
   }
 
-  showHide(e) {
-    e.preventDefault();
-
-    this.setState({
-      collapseMenu: !this.state.collapseMenu
-    });
-  }
-
   componentDidMount() {
     const accessToken = localStorage.getItem('token');
-        let FavoriteMovies = localStorage.getItem('FavoriteMovies');
-        const FavoriteMoviesObj = FavoriteMovies.split(',');
+    // const { setUser } = this.props;   
+    // setUser(user.Username);
+
+    // let FavoriteMovies = localStorage.getItem('FavoriteMovies');
+    // const FavoriteMoviesObj = FavoriteMovies.split(',');
     this.getUser(accessToken);
   }
 
   getUser(token) {
-    const username = localStorage.getItem("user");
+    const username = localStorage.getItem('user');
     
     axios.get(`https://my-flix-22.herokuapp.com/users/${username}`, {
        headers: { Authorization: `Bearer ${token}`

@@ -1,15 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { Row, Col, Button, Navbar, NavDropdown, Nav, Container } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 
-import { setMovies } from '../../actions/actions';
+import { setMovies, setUser } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
 import { RegistrationView } from '../registration-view/registration-view';
 import { LoginView } from '../login-view/login-view';
-import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
@@ -19,42 +18,35 @@ import './main-view.scss';
 
 import { NavbarView } from '../navbar-view/navbar-view';
 
-
 class MainView extends React.Component {
 
-  constructor(){
-    super();
-    this.state = {// initial state for MainView
-      user: null, 
-    };
-  }
+  // constructor(){
+  //   super();
+  //   this.state = {// initial state for MainView
+  //     user: null, 
+  //   };
+  // }
 
   componentDidMount() {
   let accessToken = localStorage.getItem('token'); //accesses user token
+  
   if (accessToken !== null) {
-    this.setState({
-      user: localStorage.getItem('user')//sets user credentials for state
-    });
+    const { setUser } = this.props;
+    setUser(localStorage.getItem('user'));
     this.getMovies(accessToken);
     }
   }
 
   onLoggedIn(authData) { //authenticates user credentials
-    console.log(authData);
-    this.setState({
-      user: authData.user.Username,
-      email: authData.user.Email,
-      birthday: authData.user.Birthday,
-      FavoriteMovies: authData.user.FavoriteMovies,
-      password: authData.user.Password
-    });
+    const { setUser } = this.props;   
 
+    setUser(authData.user.Username);
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
-    localStorage.setItem('email', authData.user.Email);
-    localStorage.setItem('birthday', authData.user.Birthday);
-    localStorage.setItem('password', authData.user.Password);
-    localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
+    // localStorage.setItem('email', authData.user.Email);
+    // localStorage.setItem('birthday', authData.user.Birthday);
+    // localStorage.setItem('password', authData.user.Password);
+    // localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
     this.getMovies(authData.token);
   }
 
@@ -72,8 +64,8 @@ class MainView extends React.Component {
   }
 
   render() {
-    let { user } = this.state;
-    const { movies } = this.props;
+    //let { user } = this.state;
+    const { movies, user } = this.props;
 
     return (
       <Container className="main-container">
@@ -133,11 +125,12 @@ class MainView extends React.Component {
                     <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()}/>
                   </Col>
                 }}/>
-                <Route path={`/users/${user}`} render={(
-                  {history}) => {
-                    if (!user) return <Redirect to="/" />
+                <Route exact path={`/users/${user}`} render={(
+                  { match, history }) => {
+                    if (!user) return 
+                    // <Redirect to="/" />
                     return <Col>
-                      <ProfileView movies={movies} onBackClick={() => history.goBack()}/>
+                      <ProfileView movies={movies} user={user === match.params.Username} onBackClick={() => history.goBack()}/>
                     </Col>
                   }} />
               </Row>
@@ -149,7 +142,7 @@ class MainView extends React.Component {
 }
 
 let mapStateToProps = state => {
-  return { movies: state.movies }
+  return { movies: state.movies, user: state.user }
 }
 
-export default connect(mapStateToProps, { setMovies })(MainView)
+export default connect(mapStateToProps, { setMovies, setUser })(MainView)

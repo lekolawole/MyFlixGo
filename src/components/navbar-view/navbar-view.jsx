@@ -20,7 +20,7 @@ export function NavbarView({ user }) {
     };
 
     return (
-        <Navbar className="main-view-nav" expand="lg">
+        <Navbar className="main-view-nav">
                 <Navbar.Brand href="/">
                   <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'/>
                 </Navbar.Brand>
