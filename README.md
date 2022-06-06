@@ -19,7 +19,7 @@ Using React to build client-side myFlix app.
 <li>CSS</li>
 
 ## Deployment
-Test it out! https://myflixgo.netlify.app
+Test it out!
 Be sure to check out the package.json file for the this project's dependencies. 
 
 
