@@ -1,6 +1,7 @@
 import React from "react";
 import { Nav, Navbar } from 'react-bootstrap';
 import "./navbar-view.scss";
+import logo from '../../img/logo2.png';
 
 export function NavbarView({ user }) {
     
@@ -22,7 +23,7 @@ export function NavbarView({ user }) {
     return (
         <Navbar className="main-view-nav">
                 <Navbar.Brand href="/">
-                  <img className="main-logo" src='https://github.com/lekolawole/public/blob/main/logo2.png?raw=true'/>
+                  <img className="main-logo" src={logo}/>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar" />
                 <Navbar.Collapse id="navbar-collapse">

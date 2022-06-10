@@ -60,7 +60,6 @@ MovieView.propTypes = {
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     ImagePath: PropTypes.string,
-    //MovieDirector: PropTypes.string.isRequired,
     Rating: PropTypes.string.isRequired
   }).isRequired
 };

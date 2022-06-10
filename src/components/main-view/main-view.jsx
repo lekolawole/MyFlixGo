@@ -20,13 +20,6 @@ import { NavbarView } from '../navbar-view/navbar-view';
 
 class MainView extends React.Component {
 
-  // constructor(){
-  //   super();
-  //   this.state = {// initial state for MainView
-  //     user: null, 
-  //   };
-  // }
-
   componentDidMount() {
   let accessToken = localStorage.getItem('token'); //accesses user token
   
@@ -43,10 +36,6 @@ class MainView extends React.Component {
     setUser(authData.user.Username);
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
-    // localStorage.setItem('email', authData.user.Email);
-    // localStorage.setItem('birthday', authData.user.Birthday);
-    // localStorage.setItem('password', authData.user.Password);
-    // localStorage.setItem('FavoriteMovies', authData.user.FavoriteMovies)
     this.getMovies(authData.token);
   }
 
@@ -68,7 +57,7 @@ class MainView extends React.Component {
     const { movies, user } = this.props;
 
     return (
-      <Container className="main-container">
+      <Container className="main-container view">
         <Router>
           <NavbarView user={user} />
             <div className="main-view">
@@ -128,7 +117,6 @@ class MainView extends React.Component {
                 <Route exact path={`/users/${user}`} render={(
                   { match, history }) => {
                     if (!user) return 
-                    // <Redirect to="/" />
                     return <Col>
                       <ProfileView movies={movies} user={user} onBackClick={() => history.goBack()}/>
                     </Col>

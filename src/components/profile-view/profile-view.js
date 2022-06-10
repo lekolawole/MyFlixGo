@@ -18,11 +18,6 @@ export class ProfileView extends React.Component {
 
   componentDidMount() {
     const accessToken = localStorage.getItem('token');
-    // const { setUser } = this.props;   
-    // setUser(user.Username);
-
-    // let FavoriteMovies = localStorage.getItem('FavoriteMovies');
-    // const FavoriteMoviesObj = FavoriteMovies.split(',');
     this.getUser(accessToken);
   }
 
@@ -36,7 +31,7 @@ export class ProfileView extends React.Component {
         Username: response.data.Username,
         Password: response.data.Password,
         Email: response.data.Email,
-        Birthday: response.data.Birthday,
+        Birthday: response.data.Birthday.slice(0, 10),
         FavoriteMovies: response.data.FavoriteMovies
       });
     })
@@ -190,7 +185,7 @@ export class ProfileView extends React.Component {
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.Label>Password </Form.Label>
+                    <Form.Label>Password - Encrypted for your security</Form.Label>
                     <Form.Control 
                       style={{ "width":"24rem", "display":"flex"}}
                         type="text" 

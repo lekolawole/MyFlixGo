@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Col, Row, Container } from 'react-bootstrap';
+import { Col, Row, Container, Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
   e.preventDefault();
-  const isReq = validate(); //remember to call/declare variable since it's out of scope
+  const isReq = validate();
   if(isReq) {
     /* Send a request to the server for authentication */
   axios.post('https://my-flix-22.herokuapp.com/login', {
@@ -44,7 +44,6 @@ export function LoginView(props) {
   .then(response => {
     const data = response.data;
     props.onLoggedIn(data);
-    //console.log(data);
   })
   .catch(e => {
     console.log('no such user')
@@ -53,44 +52,36 @@ export function LoginView(props) {
   
 };
 
-  // const handleRegister = (e) => {
-  //   props.onRegister(true)
-  // }
-
   return (
-    <Container className="main-container" style={{"marginTop":"10rem"}}>
+    <Container className="main-container login" style={{"marginTop":"10rem"}}>
       <Row className="justify-content-md-center">
         <Col md={6}>
-          <Form>
-            <Form.Group controlId="formUsername">
-              <Form.Label>Username:</Form.Label>
-              <Form.Control type="text" value={username} placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
-              {usernameErr && <p>{usernameErr}</p>}
-            </Form.Group>
+          <Card>
+            <Card.Body>
+            <Form>
+              <Form.Group controlId="formUsername">
+                <Form.Label>Username:</Form.Label>
+                <Form.Control type="text" value={username} placeholder="Enter username" onChange={e => setUsername(e.target.value)} />
+                {usernameErr && <p>{usernameErr}</p>}
+              </Form.Group>
 
-            <Form.Group controlId="formPassword">
-              <Form.Label>Password:</Form.Label>
-              <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
-              {passwordErr && <p>{passwordErr}</p>}
-            </Form.Group>
+              <Form.Group controlId="formPassword">
+                <Form.Label>Password:</Form.Label>
+                <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                {passwordErr && <p>{passwordErr}</p>}
+              </Form.Group>
 
-            <div style={{"margin":"1.2, 0, 0, 2rem"}}>
-              <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
-              <Link to="/register">
-                <Button style={{"marginLeft":"4rem"}} variant="secondary" type="submit">New User? Register here</Button>
-              </Link>
-            </div>
-          </Form>
+              <div style={{"margin":"1.2, 0, 0, 2rem"}}>
+                <Button variant="primary" type="submit" onClick={handleSubmit}>Submit</Button>
+                <Link to="/register">
+                  <Button style={{"marginLeft":"4rem"}} variant="secondary" type="submit">New User? Register here</Button>
+                </Link>
+              </div>
+            </Form>
+           </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>
   );
-}
-
-
-LoginView.propTypes = {
-  user: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-  }).isRequired
 }
