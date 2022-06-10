@@ -1,6 +1,7 @@
 # MyFlixGO
  
 Using React to build client-side myFlix app. 
+<img src='./src/img/homepage.png' alt="homepage">
 
 ## Features
 
