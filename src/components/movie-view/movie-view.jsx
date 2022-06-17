@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
+import { Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import { AddFavMovie } from './addFavMovie';
 import { Link } from 'react-router-dom';
+import { RecommendedMovies } from './RecommendedMovies';
 
 import './movie-view.scss';
 
 export class MovieView extends React.Component {
+
+  findMovies(_id) {
+
+  }
 
   addFavM(movie) {   
     let user = localStorage.getItem('user');
@@ -16,7 +21,7 @@ export class MovieView extends React.Component {
   }
 
   render() {
-    const { movie, onBackClick, user, FavoriteMovies, token } = this.props;
+    const { movie, movies, onBackClick, user, FavoriteMovies, token } = this.props;
 
     return (
       <Container className="movie-view-container">
@@ -49,6 +54,11 @@ export class MovieView extends React.Component {
           <Col>
             <Button onClick={() => { onBackClick(null); }}>Back</Button>
           </Col>
+      </Row>
+      <Row>
+        <Col>
+          <RecommendedMovies selectedMovie={movie} movies={movies} />
+        </Col>
       </Row>
       </Container>
     );
