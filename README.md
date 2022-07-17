@@ -1,7 +1,7 @@
 # MyFlixGO
  
-Using React to build client-side myFlix app. 
-=======
+### Browse and save your favorite movies with MyFlixGo. Built with React.
+
 <img src="https://github.com/lekolawole/MyFlixGo/blob/f3323fe27a693c6a85d697596065822dc1a8212d/src/img/homepage.png" alt="homepage" width="700"/>
 
 ## Features
