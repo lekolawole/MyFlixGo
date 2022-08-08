@@ -26,8 +26,8 @@
 <li>Heroku (click <a href="https://github.com/lekolawole/myFlix">here</a> to see the server-side code for this project)</li>
 
 ## Deployment
-Test it out!
-Be sure to check out the package.json file for the this project's dependencies. 
+This project has also been built with Angular. Check it out <a href='https://github.com/lekolawole/movieStudio-angular'>here</a>
+<br />
 1. Clone this repo.
 2. Set it up locally in your code editor.
 3. Run ```npm i``` to install the required dependencies.
