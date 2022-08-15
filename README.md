@@ -26,6 +26,9 @@
 <li>Heroku (click <a href="https://github.com/lekolawole/myFlix">here</a> to see the server-side code for this project)</li>
 
 ## Deployment
+
+View the site live <a href="https://my-flix-go.vercel.app">here</a>
+<br />
 This project has also been built with Angular. Check it out <a href='https://github.com/lekolawole/movieStudio-angular'>here</a>
 <br />
 1. Clone this repo.
